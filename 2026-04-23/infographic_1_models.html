@@ -3,136 +3,246 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=1080">
-<title>每日AI熱點 · 圖① 模型更新</title>
+<title>AI 模型更新速報 — 2026-04-23</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Noto+Sans+TC:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --cream:#FEFDF5; --surface:#FFFFFF; --ink:#1C1914; --soft:#6B6150;
-    --orange:#E55A00; --blue:#1D4ED8; --yellow:rgba(253,224,0,0.42);
-    --green:#1A7A40; --red:#C42020; --purple:#6D28D9;
+  body {
+    background: #FEFDF5;
+    font-family: 'Noto Sans TC', sans-serif;
+    width: 1080px;
+    margin: 0 auto;
+    color: #1C1914;
   }
-  body { background:var(--cream); font-family:'Noto Sans TC',sans-serif; color:var(--ink); width:1080px; margin:0 auto; -webkit-font-smoothing:antialiased; }
-
-  .header { background:var(--ink); color:var(--cream); padding:28px 52px 24px; display:flex; justify-content:space-between; align-items:flex-end; }
-  .header-brand { font-family:'Caveat',cursive; font-size:40px; font-weight:700; line-height:1; }
-  .header-sub { font-family:'Space Grotesk',sans-serif; font-size:13px; opacity:0.5; margin-top:6px; letter-spacing:1px; text-transform:uppercase; }
-  .header-date { font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; color:#FDE047; text-align:right; line-height:1; }
-  .header-tag { font-family:'Space Grotesk',sans-serif; font-size:11px; margin-top:6px; opacity:0.5; letter-spacing:1.5px; text-transform:uppercase; text-align:right; }
-
-  .main { padding:44px 52px 36px; }
-
-  .summary { background:var(--surface); border:2.5px solid var(--ink); border-radius:3px 8px 5px 4px/6px 4px 7px 3px; box-shadow:5px 5px 0 var(--ink); padding:26px 32px; margin-bottom:44px; }
-  .summary::before { content:'📌 今日摘要'; font-family:'Caveat',cursive; font-size:21px; font-weight:700; color:var(--orange); display:block; margin-bottom:12px; }
-  .summary p { font-size:16.5px; line-height:1.85; text-wrap:pretty; }
-
-  .section-title { font-family:'Caveat',cursive; font-size:30px; font-weight:700; margin-bottom:22px; padding-bottom:10px; border-bottom:3.5px solid var(--orange); display:flex; align-items:center; gap:10px; }
-
-  .cards { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
-  .card { background:var(--surface); border:2px solid var(--ink); border-radius:3px 7px 5px 4px/6px 3px 7px 4px; box-shadow:3px 3px 0 var(--ink); padding:20px 22px; display:flex; flex-direction:column; gap:10px; }
-  .card:nth-child(1){transform:rotate(-0.35deg)} .card:nth-child(2){transform:rotate(0.25deg)} .card:nth-child(3){transform:rotate(0.3deg)} .card:nth-child(4){transform:rotate(-0.2deg)}
-  .card-top { display:flex; justify-content:space-between; align-items:flex-start; gap:10px; }
-  .card-name { font-family:'Space Grotesk',sans-serif; font-size:17px; font-weight:700; flex:1; line-height:1.3; }
-  .card-badge { font-family:'Space Grotesk',sans-serif; font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:white; background:var(--orange); padding:3px 8px; border-radius:2px 4px 3px 2px; white-space:nowrap; flex-shrink:0; }
-  .card-badge.blue{background:var(--blue)} .card-badge.green{background:var(--green)} .card-badge.red{background:var(--red)} .card-badge.purple{background:var(--purple)}
-  .card-source { font-family:'Space Grotesk',sans-serif; font-size:12px; color:var(--soft); }
-  .card-source a { color:var(--blue); text-decoration:none; border-bottom:1.5px solid currentColor; }
-  .card-desc { font-size:13.5px; line-height:1.75; color:var(--ink); text-wrap:pretty; flex:1; }
-  .card-reaction { font-size:12.5px; color:var(--soft); line-height:1.6; border-left:3px solid var(--orange); padding-left:10px; font-style:italic; }
-  .hl { background:linear-gradient(transparent 38%,var(--yellow) 38%); padding:0 2px; }
-
-  .footer { margin-top:40px; border-top:2px solid var(--ink); padding:16px 52px; display:flex; justify-content:space-between; align-items:center; font-family:'Space Grotesk',sans-serif; font-size:11.5px; color:var(--soft); letter-spacing:0.5px; }
-  .footer-dot { width:6px;height:6px;background:var(--orange);border-radius:50%;display:inline-block;margin:0 8px;vertical-align:middle; }
+  .header {
+    background: #1C1914;
+    padding: 28px 44px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-brand {
+    font-family: 'Caveat', cursive;
+    font-size: 40px;
+    color: #FFFFFF;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .header-brand span { color: #E55A00; }
+  .header-date {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    color: #FDE047;
+    font-weight: 500;
+  }
+  .summary-box {
+    margin: 36px 40px 0;
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 24px 30px;
+  }
+  .summary-label {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: #E55A00;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .summary-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #1C1914;
+  }
+  .hl { background: linear-gradient(transparent 38%, rgba(253,224,0,0.42) 38%); padding: 0 2px; }
+  .section-title {
+    font-family: 'Caveat', cursive;
+    font-size: 30px;
+    font-weight: 700;
+    color: #1C1914;
+    margin: 36px 40px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 3px;
+    background: #E55A00;
+    border-radius: 2px;
+  }
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin: 0 40px 40px;
+  }
+  .card {
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 22px 24px;
+  }
+  .card:nth-child(odd) { transform: rotate(-0.35deg); }
+  .card:nth-child(even) { transform: rotate(0.25deg); }
+  .card-wide { grid-column: 1 / -1; }
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    gap: 12px;
+  }
+  .card-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+  .badge {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .badge-new   { background: #E55A00; color: #fff; }
+  .badge-update{ background: #FDE047; color: #1C1914; }
+  .badge-infra { background: #6B6150; color: #fff; }
+  .badge-agent { background: #1C1914; color: #fff; }
+  .source-link {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    color: #E55A00;
+    text-decoration: none;
+    border-bottom: 1px dashed #E55A00;
+    margin-bottom: 11px;
+    word-break: break-all;
+  }
+  .card-desc {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: #1C1914;
+    margin-bottom: 12px;
+  }
+  .reaction-label {
+    font-family: 'Caveat', cursive;
+    font-size: 15px;
+    color: #6B6150;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .reaction-text {
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: #6B6150;
+    border-left: 3px solid #FDE047;
+    padding-left: 10px;
+  }
+  .footer {
+    background: #1C1914;
+    color: #6B6150;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    text-align: center;
+    padding: 14px 40px;
+  }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <div>
-    <div class="header-brand">🤖 每日 AI 熱點速報</div>
-    <div class="header-sub">圖① &nbsp;·&nbsp; 模型發布與重大更新</div>
-  </div>
-  <div>
-    <div class="header-date">2026年04月23日</div>
-    <div class="header-tag">TODAY'S MODELS</div>
+  <div class="header-brand">AI 日報<span> ①</span> 模型更新</div>
+  <div class="header-date">2026-04-23 · Taiwan Time</div>
+</div>
+
+<div class="summary-box">
+  <div class="summary-label">📋 今日摘要</div>
+  <div class="summary-text">
+    過去24小時，AI產業以<span class="hl">代理人（Agent）AI</span>為核心主軸全面爆發，<span class="hl">Google Cloud Next 2026</span>成為最大催化劑，宣布Vertex AI升級為Gemini企業代理人平台並推出第8代TPU晶片。<span class="hl">Anthropic年化營收突破$300億</span>，首次超越OpenAI，並簽署5GW TPU算力大單震驚業界。OpenAI同步發布工作空間代理人與隱私過濾模型，標誌AI工具從「生成文字」正式進化為<span class="hl">「執行任務」</span>的歷史轉折點。
   </div>
 </div>
 
-<div class="main">
+<div class="section-title">🤖 過去24小時 AI 模型與平台發布</div>
 
-  <div class="summary">
-    <p>今日三大焦點：Anthropic 靜悄悄發布 <span class="hl">Claude Mythos 5</span>（10 兆參數），矛頭直指資安與高難度編程場景；Google 將 Gemini 3.1 深度整合進 Chrome 企業版，AI 自動瀏覽正式落地；OpenAI GPT-5.4 多版本（Standard / Thinking / Pro）全面更新，模型戰局進入多路並進的新局面。</p>
+<div class="cards-grid">
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">Google Gemini 企業代理人平台<br>+ 第8代 TPU 晶片</div>
+      <span class="badge badge-new">NEW</span>
+    </div>
+    <a class="source-link" href="https://thenextweb.com/news/google-cloud-next-ai-agents-agentic-era" target="_blank">thenextweb.com — Google Cloud Next 2026 全覽</a>
+    <div class="card-desc">
+      Google 於 Cloud Next 2026 大會宣布將 Vertex AI 重命名為 <strong>Gemini 企業代理人平台</strong>，整合 Agentspace 為統一產品套件，並推出以 AI 原生架構重塑企業數據平台的「代理數據雲」。史上首批雙晶片配置的<strong>第8代 TPU</strong> 同步亮相，專為代理人時代算力需求而生，同時宣布 <strong>7.5 億美元</strong>合作夥伴生態系基金。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">企業圈普遍正面，被廣泛解讀為 Google 對 OpenAI 和 Anthropic 最直接的企業級挑戰。TechCrunch 對代理工具設計哲學提出部分質疑，技術社群有小幅辯論。</div>
   </div>
 
-  <div class="section-title">🧠 模型發布與重大更新</div>
-
-  <div class="cards">
-
-    <div class="card">
-      <div class="card-top">
-        <div class="card-name">Claude Mythos 5</div>
-        <div class="card-badge">ANTHROPIC</div>
-      </div>
-      <div class="card-source">🔗 <a href="https://www.anthropic.com/news">anthropic.com · 2026/04/23</a></div>
-      <div class="card-desc">
-        Anthropic 最新旗艦，搭載 <span class="hl">10 兆參數</span>，專為進階資安分析與複雜編程場景優化。
-        同步推出親民版 Capabara，填補中低端市場缺口，形成雙軌產品策略。
-        資安社群對其自主漏洞挖掘能力高度關注。
-      </div>
-      <div class="card-reaction">💬 社群：「參數量等級直接對標下一代 GPT，資安工程師搶先測試中。」</div>
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">Anthropic：5GW TPU 大單<br>+ $300 億年化營收</div>
+      <span class="badge badge-infra">INFRA</span>
     </div>
-
-    <div class="card">
-      <div class="card-top">
-        <div class="card-name">Gemini 3.1 Ultra + Chrome AI</div>
-        <div class="card-badge green">GOOGLE</div>
-      </div>
-      <div class="card-source">🔗 <a href="https://deepmind.google/models/gemini/">deepmind.google · 2026/04/23</a></div>
-      <div class="card-desc">
-        Gemini 3.1 Ultra 加入即時語音與圖像分析能力，同日 Google 將 Gemini 驅動的「Auto Browse」整合進 Chrome 企業版，
-        讓員工可自動化研究、數據錄入等重複性工作。
-        Google 壓縮演算法同步上線，AI 記憶體需求降低 6 倍。
-      </div>
-      <div class="card-reaction">💬 社群：「Chrome AI 讓辦公室自動化正式起步，企業 IT 部門討論熱烈。」</div>
+    <a class="source-link" href="https://www.anthropic.com/news/google-broadcom-partnership-compute" target="_blank">anthropic.com — Google & Broadcom 算力合作</a>
+    <div class="card-desc">
+      Anthropic 宣布與 Google 及 Broadcom 簽署高達 <strong>5 吉瓦次世代 TPU 算力協議</strong>，預計 2027 年上線，支持 Claude 模型規模化擴展。同步披露年化營收已<strong>突破 $300 億美元</strong>，首次超越 OpenAI 的 $250 億，CFO 表示客戶基礎呈指數級增長。
     </div>
-
-    <div class="card">
-      <div class="card-top">
-        <div class="card-name">GPT-5.4 三版本更新</div>
-        <div class="card-badge blue">OPENAI</div>
-      </div>
-      <div class="card-source">🔗 <a href="https://openai.com/index/introducing-gpt-5-4/">openai.com</a></div>
-      <div class="card-desc">
-        Standard、Thinking、Pro 三版本同步更新，百萬 token 上下文延伸至更多場景，
-        在 GDPval 職業能力測試（44 種職業）中，Pro 版本達 <span class="hl">83% 超越人類專業人士</span>。
-        企業版與 EDU 版可透過管理後台開啟搶鮮體驗。
-      </div>
-      <div class="card-reaction">💬 社群：「Thinking 版處理長鏈推理問題的速度比上一代快 2.4 倍。」</div>
-    </div>
-
-    <div class="card">
-      <div class="card-top">
-        <div class="card-name">Grok 4.20</div>
-        <div class="card-badge purple">xAI</div>
-      </div>
-      <div class="card-source">🔗 <a href="https://llm-stats.com/llm-updates">llm-stats.com · 2026/04</a></div>
-      <div class="card-desc">
-        xAI 最新版 Grok，強化即時網路搜尋與資訊整合能力，
-        在財經、時事分析等即時性需求場景表現突出，
-        X Premium+ 用戶優先體驗，API 定價較 GPT-5.4 低約 40%。
-      </div>
-      <div class="card-reaction">💬 社群：「即時搜尋整合是 Grok 最大差異化，彭博終端整合傳言升溫。」</div>
-    </div>
-
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">投資者與分析師情緒極度看多，Motley Fool 稱之為 Alphabet 和 Broadcom 的「重大利好消息」，被視為 Anthropic 進入頂級 AI 收入陣營的決定性信號。</div>
   </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">OpenAI ChatGPT Images 2.0</div>
+      <span class="badge badge-update">UPDATE</span>
+    </div>
+    <a class="source-link" href="https://blog.greeden.me/en/2026/04/23/april-17-april-23-2026-weekly-generative-ai-news-roundup-the-practical-rise-of-image-thinking-the-emergence-of-design-ai-and-the-full-scale-arrival-of-research-agents/" target="_blank">blog.greeden.me — 每週生成式AI摘要 4/17~4/23</a>
+    <div class="card-desc">
+      OpenAI 推出 <strong>ChatGPT Images 2.0</strong>，圖像生成品質大幅躍升，可直接產出設計素材、簡報視覺與單頁報告。高階方案支援「思考模式」應用於圖像生成，對複雜設計提示理解能力增強，<strong>直接對標 Anthropic Claude Design</strong>，兩者在同一週搶攻創意專業工作流程市場。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">設計師與創意工作者反應熱烈，業界觀察者稱此為「AI 跨越工具與執行的另一清晰步伐」。關於是否能取代 Figma/Adobe 的討論持續熱烈。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">Google 三項安全 AI 代理人</div>
+      <span class="badge badge-agent">AGENT</span>
+    </div>
+    <a class="source-link" href="https://www.theregister.com/2026/04/22/google_unleashes_even_more_ai" target="_blank">theregister.com — Google 安全代理人報導</a>
+    <div class="card-desc">
+      Google 於 Google Security Operations 推出<strong>三項全新 AI 代理人</strong>，專門偵測並防禦惡意行為者對 AI 的濫用攻擊，自主嵌入企業安全工作流程，大幅縮短事件回應時間並減輕分析師負擔。此為 Google Cloud Next 2026 整體代理人平台的安全垂直版本。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">資安社群普遍正面，The Register 以招牌的懷疑口吻報導，反映業界對 AI 應用於安全領域熱情與合理審慎並存的雙重態度。</div>
+  </div>
+
+  <div class="card card-wide">
+    <div class="card-top">
+      <div class="card-name">Deep Research Max — 企業級長期自主研究代理人正式成類</div>
+      <span class="badge badge-agent">TREND</span>
+    </div>
+    <a class="source-link" href="https://blog.greeden.me/en/2026/04/23/april-17-april-23-2026-weekly-generative-ai-news-roundup-the-practical-rise-of-image-thinking-the-emergence-of-design-ai-and-the-full-scale-arrival-of-research-agents/" target="_blank">blog.greeden.me — 研究代理人全面降臨週報</a>
+    <div class="card-desc">
+      「<strong>Deep Research Max</strong>」級別代理人本週正式被業界認定為獨立產品類別，能在企業工作流程中自主執行數小時的長期調查任務——跨越大量文件集和網路進行資訊合成，無需人工中斷點。OpenAI 與 Anthropic 皆推出各自版本，LINE Yahoo 在日本也同步推出本地化版本「<strong>Agent i</strong>」。業界觀察者將本週形容為「AI 正式從優秀文字工具跨越至真實執行工具」的關鍵轉折時刻。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">業界對此感到興奮且審慎樂觀；治理、可稽核性等企業採用顧慮仍是活躍討論議題。研究代理人全面降臨被廣泛視為 AI 應用的重大里程碑。</div>
+  </div>
+
 </div>
 
-<div class="footer">
-  <span>每日 AI 熱點速報 <span class="footer-dot"></span> 自動生成</span>
-  <span>圖① / 共三張</span>
-  <span>2026.04.23</span>
-</div>
-
+<div class="footer">AI 日報 · 每日 08:00 台灣時間更新 · 資料截至 2026-04-23 08:00 UTC+8</div>
 </body>
 </html>
