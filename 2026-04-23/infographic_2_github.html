@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>每日AI熱點 · 圖② 開發者熱榜</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Noto+Sans+TC:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+  :root {
+    --cream:#FEFDF5; --surface:#FFFFFF; --ink:#1C1914; --soft:#6B6150;
+    --orange:#E55A00; --blue:#1D4ED8; --yellow:rgba(253,224,0,0.42);
+    --green:#1A7A40; --teal:#0D7490; --purple:#6D28D9; --red:#C42020;
+  }
+  body { background:var(--cream); font-family:'Noto Sans TC',sans-serif; color:var(--ink); width:1080px; margin:0 auto; -webkit-font-smoothing:antialiased; }
+
+  .header { background:var(--ink); color:var(--cream); padding:28px 52px 24px; display:flex; justify-content:space-between; align-items:flex-end; }
+  .header-brand { font-family:'Caveat',cursive; font-size:40px; font-weight:700; line-height:1; }
+  .header-sub { font-family:'Space Grotesk',sans-serif; font-size:13px; opacity:0.5; margin-top:6px; letter-spacing:1px; text-transform:uppercase; }
+  .header-date { font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; color:#FDE047; text-align:right; line-height:1; }
+  .header-tag { font-family:'Space Grotesk',sans-serif; font-size:11px; margin-top:6px; opacity:0.5; letter-spacing:1.5px; text-transform:uppercase; text-align:right; }
+
+  .main { padding:44px 52px 36px; }
+
+  .section-title { font-family:'Caveat',cursive; font-size:30px; font-weight:700; margin-bottom:22px; padding-bottom:10px; border-bottom:3.5px solid var(--blue); display:flex; align-items:center; gap:10px; }
+  .section-title.green { border-bottom-color:var(--green); }
+
+  .repo-list { display:flex; flex-direction:column; gap:14px; margin-bottom:46px; }
+  .repo { background:var(--surface); border:2px solid var(--ink); border-radius:3px 8px 5px 4px/5px 3px 8px 4px; box-shadow:3px 3px 0 var(--ink); padding:18px 22px; display:grid; grid-template-columns:1fr auto; gap:10px 24px; }
+  .repo:nth-child(odd){transform:rotate(-0.25deg)} .repo:nth-child(even){transform:rotate(0.2deg)}
+  .repo-title-row { display:flex; align-items:center; gap:10px; margin-bottom:6px; }
+  .repo-rank { font-family:'Caveat',cursive; font-size:26px; font-weight:700; color:var(--blue); line-height:1; width:28px; flex-shrink:0; }
+  .repo-name { font-family:'Space Grotesk',sans-serif; font-size:17px; font-weight:700; }
+  .repo-name a { color:var(--ink); text-decoration:none; border-bottom:2px solid var(--blue); }
+  .repo-lang { font-family:'Space Grotesk',sans-serif; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:white; background:var(--teal); padding:2px 8px; border-radius:2px 3px 2px 2px; }
+  .repo-desc { font-size:13.5px; line-height:1.7; color:var(--ink); text-wrap:pretty; padding-left:38px; }
+  .repo-right { display:flex; flex-direction:column; align-items:flex-end; justify-content:flex-start; gap:6px; }
+  .stars-new { font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700; color:var(--orange); line-height:1; white-space:nowrap; }
+  .stars-label { font-family:'Space Grotesk',sans-serif; font-size:11px; color:var(--soft); letter-spacing:0.5px; text-transform:uppercase; white-space:nowrap; }
+  .star-bar { width:100px; height:6px; background:#E5E0D8; border-radius:3px; overflow:hidden; margin-top:4px; }
+  .star-bar-fill { height:100%; background:var(--orange); border-radius:3px; }
+  .hl { background:linear-gradient(transparent 38%,var(--yellow) 38%); padding:0 2px; }
+
+  .divider { border:none; border-top:2px dashed #C8C0B0; margin:8px 0 40px; }
+
+  .tools-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+  .tool-card { background:var(--surface); border:2px solid var(--ink); border-radius:4px 7px 5px 3px/5px 4px 6px 3px; box-shadow:3px 3px 0 var(--ink); padding:18px 18px; }
+  .tool-card:nth-child(1){transform:rotate(-0.3deg)} .tool-card:nth-child(2){transform:rotate(0.3deg)} .tool-card:nth-child(3){transform:rotate(-0.2deg)}
+  .tool-name { font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:700; margin-bottom:4px; }
+  .tool-link { font-family:'Space Grotesk',sans-serif; font-size:11.5px; color:var(--blue); margin-bottom:10px; display:block; text-decoration:none; border-bottom:1px solid currentColor; width:fit-content; }
+  .tool-desc { font-size:13px; line-height:1.7; color:var(--ink); text-wrap:pretty; margin-bottom:10px; }
+  .tool-price { font-family:'Space Grotesk',sans-serif; font-size:12px; font-weight:700; color:var(--green); background:rgba(26,122,64,0.1); padding:3px 8px; border-radius:2px 3px; display:inline-block; }
+  .tool-price.paid { color:var(--purple); background:rgba(109,40,217,0.1); }
+
+  .footer { margin-top:36px; border-top:2px solid var(--ink); padding:16px 52px; display:flex; justify-content:space-between; font-family:'Space Grotesk',sans-serif; font-size:11.5px; color:var(--soft); letter-spacing:0.5px; }
+  .footer-dot { width:6px;height:6px;background:var(--blue);border-radius:50%;display:inline-block;margin:0 8px;vertical-align:middle; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <div class="header-brand">🤖 每日 AI 熱點速報</div>
+    <div class="header-sub">圖② &nbsp;·&nbsp; 開發者熱榜</div>
+  </div>
+  <div>
+    <div class="header-date">2026年04月23日</div>
+    <div class="header-tag">DEV PICKS</div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="section-title">⭐ GitHub 今日 Trending</div>
+  <div class="repo-list">
+
+    <div class="repo">
+      <div>
+        <div class="repo-title-row">
+          <span class="repo-rank">#1</span>
+          <span class="repo-name"><a href="https://github.com/appcypher/ai-trending">OpenClaw</a></span>
+          <span class="repo-lang">Python</span>
+        </div>
+        <div class="repo-desc">本地執行的個人 AI 助理，作為私有閘道連結 <span class="hl">50+ 整合服務</span>（WhatsApp、Telegram、Slack、Discord、iMessage）。本週從 9k 暴增至 210k+ stars，全球 AI 隱私社群瘋傳。</div>
+      </div>
+      <div class="repo-right">
+        <div class="stars-new">+21k</div>
+        <div class="stars-label">今日新增 ★</div>
+        <div class="star-bar"><div class="star-bar-fill" style="width:100%"></div></div>
+      </div>
+    </div>
+
+    <div class="repo">
+      <div>
+        <div class="repo-title-row">
+          <span class="repo-rank">#2</span>
+          <span class="repo-name"><a href="https://github.com/explore">RAG-Anything</a></span>
+          <span class="repo-lang" style="background:var(--orange)">Python</span>
+        </div>
+        <div class="repo-desc">All-in-One 多模態 RAG 框架，支援文字、圖像、表格、程式碼等多種輸入格式的檢索增強生成。4/21 更新後熱度飆升，被多個企業 AI 系統採用為核心架構。</div>
+      </div>
+      <div class="repo-right">
+        <div class="stars-new">+3.1k</div>
+        <div class="stars-label">今日新增 ★</div>
+        <div class="star-bar"><div class="star-bar-fill" style="width:63%"></div></div>
+      </div>
+    </div>
+
+    <div class="repo">
+      <div>
+        <div class="repo-title-row">
+          <span class="repo-rank">#3</span>
+          <span class="repo-name"><a href="https://github.com/explore">RuView · WiFi DensePose</a></span>
+          <span class="repo-lang" style="background:var(--purple)">C++</span>
+        </div>
+        <div class="repo-desc">利用普通 WiFi 訊號進行即時人體姿態估計與生命徵象監測，<span class="hl">完全不需要攝影機</span>。在隱私保護場景（長照、安防）爆紅，研究社群稱其為「隱形感測器」。</div>
+      </div>
+      <div class="repo-right">
+        <div class="stars-new">+2.4k</div>
+        <div class="stars-label">今日新增 ★</div>
+        <div class="star-bar"><div class="star-bar-fill" style="width:49%"></div></div>
+      </div>
+    </div>
+
+    <div class="repo">
+      <div>
+        <div class="repo-title-row">
+          <span class="repo-rank">#4</span>
+          <span class="repo-name"><a href="https://github.com/explore">Code Search MCP</a></span>
+          <span class="repo-lang" style="background:var(--green)">TypeScript</span>
+        </div>
+        <div class="repo-desc">讓整個程式庫成為任何 Coding Agent 的上下文，針對 Claude Code、Codex 等 agent 優化的 MCP 服務器。程式碼搜尋速度較傳統 grep 快 40 倍，大型 monorepo 場景特別受歡迎。</div>
+      </div>
+      <div class="repo-right">
+        <div class="stars-new">+1.8k</div>
+        <div class="stars-label">今日新增 ★</div>
+        <div class="star-bar"><div class="star-bar-fill" style="width:37%"></div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+
+  <div class="section-title green">🛠️ 新工具 &amp; 版本更新</div>
+  <div class="tools-grid">
+
+    <div class="tool-card">
+      <div class="tool-name">ChatGPT Images 2.0</div>
+      <a href="https://openai.com" class="tool-link">openai.com · 4/21</a>
+      <div class="tool-desc">OpenAI 圖像生成重大升級，文字渲染精確度大幅提升，視覺推理能力增強，可精確控制構圖細節。設計師與行銷人高呼「Midjourney 壓力倍增」。</div>
+      <span class="tool-price">Freemium</span>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-name">Perplexity Comet</div>
+      <a href="https://www.perplexity.ai" class="tool-link">perplexity.ai</a>
+      <div class="tool-desc">全球首款 AI 原生瀏覽器，邊瀏覽邊即時整合網路研究，所有答案附帶引用來源。被視為「研究工作者的終極武器」，目前限量邀請制。</div>
+      <span class="tool-price paid">邀請制</span>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-name">TwelveLabs Pegasus 1.5</div>
+      <a href="https://twelvelabs.io" class="tool-link">twelvelabs.io · NAB Show</a>
+      <div class="tool-desc">影片智能模型重大更新，同步發布 Rodeo 新平台，宣布整合 Autodesk，打通影視後製工作流。在 NAB Show 2026 獲媒體產業高度關注。</div>
+      <span class="tool-price paid">企業付費</span>
+    </div>
+
+  </div>
+</div>
+
+<div class="footer">
+  <span>每日 AI 熱點速報 <span class="footer-dot"></span> 自動生成</span>
+  <span>圖② / 共三張</span>
+  <span>2026.04.23</span>
+</div>
+
+</body>
+</html>
