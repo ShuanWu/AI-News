@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 模型更新速報 2026-04-24</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #FEFDF5;
+    font-family: 'Noto Sans TC', sans-serif;
+    width: 1080px;
+    min-height: 100vh;
+    padding-bottom: 48px;
+  }
+  header {
+    background: #1C1914;
+    padding: 32px 48px 28px;
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  header h1 {
+    font-family: 'Caveat', cursive;
+    font-size: 40px;
+    color: #fff;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+  header .date {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    color: #FDE047;
+    font-weight: 600;
+  }
+  .container { padding: 40px 48px 0; }
+  .summary-box {
+    border-left: 4px solid #E55A00;
+    background: #fff;
+    border: 2px solid #1C1914;
+    border-left: 6px solid #E55A00;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 20px 24px;
+    margin-bottom: 36px;
+    transform: rotate(-0.35deg);
+  }
+  .summary-box h2 {
+    font-family: 'Caveat', cursive;
+    font-size: 26px;
+    color: #E55A00;
+    margin-bottom: 10px;
+  }
+  .summary-box p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #1C1914;
+  }
+  .highlight {
+    background: linear-gradient(transparent 38%, rgba(253,224,0,0.42) 38%);
+    display: inline;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .card {
+    background: #fff;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 22px 24px;
+  }
+  .card:nth-child(odd) { transform: rotate(-0.35deg); }
+  .card:nth-child(even) { transform: rotate(0.25deg); }
+  .card-model {
+    font-family: 'Caveat', cursive;
+    font-size: 28px;
+    color: #E55A00;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .card-company {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .card-url {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    color: #E55A00;
+    word-break: break-all;
+    margin-bottom: 12px;
+    opacity: 0.8;
+  }
+  .card-desc {
+    font-size: 14px;
+    line-height: 1.75;
+    color: #1C1914;
+    margin-bottom: 12px;
+  }
+  .divider {
+    height: 1px;
+    background: #E5E0D0;
+    margin: 10px 0;
+  }
+  .reaction-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: #888;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .reaction {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: #1C1914;
+  }
+  .badge {
+    display: inline-block;
+    background: #E55A00;
+    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-bottom: 8px;
+  }
+  .badge-open {
+    background: #1D4ED8;
+  }
+  .badge-closed {
+    background: #7C3AED;
+  }
+  .badge-preview {
+    background: #059669;
+  }
+  .section-title {
+    font-family: 'Caveat', cursive;
+    font-size: 32px;
+    color: #1C1914;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #E55A00;
+    padding-bottom: 6px;
+  }
+  .emoji-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .sentiment-positive { color: #059669; font-weight: 700; font-size: 13px; }
+  .sentiment-negative { color: #DC2626; font-weight: 700; font-size: 13px; }
+  .sentiment-mixed { color: #D97706; font-weight: 700; font-size: 13px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>模型更新速報</h1>
+  <span class="date">2026-04-24</span>
+</header>
+
+<div class="container">
+  <div class="summary-box">
+    <h2>今日主題摘要</h2>
+    <p>
+      2026年4月下旬，AI模型市場正上演「<span class="highlight">開源反攻</span>」與「<span class="highlight">社群反彈</span>」兩大主題。Moonshot AI的Kimi K2.6以極低成本擊敗GPT-5.4，動搖了「頂尖模型必然閉源昂貴」的認知；Anthropic的Claude Opus 4.7因新tokenizer被批為變相漲價，引發大規模抱怨。Meta首次推出閉源模型Muse Spark，令開源社群震驚；Google則悄悄深化與Thinking Machines Lab的數十億美元算力合作，算力爭奪戰持續升溫。
+    </p>
+  </div>
+
+  <div class="section-title">模型發布與更新</div>
+
+  <div class="grid">
+    <!-- Card 1: Kimi K2.6 -->
+    <div class="card">
+      <span class="badge badge-open">開源 Open Source</span>
+      <div class="card-model">Kimi K2.6</div>
+      <div class="card-company">Moonshot AI — 2026-04-20</div>
+      <div class="card-url">https://aiprixa.com/kimi-k2-6-code/</div>
+      <div class="card-desc">
+        僅需 <strong>$0.60/百萬token</strong>，在 SWE-Bench Pro 上擊敗 GPT-5.4，HLE with Tools 測試奪冠。支援 <span class="highlight">500萬token</span> 超長上下文，Kimi Code K2.6 變體專為coding agent優化。多份測評顯示其agentic coding性能與Opus 4.7相當，但成本低88%。
+      </div>
+      <div class="divider"></div>
+      <div class="reaction-label">社群反應</div>
+      <div class="reaction">
+        <span class="sentiment-positive">極度正面 🔥</span><br>
+        Hugging Face CEO公開讚為「本月最突出開源模型」。r/LocalLLaMA出現大量「<span class="highlight">把Claude後端換成Kimi</span>」討論，開發者分享5天自主infra agent運行成功案例。
+      </div>
+    </div>
+
+    <!-- Card 2: Claude Opus 4.7 -->
+    <div class="card">
+      <span class="badge badge-closed">閉源 Proprietary</span>
+      <div class="card-model">Claude Opus 4.7</div>
+      <div class="card-company">Anthropic — 2026-04-16</div>
+      <div class="card-url">https://xlork.com/blog/claude-opus-4-7-backlash</div>
+      <div class="card-desc">
+        GPQA達 <strong>0.9</strong>，但同步引入新tokenizer改變計算方式。Claude Code預設effort靜默升至xhigh，兩者疊加造成<span class="highlight">實際使用成本大幅上升</span>，官方未主動告知用戶，引發強烈不滿。
+      </div>
+      <div class="divider"></div>
+      <div class="reaction-label">社群反應</div>
+      <div class="reaction">
+        <span class="sentiment-negative">負評如潮 😡</span><br>
+        Reddit「<span class="highlight">Opus 4.7是嚴重退步</span>」貼文獲2,300 upvotes，X上批評tokenizer的貼文累積14,000讚。不少開發者宣稱切換至Kimi K2.6。
+      </div>
+    </div>
+
+    <!-- Card 3: OpenAI Workspace Agents -->
+    <div class="card">
+      <span class="badge badge-preview">研究預覽 Preview</span>
+      <div class="card-model">OpenAI Workspace Agents</div>
+      <div class="card-company">OpenAI — 2026-04-22</div>
+      <div class="card-url">https://siliconangle.com/2026/04/22/openai-subscribers-get-new-workspace-agents-automate-complex-tasks-across-teams/</div>
+      <div class="card-desc">
+        由Codex驅動的企業級<span class="highlight">共享AI agent平台</span>，支援跨團隊複雜工作流自動化，即使無人監督也能持續執行任務。適用於ChatGPT Business、Enterprise、Edu及教師方案用戶。
+      </div>
+      <div class="divider"></div>
+      <div class="reaction-label">社群反應</div>
+      <div class="reaction">
+        <span class="sentiment-positive">企業正面 ✅</span><br>
+        企業用戶視為Custom GPT的實質升級，開發者普遍看好。部分人對<span class="highlight">資料隱私</span>存疑，預期與Microsoft Copilot正面競爭。
+      </div>
+    </div>
+
+    <!-- Card 4: Meta Muse Spark -->
+    <div class="card">
+      <span class="badge badge-closed">閉源 Closed — 首次！</span>
+      <div class="card-model">Meta Muse Spark</div>
+      <div class="card-company">Meta — 2026-04-08</div>
+      <div class="card-url">https://www.trendingtopics.eu/metas-comeback-muse-spark-puts-zuckerberg-back-in-the-ai-race-breaks-with-open-source/</div>
+      <div class="card-desc">
+        Meta自Llama 4 Maverick後的首個前沿新模型，也是<span class="highlight">Meta史上首次不以開放權重發布</span>的模型。GPQA達0.9，僅在Meta AI應用、meta.ai及私有API預覽中提供，標誌Meta策略重大轉向。
+      </div>
+      <div class="divider"></div>
+      <div class="reaction-label">社群反應</div>
+      <div class="reaction">
+        <span class="sentiment-negative">社群震驚 😱</span><br>
+        r/LocalLLaMA大量帖子批評Meta「<span class="highlight">背刺開源社群</span>」，認為開源生態失去重要盟友。商業能力受認可，但社群信任受損。
+      </div>
+    </div>
+  </div>
+
+  <!-- Extra: GLM-5.1 -->
+  <div style="margin-top: 24px;">
+    <div class="card" style="transform: rotate(-0.35deg);">
+      <span class="badge badge-open">開源 Open Source</span>
+      <div class="card-model">GLM-5.1</div>
+      <div class="card-company">智譜AI (Zhipu AI) — 2026-04-07</div>
+      <div class="card-url">https://llm-stats.com/llm-updates</div>
+      <div class="card-desc">
+        GPQA達 <strong>0.9</strong>，在廣泛開放模型排名中名列前茅。特別在<span class="highlight">agent和工具調用密集型任務</span>上表現突出，被社群推薦搭配MiniMax M2.5使用，再次印證中國開源模型在全球生態中日漸重要的地位。
+      </div>
+      <div class="divider"></div>
+      <div class="reaction-label">社群反應</div>
+      <div class="reaction">
+        <span class="sentiment-positive">穩定正面 👍</span><br>
+        中國開源模型在全球技術社群接受度持續提升，GLM-5.1被視為「<span class="highlight">開源模型足以與頂尖閉源競爭</span>」趨勢的又一例證。
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 32px; text-align: center; font-family: 'Space Grotesk', sans-serif; font-size: 13px; color: #aaa; padding-top: 16px; border-top: 1px dashed #ccc;">
+    每日AI熱點速報 · 2026-04-24 · 資料來源：TechCrunch、Reddit、LLM-Stats、X
+  </div>
+</div>
+</body>
+</html>
