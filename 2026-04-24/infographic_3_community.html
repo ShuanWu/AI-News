@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>社群熱議 2026-04-24</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #FEFDF5;
+    font-family: 'Noto Sans TC', sans-serif;
+    width: 1080px;
+    min-height: 100vh;
+    padding-bottom: 48px;
+  }
+  header {
+    background: #1C1914;
+    padding: 32px 48px 28px;
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  header h1 {
+    font-family: 'Caveat', cursive;
+    font-size: 40px;
+    color: #fff;
+    font-weight: 700;
+  }
+  header .date {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    color: #FDE047;
+    font-weight: 600;
+  }
+  .container { padding: 36px 48px 0; }
+  .section-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 20px;
+  }
+  .topic-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 22px 0;
+    border-bottom: 1px solid #E5E0D0;
+  }
+  .topic-row:last-of-type { border-bottom: none; }
+  .rank-num {
+    font-family: 'Caveat', cursive;
+    font-size: 48px;
+    font-weight: 700;
+    color: #C42020;
+    line-height: 1;
+    min-width: 54px;
+    flex-shrink: 0;
+    text-align: center;
+  }
+  .topic-content { flex: 1; }
+  .topic-source {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .source-hn { color: #FF6600; }
+  .source-reddit { color: #FF4500; }
+  .source-twitter { color: #1DA1F2; }
+  .topic-title {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: #1C1914;
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+  .topic-summary {
+    font-size: 14px;
+    line-height: 1.75;
+    color: #444;
+    margin-bottom: 10px;
+  }
+  .topic-url {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    color: #C42020;
+    opacity: 0.8;
+    word-break: break-all;
+  }
+  .heat-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 8px;
+  }
+  .heat-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #C42020;
+    display: inline-block;
+  }
+  .heat-dot.empty {
+    background: #E5E0D0;
+    border: 1px solid #C8C0A8;
+  }
+  .heat-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    color: #aaa;
+    margin-left: 6px;
+  }
+  .highlight {
+    background: linear-gradient(transparent 38%, rgba(253,224,0,0.42) 38%);
+    display: inline;
+  }
+  hr.dashed {
+    border: none;
+    border-top: 2px dashed #C8C0A8;
+    margin: 28px 0;
+  }
+  /* Tomorrow preview */
+  .tomorrow-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 4px;
+  }
+  .tomorrow-card {
+    background: #fff;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 18px 20px;
+  }
+  .tomorrow-card:nth-child(odd) { transform: rotate(-0.35deg); }
+  .tomorrow-card:nth-child(even) { transform: rotate(0.25deg); }
+  .tomorrow-icon {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+  .tomorrow-title {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: #C42020;
+    font-weight: 700;
+    margin-bottom: 6px;
+    line-height: 1.1;
+  }
+  .tomorrow-desc {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: #444;
+  }
+  .section-title {
+    font-family: 'Caveat', cursive;
+    font-size: 28px;
+    font-weight: 700;
+    color: #C42020;
+    border-bottom: 3.5px solid #C42020;
+    padding-bottom: 6px;
+    margin-bottom: 20px;
+  }
+  .footer-note {
+    text-align: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    color: #aaa;
+    padding-top: 16px;
+    border-top: 1px dashed #ccc;
+    margin-top: 32px;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>社群熱議</h1>
+  <span class="date">2026-04-24</span>
+</header>
+
+<div class="container">
+  <div class="section-title">今日五大熱議話題</div>
+  <div class="section-label">來源：Hacker News · Reddit · X (Twitter)</div>
+
+  <!-- Topic 1 -->
+  <div class="topic-row">
+    <div class="rank-num">1</div>
+    <div class="topic-content">
+      <div class="topic-source source-hn">Hacker News</div>
+      <div class="topic-title">r/programming 宣布暫時禁止所有LLM相關討論</div>
+      <div class="topic-summary">
+        Reddit最大程式設計社群r/programming（數百萬成員）試行<span class="highlight">2-4週的LLM全面禁令</span>，理由是AI討論佔滿版面、內容品質崩潰、資深開發者出走。HackerNews上討論火爆，形成「AI疲勞派」（支持禁令、認為AI噪音過多）vs「因噎廢食派」（認為此舉傷害需要AI指引的初學者）兩大陣營激烈交鋒。
+      </div>
+      <div class="topic-url">https://news.ycombinator.com/item?id=47610336</div>
+      <div class="heat-row">
+        <div class="heat-dot"></div>
+        <div class="heat-dot"></div>
+        <div class="heat-dot"></div>
+        <div class="heat-dot"></div>
+        <div class="heat-dot"></div>
+        <span class="heat-label">熱度 5/5</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Topic 2 -->
+  <div class="topic-row">
+    <div class="rank-num">2</div>
+    <div class="topic-content">
+      <div class="topic-source source-reddit">Reddit · r/LocalLLaMA</div>
+      <div class="topic-title">Kimi K2.6 讓 Claude Code 用戶「忘記 Opus 4.6 的存在」</div>
+      <div class="topic-summary">
+        Moonshot AI的開源Kimi K2.6僅需<span class="highlight">$0.60/百萬token</span>，在agentic coding benchmark上與Claude Opus 4.7旗鼓相當，成本低88%。r/LocalLLaMA大量開發者分享以K2.6取代Claude後端的實測心得，包括5天自主infra agent運行、kernel改寫、比LM Studio快20% TPS的Zig推論引擎等成功案例。
+      </div>
+      <div class="topic-url">https://medium.com/@joe.njenga/i-tried-kimi-k2-6-on-claude-code-and-forgot-opus-4-6-exists-5d9ba4c01911</div>
+      <div class="heat-row">
+        <div class="heat-dot"></div>
+        <div class="heat-dot"></div>
+        <div class="heat-dot"></div>
+        <div class="heat-dot"></div>
+        <div class="heat-dot"></div>
+        <span class="heat-label">熱度 5/5</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Topic 3 -->
+  <div class="topic-row">
+    <div class="rank-num">3</div>
+    <div class="topic-content">
+      <div class="topic-source source-reddit">Reddit · r/ClaudeAI</div>
+      <div class="topic-title">Claude Opus 4.7 新 tokenizer 被批為「隱性漲價」</div>
+      <div class="topic-summary">
+        Anthropic為Opus 4.7引入新tokenizer改變計算方式（實際token用量增加），同週Claude Code預設effort靜默升至xhigh，兩者疊加造成<span class="highlight">實際費用大幅上升</span>。Reddit批評帖「Opus 4.7是嚴重退步而非升級」獲<span class="highlight">2,300 upvotes</span>，X上相關批評累積14,000讚，大量開發者宣告切換至Kimi K2.6。
+      </div>
+      <div class="topic-url">https://xlork.com/blog/claude-opus-4-7-backlash</div>
+      <div class="heat-row">
+        <div class="heat-dot"></div>
+        <div class="heat-dot"></div>
+        <div class="heat-dot"></div>
+        <div class="heat-dot"></div>
+        <div class="heat-dot empty"></div>
+        <span class="heat-label">熱度 4/5</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Topic 4 -->
+  <div class="topic-row">
+    <div class="rank-num">4</div>
+    <div class="topic-content">
+      <div class="topic-source source-twitter">X (Twitter) · AI圈</div>
+      <div class="topic-title">Google 與 Thinking Machines Lab 簽署數十億美元算力協議</div>
+      <div class="topic-summary">
+        前OpenAI CTO Mira Murati創立的Thinking Machines Lab與Google Cloud簽署多億美元算力協議，使用最新<span class="highlight">Nvidia GB300晶片</span>。AI圈熱議「第三梯隊」是否正式進入前沿競賽，以及這對OpenAI與Anthropic的影響。部分分析師認為此舉確立了三強鼎立格局，終結了OpenAI/Anthropic的雙頭壟斷預期。
+      </div>
+      <div class="topic-url">https://techcrunch.com/2026/04/22/exclusive-google-deepens-thinking-machines-lab-ties-with-new-multi-billion-dollar-deal/</div>
+      <div class="heat-row">
+        <div class="heat-dot"></div>
+        <div class="heat-dot"></div>
+        <div class="heat-dot"></div>
+        <div class="heat-dot"></div>
+        <div class="heat-dot empty"></div>
+        <span class="heat-label">熱度 4/5</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Topic 5 -->
+  <div class="topic-row">
+    <div class="rank-num">5</div>
+    <div class="topic-content">
+      <div class="topic-source source-reddit">Reddit · r/LocalLLaMA</div>
+      <div class="topic-title">Meta Muse Spark 打破開源傳統，社群直呼「被背刺」</div>
+      <div class="topic-summary">
+        Meta發布首個<span class="highlight">閉源模型Muse Spark</span>，是自Llama 4 Maverick以來首個前沿新模型，但不以開放權重發布。r/LocalLLaMA多個帖子以「背叛」、「我們失去了最後一個大廠盟友」為標題，社群擔心開源生態失去Meta這一重要推動力，並憂慮未來開源模型能力差距將再度拉開。
+      </div>
+      <div class="topic-url">https://www.trendingtopics.eu/metas-comeback-muse-spark-puts-zuckerberg-back-in-the-ai-race-breaks-with-open-source/</div>
+      <div class="heat-row">
+        <div class="heat-dot"></div>
+        <div class="heat-dot"></div>
+        <div class="heat-dot"></div>
+        <div class="heat-dot empty"></div>
+        <div class="heat-dot empty"></div>
+        <span class="heat-label">熱度 3/5</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="dashed">
+
+  <!-- Tomorrow preview -->
+  <div class="section-title">明日預告</div>
+  <div class="tomorrow-grid">
+    <div class="tomorrow-card">
+      <div class="tomorrow-icon">🚀</div>
+      <div class="tomorrow-title">xAI Grok 5 即將登場？</div>
+      <div class="tomorrow-desc">
+        xAI已公開目標Q2發布Grok 5，近期跡象顯示可能提前亮相。開發者密切觀察是否能超越GPT-5.4與Claude Opus 4.7，成為新的benchmark王者，並是否以更友善的定價策略搶奪開發者市場。
+      </div>
+    </div>
+    <div class="tomorrow-card">
+      <div class="tomorrow-icon">🔮</div>
+      <div class="tomorrow-title">Anthropic Claude Mythos 何時公開？</div>
+      <div class="tomorrow-desc">
+        Anthropic已於4月7日確認Claude Mythos存在，稱其為「Anthropic有史以來最強大的模型」且不公開發布。社群期待何時開放公開預覽或API存取，以及是否能改善Opus 4.7引發的信任危機。
+      </div>
+    </div>
+    <div class="tomorrow-card">
+      <div class="tomorrow-icon">⚡</div>
+      <div class="tomorrow-title">GPU短缺持續惡化</div>
+      <div class="tomorrow-desc">
+        Google新TPU晶片發布 + AI Galaxy Hunters加劇全球GPU短缺，Q1 2026創紀錄的$2,672億VC投資持續湧入算力基礎設施。預計未來幾週將有更多算力爭奪消息浮現。
+      </div>
+    </div>
+    <div class="tomorrow-card">
+      <div class="tomorrow-icon">📋</div>
+      <div class="tomorrow-title">r/programming 禁令效果評估</div>
+      <div class="tomorrow-desc">
+        r/programming的LLM禁令試行期2-4週，屆時將評估是否轉為永久政策。這將成為觀察開發者社群對AI態度的重要指標，也可能引發其他大型技術社群跟進或反駁。
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    每日AI熱點速報 · 2026-04-24 · 來源：HackerNews · Reddit · X · TechCrunch
+  </div>
+</div>
+</body>
+</html>
