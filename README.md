@@ -69,12 +69,14 @@ https://shuanwu.github.io/AI-News/YYYY-MM-DD/infographic_3_community.html
 
 | 元件 | 功能 |
 |------|------|
-| **Claude Code** (claude.ai) | 排程觸發器，驅動整個 Agent 工作流 |
-| **WebSearch MCP** | 蒐集 TechCrunch、HackerNews、Reddit、GitHub Trending、36kr 等來源 |
+| **Windows 工作排程器** | 每天 07:30 觸發本機 `claude -p` 執行完整 pipeline |
+| **Claude Code CLI** | 驅動所有 Agent 工作流，載入本機 MCP 工具 |
+| **WebSearch / WebFetch MCP** | 蒐集 TechCrunch、HackerNews、Reddit、GitHub Trending、36kr 等來源 |
 | **Claude Preview MCP** | 啟動本機 HTTP server，對 HTML 進行全頁截圖 |
 | **NotebookLM MCP** | 以文字報告為素材，生成 sketch_note 風格資訊圖 |
 | **GitHub Pages** | 託管 HTML，提供可公開瀏覽的網址 |
-| **LINE Messaging API** | 推播文字連結 + 3 張資訊圖到個人 LINE |
+| **GitHub Actions** | 備援截圖（若本機未跑）；本機已跑時自動跳過 |
+| **LINE Messaging API** | 推播文字連結 + 3 張 NotebookLM 資訊圖到個人 LINE |
 
 ### HTML 設計規格（馬克筆風格）
 
@@ -113,12 +115,14 @@ background: linear-gradient(transparent 38%, rgba(253,224,0,0.42) 38%);
 
 ```
 C:\Users\{user}\Desktop\Claude\
-├── ai-daily-report\          ← 每日輸出暫存區（9 個檔案）
-├── AI-News\                  ← 本 repo 的本機 clone
-│   ├── YYYY-MM-DD\           ← 每日歸檔資料夾
+├── ai-daily-report\                ← 每日輸出暫存區（9 個檔案 + log）
+├── AI-News\                        ← 本 repo 的本機 clone
+│   ├── YYYY-MM-DD\                 ← 每日歸檔資料夾
 │   └── README.md
+├── run_daily_report.ps1            ← 主排程腳本（6 個 TASK）
+├── run_daily_report.bat            ← 工作排程器啟動包裝器
 └── .claude\
-    └── launch.json           ← Claude Preview MCP server 設定
+    └── launch.json                 ← Claude Preview MCP server 設定
 ```
 
 ---
@@ -128,10 +132,10 @@ C:\Users\{user}\Desktop\Claude\
 | 項目 | 值 |
 |------|-----|
 | 執行時間 | 每天早上 **7:30**（台北時間，UTC+8） |
-| Cron 表達式 | `30 23 * * *`（UTC） |
-| 觸發平台 | Claude Code Remote Trigger |
+| 觸發平台 | Windows 工作排程器 |
+| 執行指令 | `powershell.exe -WindowStyle Hidden -ExecutionPolicy Bypass -File run_daily_report.ps1` |
 
-> ⚠️ **注意**：觸發器執行時需要本機電腦處於開機狀態，且 Claude Code 在背景執行中。若早上電腦未開機，當天報告將不會產出。
+> ⚠️ **注意**：排程在本機執行，電腦需處於開機狀態。若早上電腦未開機，當天報告將不會產出。GitHub Actions 可作為備援產生截圖，但 NotebookLM 資訊圖仍需本機執行。
 
 ---
 
