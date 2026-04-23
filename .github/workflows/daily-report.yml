@@ -1,0 +1,136 @@
+name: Screenshots & LINE Notify
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]/infographic_*.html'
+
+jobs:
+  screenshot-and-notify:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Detect date folder
+        id: vars
+        run: |
+          DATE=$(ls -d [0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9] 2>/dev/null | sort -r | head -1)
+          echo "DATE=$DATE" >> $GITHUB_OUTPUT
+          echo "Detected: $DATE"
+
+      - name: Skip if screenshots already exist
+        id: check
+        run: |
+          if [ -f "${{ steps.vars.outputs.DATE }}/screenshot_1_models.png" ]; then
+            echo "SKIP=true" >> $GITHUB_OUTPUT
+          else
+            echo "SKIP=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Setup Node.js
+        if: steps.check.outputs.SKIP == 'false'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Playwright
+        if: steps.check.outputs.SKIP == 'false'
+        run: |
+          npm init -y
+          npm install playwright
+          npx playwright install chromium --with-deps
+
+      - name: Start local HTTP server
+        if: steps.check.outputs.SKIP == 'false'
+        run: |
+          python3 -m http.server 8080 --directory ${{ steps.vars.outputs.DATE }} &
+          sleep 3
+
+      - name: Take screenshots
+        if: steps.check.outputs.SKIP == 'false'
+        env:
+          DATE: ${{ steps.vars.outputs.DATE }}
+        run: |
+          node << 'EOF'
+          const { chromium } = require('playwright');
+          const date = process.env.DATE;
+          (async () => {
+            const browser = await chromium.launch();
+            const items = [
+              ['infographic_1_models',    'screenshot_1_models'],
+              ['infographic_2_github',    'screenshot_2_github'],
+              ['infographic_3_community', 'screenshot_3_community'],
+            ];
+            for (const [src, dst] of items) {
+              const page = await browser.newPage();
+              await page.setViewportSize({ width: 1080, height: 800 });
+              await page.goto(`http://localhost:8080/${src}.html`, {
+                waitUntil: 'networkidle',
+                timeout: 30000
+              });
+              await page.screenshot({ path: `${date}/${dst}.png`, fullPage: true });
+              await page.close();
+              console.log(`✓ ${dst}.png`);
+            }
+            await browser.close();
+          })();
+          EOF
+
+      - name: Commit screenshots
+        if: steps.check.outputs.SKIP == 'false'
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add "${{ steps.vars.outputs.DATE }}/screenshot_*.png"
+          git diff --cached --quiet || (git commit -m "screenshots ${{ steps.vars.outputs.DATE }}" && git push)
+
+      - name: Send LINE notification
+        env:
+          LINE_TOKEN: ${{ secrets.LINE_TOKEN }}
+          DATE: ${{ steps.vars.outputs.DATE }}
+        run: |
+          sleep 15
+          python3 << 'PYEOF'
+          import os, json, subprocess
+
+          date  = os.environ['DATE']
+          token = os.environ['LINE_TOKEN']
+          pages = f"https://shuanwu.github.io/AI-News/{date}"
+          raw   = f"https://raw.githubusercontent.com/ShuanWu/AI-News/main/{date}"
+
+          payload = {
+            "to": "Ua0d46bed4477912cded2ad3db62d6b37",
+            "messages": [
+              {
+                "type": "text",
+                "text": (
+                  f"每日AI熱點速報 {date}\n\n"
+                  f"圖① 模型更新:\n{pages}/infographic_1_models.html\n\n"
+                  f"圖② 開發者熱榜:\n{pages}/infographic_2_github.html\n\n"
+                  f"圖③ 社群熱議:\n{pages}/infographic_3_community.html"
+                )
+              },
+              {"type": "image", "originalContentUrl": f"{raw}/screenshot_1_models.png",    "previewImageUrl": f"{raw}/screenshot_1_models.png"},
+              {"type": "image", "originalContentUrl": f"{raw}/screenshot_2_github.png",    "previewImageUrl": f"{raw}/screenshot_2_github.png"},
+              {"type": "image", "originalContentUrl": f"{raw}/screenshot_3_community.png", "previewImageUrl": f"{raw}/screenshot_3_community.png"},
+            ]
+          }
+
+          with open('/tmp/line.json', 'w', encoding='utf-8') as f:
+            json.dump(payload, f, ensure_ascii=False)
+
+          r = subprocess.run([
+            'curl', '-s', '-X', 'POST',
+            'https://api.line.me/v2/bot/message/push',
+            '-H', 'Content-Type: application/json',
+            '-H', f'Authorization: Bearer {token}',
+            '-d', '@/tmp/line.json'
+          ], capture_output=True, text=True)
+
+          print(r.stdout)
+          PYEOF
