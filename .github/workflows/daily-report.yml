@@ -90,6 +90,7 @@ jobs:
           git diff --cached --quiet || (git commit -m "screenshots ${{ steps.vars.outputs.DATE }}" && git push)
 
       - name: Send LINE notification
+        if: steps.check.outputs.SKIP == 'false'
         env:
           LINE_TOKEN: ${{ secrets.LINE_TOKEN }}
           DATE: ${{ steps.vars.outputs.DATE }}
