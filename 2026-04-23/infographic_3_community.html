@@ -1,51 +1,61 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>社群熱議 2026-04-23</title>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Noto+Sans+TC:wght@300;400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     background: #FEFDF5;
     font-family: 'Noto Sans TC', sans-serif;
     width: 1080px;
-    min-height: 100vh;
+    margin: 0 auto;
     padding-bottom: 48px;
   }
-  header {
+  .header {
     background: #1C1914;
-    padding: 32px 48px 28px;
+    padding: 36px 48px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    border-bottom: 4px solid #C42020;
+    align-items: center;
   }
-  header h1 {
+  .header-title {
     font-family: 'Caveat', cursive;
     font-size: 40px;
-    color: #fff;
+    color: #ffffff;
     font-weight: 700;
-    letter-spacing: 0.5px;
   }
-  header .date-tag {
+  .header-date {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 22px;
     color: #FDE047;
-    font-weight: 700;
-    letter-spacing: 1px;
+    font-weight: 500;
   }
-  .container { padding: 36px 48px 0; }
+  .topics-section {
+    padding: 32px 48px 0;
+  }
+  .section-heading {
+    font-family: 'Caveat', cursive;
+    font-size: 28px;
+    color: #C42020;
+    font-weight: 700;
+    border-bottom: 3.5px solid #C42020;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+  }
   .topic-row {
     background: #FFFFFF;
     border: 2px solid #1C1914;
     box-shadow: 3px 3px 0 #1C1914;
     padding: 20px 24px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     display: flex;
-    align-items: flex-start;
     gap: 20px;
+    align-items: flex-start;
   }
   .topic-row:nth-child(odd) {
     border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
@@ -60,101 +70,97 @@
     font-size: 48px;
     font-weight: 700;
     color: #C42020;
-    min-width: 64px;
+    min-width: 56px;
     text-align: center;
     line-height: 1;
-    padding-top: 2px;
   }
-  .topic-body { flex: 1; }
-  .topic-source {
+  .topic-content { flex: 1; }
+  .topic-source-badge {
     display: inline-block;
+    background: #C42020;
+    color: white;
     font-family: 'Space Grotesk', sans-serif;
     font-size: 11px;
     font-weight: 700;
-    background: #C42020;
-    color: #fff;
     padding: 2px 8px;
     border-radius: 3px;
     margin-bottom: 8px;
+    margin-right: 6px;
+    text-transform: uppercase;
     letter-spacing: 0.5px;
   }
   .topic-title {
-    font-size: 16px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
     font-weight: 700;
     color: #1C1914;
     margin-bottom: 6px;
-    line-height: 1.5;
+    line-height: 1.4;
   }
   .topic-summary {
-    font-size: 13px;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 14px;
     color: #444;
-    line-height: 1.7;
+    line-height: 1.75;
     margin-bottom: 10px;
   }
   .highlight {
     background: linear-gradient(transparent 38%, rgba(253,224,0,0.42) 38%);
-    padding: 0 2px;
   }
-  .topic-meta {
+  .topic-footer {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 8px;
+    align-items: center;
   }
+  .topic-url {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    color: #888;
+  }
+  .topic-url a { color: #888; text-decoration: none; }
   .heat-dots {
     display: flex;
-    gap: 5px;
-    align-items: center;
+    gap: 4px;
   }
   .dot {
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background: #C42020;
     display: inline-block;
   }
   .dot.empty {
-    background: transparent;
-    border: 2px solid #C42020;
+    background: #E5E7EB;
+    border: 1.5px solid #C42020;
   }
-  .topic-url {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 11px;
-    color: #1D4ED8;
-    text-decoration: none;
-    word-break: break-all;
-  }
-  .topic-url:hover { text-decoration: underline; }
-  .heat-label {
-    font-family: 'Caveat', cursive;
-    font-size: 15px;
-    color: #888;
-    margin-right: 6px;
-  }
-  hr.dashed {
+  .dashed-hr {
     border: none;
-    border-top: 2px dashed #ccc;
-    margin: 32px 0;
+    border-top: 2px dashed #1C1914;
+    margin: 28px 48px;
+    opacity: 0.3;
   }
-  .preview-section h2 {
+  .preview-section {
+    padding: 0 48px;
+  }
+  .preview-heading {
     font-family: 'Caveat', cursive;
     font-size: 28px;
-    color: #1C1914;
-    border-bottom: 3.5px solid #1C1914;
+    color: #1D4ED8;
+    font-weight: 700;
+    border-bottom: 3.5px solid #1D4ED8;
     padding-bottom: 8px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
   .preview-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    gap: 20px;
   }
   .preview-card {
     background: #FFFFFF;
     border: 2px solid #1C1914;
     box-shadow: 3px 3px 0 #1C1914;
-    padding: 20px 20px;
+    padding: 20px 22px;
   }
   .preview-card:nth-child(odd) {
     border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
@@ -164,57 +170,56 @@
     border-radius: 5px 3px 8px 4px / 3px 8px 4px 5px;
     transform: rotate(0.25deg);
   }
-  .preview-card .preview-icon {
-    font-size: 28px;
-    margin-bottom: 8px;
-  }
-  .preview-card .preview-title {
+  .preview-title {
     font-family: 'Caveat', cursive;
-    font-size: 20px;
-    color: #1C1914;
+    font-size: 22px;
     font-weight: 700;
+    color: #1D4ED8;
     margin-bottom: 8px;
   }
-  .preview-card .preview-desc {
-    font-size: 13px;
+  .preview-text {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 14px;
     color: #444;
     line-height: 1.7;
   }
-  footer {
-    margin-top: 40px;
-    padding: 16px 48px;
-    text-align: right;
+  .preview-icon {
+    font-size: 20px;
+    margin-bottom: 6px;
+  }
+  .footer {
+    margin: 32px 48px 0;
+    text-align: center;
     font-family: 'Space Grotesk', sans-serif;
     font-size: 12px;
-    color: #999;
-    border-top: 1px solid #e5e5e5;
+    color: #aaa;
   }
 </style>
 </head>
 <body>
-<header>
-  <h1>💬 社群熱議</h1>
-  <span class="date-tag">2026-04-23</span>
-</header>
-<div class="container">
+
+<div class="header">
+  <div class="header-title">💬 社群熱議</div>
+  <div class="header-date">2026-04-23</div>
+</div>
+
+<div class="topics-section">
+  <div class="section-heading">今日五大熱議話題</div>
 
   <!-- Topic 1 -->
   <div class="topic-row">
     <div class="topic-rank">1</div>
-    <div class="topic-body">
-      <span class="topic-source">Hacker News</span>
-      <div class="topic-title">Agentic AI 框架的安全漏洞警示：能執行 Shell 命令的 Agent 是新型攻擊面</div>
+    <div class="topic-content">
+      <div><span class="topic-source-badge">Twitter</span><span class="topic-source-badge">HuggingFace</span></div>
+      <div class="topic-title">Gemma 4 Apache 2.0授權引爆開源AI社群</div>
       <div class="topic-summary">
-        HN 社群針對 <span class="highlight">OpenClaw 等 Agentic 框架</span>的安全疑慮展開激烈討論，核心問題是：當 AI Agent 具備執行任意 Shell 命令、提交 Git 程式碼的能力時，一旦被惡意 Prompt 注入，後果難以收拾。討論中出現多個實際概念驗證案例，引發開發者對「Agentic AI 安全沙盒標準」的強烈呼籲。
+        Google以<span class="highlight">Apache 2.0授權</span>開放Gemma 4全系列，HuggingFace CTO在Twitter以「BREAKING NEWS 🔥」形容，多位AI研究者表示這是2026年迄今最重要的開源AI授權決策。31B模型在Arena AI排行榜位列第三，Nathan Lambert指出：「足夠強、足夠小、授權正確，大量企業將採用。」
       </div>
-      <div class="topic-meta">
-        <div>
-          <span class="heat-label">熱度</span>
-          <div class="heat-dots" style="display:inline-flex;">
-            <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
-          </div>
+      <div class="topic-footer">
+        <div class="topic-url"><a href="https://huggingface.co/blog/gemma4" target="_blank">huggingface.co/blog/gemma4</a></div>
+        <div class="heat-dots">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
         </div>
-        <a class="topic-url" href="https://news.ycombinator.com/front" target="_blank">news.ycombinator.com/front</a>
       </div>
     </div>
   </div>
@@ -222,20 +227,17 @@
   <!-- Topic 2 -->
   <div class="topic-row">
     <div class="topic-rank">2</div>
-    <div class="topic-body">
-      <span class="topic-source">Hacker News</span>
-      <div class="topic-title">「AI Demo 和生產部署是兩個世界」— 為何大多數 AI 專案在 Demo 後失敗？</div>
+    <div class="topic-content">
+      <div><span class="topic-source-badge">HackerNews</span><span class="topic-source-badge">Reddit</span></div>
+      <div class="topic-title">GPT-6謠言疲勞：社群反思AI炒作文化</div>
       <div class="topic-summary">
-        一篇深度分析文章指出，<span class="highlight">AI 計畫在 Demo 環節表現亮眼，但上線後往往快速失敗</span>，根本原因是真實用戶行為、資料品質與延遲需求遠比實驗室條件複雜。文章引發大量工程師共鳴，評論區充斥「親身經歷版」失敗案例，成為本週最有共感的技術討論串之一。
+        GPT-6預測發布日（4月14日）過後仍無動靜，Polymarket賠率從<span class="highlight">93%跌至45%</span>。HackerNews出現《GPT-6 Is the Least Interesting Thing OpenAI Is Doing Right Now》引發廣泛討論，社群開始反思AI媒體炒作文化：「YouTube標題配Sam Altman臉的紅箭頭，已經讓人麻木了。」
       </div>
-      <div class="topic-meta">
-        <div>
-          <span class="heat-label">熱度</span>
-          <div class="heat-dots" style="display:inline-flex;">
-            <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot empty"></span>
-          </div>
+      <div class="topic-footer">
+        <div class="topic-url"><a href="https://medium.com/autocomplete-real-world-ai/gpt-6-is-the-least-interesting-thing-openai-is-doing-right-now-3c0ace3df036" target="_blank">medium.com/autocomplete-real-world-ai/gpt-6</a></div>
+        <div class="heat-dots">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot empty"></span>
         </div>
-        <a class="topic-url" href="https://news.ycombinator.com/item?id=46297348" target="_blank">news.ycombinator.com/item?id=46297348</a>
       </div>
     </div>
   </div>
@@ -243,20 +245,17 @@
   <!-- Topic 3 -->
   <div class="topic-row">
     <div class="topic-rank">3</div>
-    <div class="topic-body">
-      <span class="topic-source">Reddit r/LocalLLaMA</span>
-      <div class="topic-title">Intel Arc Pro B70（32GB GDDR6，$949）— 本地推論千元以下新目標</div>
+    <div class="topic-content">
+      <div><span class="topic-source-badge">r/LocalLLaMA</span><span class="topic-source-badge">r/MachineLearning</span></div>
+      <div class="topic-title">本地LLM 2026最佳模型大評測：隱私 vs 效能</div>
       <div class="topic-summary">
-        社群熱烈討論 Intel 新工作站 GPU，<span class="highlight">32GB 記憶體 + 608 GB/s 頻寬，售價不到一千美元</span>，對於本地 LLM 推論社群而言記憶體容量才是真正瓶頸。單一討論串累積 213 upvotes、133 則留言，成為本週 LocalLLaMA 最熱話題，眾多用戶表示「終於有夠用的 VRAM 了」。
+        r/LocalLLaMA（26萬+成員）本週最熱討論：<span class="highlight">Qwen 3.5、Gemma 4、GLM-5.1</span>的硬體需求與效能比較。隱私保護仍是核心訴求，社群成員分享：「知道我的提示詞不會離開電腦，這種安心感無可替代。」工程師們也熱議生產部署挑戰：性能標題好騙，穩定部署才是真功夫。
       </div>
-      <div class="topic-meta">
-        <div>
-          <span class="heat-label">熱度</span>
-          <div class="heat-dots" style="display:inline-flex;">
-            <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot empty"></span>
-          </div>
+      <div class="topic-footer">
+        <div class="topic-url"><a href="https://www.latent.space/p/ainews-top-local-models-list-april" target="_blank">latent.space/ainews-top-local-models-april</a></div>
+        <div class="heat-dots">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot empty"></span>
         </div>
-        <a class="topic-url" href="https://insights.marvin-42.com/articles/intels-arc-pro-b70-gives-localllama-a-new-sub-1000-target-for-32gb-local-inference" target="_blank">insights.marvin-42.com/intel-arc-pro-b70</a>
       </div>
     </div>
   </div>
@@ -264,20 +263,17 @@
   <!-- Topic 4 -->
   <div class="topic-row">
     <div class="topic-rank">4</div>
-    <div class="topic-body">
-      <span class="topic-source">Reddit r/LocalLLaMA</span>
-      <div class="topic-title">四月最強本地模型排行榜：GLM-5.1 最強但跑不動，Gemma 4 成最佳平衡選擇</div>
+    <div class="topic-content">
+      <div><span class="topic-source-badge">Twitter</span><span class="topic-source-badge">GitHub</span></div>
+      <div class="topic-title">GitHub Trending被AI Agent專案全面佔領</div>
       <div class="topic-summary">
-        社群整理四月最推薦本地模型：GLM-5.1（效能天花板但需高端硬體）、<span class="highlight">Qwen 3.5（廣泛使用場景首選）、Gemma 4（消費級硬體最強推理）</span>、MiniMax M2.7（Tool-use 場景）。討論揭示開源生態已大幅縮小與閉源模型的差距，普通用戶在本地跑出接近 GPT-5 效果已成可能。
+        本週GitHub Trending前十名幾乎清一色為AI Agent、Claude Code插件與LLM工具，技術社群熱議「<span class="highlight">AI Agent工具生態爆發期已正式來臨</span>」。forrestchang/andrej-karpathy-skills以35,349顆週星登頂，引發各路開發者曬出自己的CLAUDE.md設定，形成病毒式傳播。
       </div>
-      <div class="topic-meta">
-        <div>
-          <span class="heat-label">熱度</span>
-          <div class="heat-dots" style="display:inline-flex;">
-            <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot empty"></span><span class="dot empty"></span>
-          </div>
+      <div class="topic-footer">
+        <div class="topic-url"><a href="https://github.com/trending?since=weekly" target="_blank">github.com/trending?since=weekly</a></div>
+        <div class="heat-dots">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot empty"></span><span class="dot empty"></span>
         </div>
-        <a class="topic-url" href="https://www.latent.space/p/ainews-top-local-models-list-april" target="_blank">latent.space/ainews-top-local-models-list-april</a>
       </div>
     </div>
   </div>
@@ -285,48 +281,66 @@
   <!-- Topic 5 -->
   <div class="topic-row">
     <div class="topic-rank">5</div>
-    <div class="topic-body">
-      <span class="topic-source">Twitter / X</span>
-      <div class="topic-title">ChatGPT Images 2.0 爆紅提示詞大戰：每日湧現數千張 AI 生成創意圖</div>
+    <div class="topic-content">
+      <div><span class="topic-source-badge">HackerNews</span><span class="topic-source-badge">Twitter</span></div>
+      <div class="topic-title">MCP成為事實標準：各大平台加速接入</div>
       <div class="topic-summary">
-        OpenAI 四月更新的圖像生成模型在 X/Twitter 上掀起創意提示詞分享熱潮，<span class="highlight">50 個最熱提示詞</span>涵蓋肖像攝影、UI 原型圖、漫畫風格、資訊圖表等多元類型。Elon Musk 轉推 Grok 圖像生成功能後進一步助燃聲量，「最強 AI 圖像提示詞」相關標籤每日觸及數百萬。
+        Model Context Protocol（MCP）本月持續獲得更多雲端基礎設施、資料庫及瀏覽器自動化廠商接入。HackerNews討論認為<span class="highlight">MCP已成為LLM與外部工具溝通的事實標準</span>，OpenAI Codex CLI與Claude Code均在本月新增MCP支援，開發者生態正快速向MCP靠攏。
       </div>
-      <div class="topic-meta">
-        <div>
-          <span class="heat-label">熱度</span>
-          <div class="heat-dots" style="display:inline-flex;">
-            <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot empty"></span><span class="dot empty"></span>
-          </div>
-        </div>
-        <a class="topic-url" href="https://oimi.ai/en/blog/chatgpt-images-2-hot-prompts" target="_blank">oimi.ai/chatgpt-images-2-hot-prompts</a>
-      </div>
-    </div>
-  </div>
-
-  <hr class="dashed">
-
-  <!-- Tomorrow Preview -->
-  <div class="preview-section">
-    <h2>明日預告</h2>
-    <div class="preview-grid">
-      <div class="preview-card">
-        <div class="preview-icon">🏟️</div>
-        <div class="preview-title">Google Cloud Next 2026 收官（4/24）</div>
-        <div class="preview-desc">
-          大會最後一天，預計公布更多 <strong>Vertex AI、BigQuery AI 及 Google Workspace</strong> Agent 整合細節。Sundar Pichai 可能發表閉幕演說，第八代 TPU 的技術規格細節預計完整揭露。全球媒體將同步整理完整公告清單。
-        </div>
-      </div>
-      <div class="preview-card">
-        <div class="preview-icon">🔓</div>
-        <div class="preview-title">GLM-5.1 量化版本社群競賽</div>
-        <div class="preview-desc">
-          隨著 GLM-5.1 在 HuggingFace 全面開放，預計明日將有社群釋出 <strong>Q4_K_M、GGUF 等量化版本</strong>，讓消費級硬體（24–48GB VRAM）也能嘗試。LocalLLaMA 量化競賽與效能測試報告值得密切關注，可能改寫本地最強模型排名。
+      <div class="topic-footer">
+        <div class="topic-url"><a href="https://fazm.ai/blog/llm-news-april-2026" target="_blank">fazm.ai/blog/llm-news-april-2026</a></div>
+        <div class="heat-dots">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot empty"></span><span class="dot empty"></span>
         </div>
       </div>
     </div>
   </div>
 
 </div>
-<footer>每日AI熱點速報 · AI Daily Digest · 資料來源：HackerNews, Reddit, Twitter/X · 2026-04-23</footer>
+
+<hr class="dashed-hr">
+
+<!-- Tomorrow Preview -->
+<div class="preview-section">
+  <div class="preview-heading">明日預告</div>
+  <div class="preview-grid">
+
+    <div class="preview-card">
+      <div class="preview-icon">🔥</div>
+      <div class="preview-title">GPT-6 發布倒計時</div>
+      <div class="preview-text">
+        Polymarket「4月底前發布」機率約45%，社群高度關注OpenAI本週動態。若GPT-6真的推出，將是近期最大AI事件，預計帶動整體市場重新定價與評測熱潮。
+      </div>
+    </div>
+
+    <div class="preview-card">
+      <div class="preview-icon">☁️</div>
+      <div class="preview-title">Google Cloud Next 2026 後續</div>
+      <div class="preview-text">
+        Sundar Pichai已分享Cloud Next 2026相關公告，預計本週將有更多Gemini企業級功能與AI基礎設施更新，可能對Gemma 4的雲端整合帶來更多細節。
+      </div>
+    </div>
+
+    <div class="preview-card">
+      <div class="preview-icon">🐧</div>
+      <div class="preview-title">Qwen 3系列更多變體</div>
+      <div class="preview-text">
+        阿里巴巴Qwen團隊預計本週推出更多開源模型變體，包含指令微調版及程式設計專用版，將進一步強化在r/LocalLLaMA的競爭力。
+      </div>
+    </div>
+
+    <div class="preview-card">
+      <div class="preview-icon">🤝</div>
+      <div class="preview-title">MCP生態繼續擴張</div>
+      <div class="preview-text">
+        多家知名SaaS廠商預計本週宣佈MCP整合，包含資料庫、雲端存儲及開發工具類服務，MCP標準化進程料將持續加速。
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="footer">AI Daily Report · 2026-04-23 · Sources: HuggingFace, HackerNews, Reddit r/LocalLLaMA, GitHub Trending, Twitter/X</div>
+
 </body>
 </html>
