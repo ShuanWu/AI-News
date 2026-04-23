@@ -157,24 +157,41 @@ https://shuanwu.github.io/AI-News/YYYY-MM-DD/infographic_3_community.html
 
 ---
 
-## 📰 報告涵蓋範圍
+## 📰 資料蒐集邏輯
 
-從以下來源蒐集當日最新動態：
+### 時效性
 
-| 來源 | 類型 |
-|------|------|
-| TechCrunch | AI 產業新聞 |
-| HackerNews | 技術社群熱議 |
-| Reddit (r/MachineLearning, r/LocalLLaMA, r/ChatGPT) | 社群討論 |
-| GitHub Trending | 當日最熱門 Repo（含星數、語言） |
-| Twitter / X | AI 研究者即時動態 |
-| 36kr | 中文科技媒體 |
+- **新聞 / 模型 / 工具 / 社群**：只納入過去 **24 小時**內發布的項目（搜尋時帶 `after:YYYY-MM-DD` 過濾）
+- 若某段落不足 3 筆，自動退到 48 小時窗口並標注 fallback
+- **GitHub Trending**：使用週榜（本週一至發報當下），與其他段落的時間窗口不同
 
-分三張圖呈現：
+### 來源
 
-1. **圖① 模型更新** — 各大廠模型發布、版本更新、社群反應
-2. **圖② 開發者熱榜** — GitHub Trending + 新工具發布與定價
-3. **圖③ 社群熱議** — 當日最熱話題排行、熱度指標、明日預告
+| 來源 | 類型 | 時間窗口 |
+|------|------|----------|
+| TechCrunch | AI 產業新聞 | 24h |
+| HackerNews | 技術社群熱議 | 24h |
+| Reddit (r/MachineLearning, r/LocalLLaMA, r/ChatGPT) | 社群討論 | 24h |
+| Twitter / X | AI 研究者即時動態 | 24h |
+| 36kr | 中文科技媒體 | 24h |
+| github.com/trending?since=weekly | GitHub 週榜（真實星數成長） | 本週一起 |
+
+### GitHub 熱榜邏輯（圖②）
+
+直接 `WebFetch` 官方 GitHub Trending 週榜，取得**真實「本週新增星數」**，分兩組顯示：
+
+| 組別 | 數量 | 篩選條件 |
+|------|------|----------|
+| 🤖 AI 相關本週最熱 | 前 5 名 | 與 AI / ML / LLM / Agent 相關 |
+| 🔥 整體趨勢前三（非 AI） | 前 3 名 | 非 AI 類，週榜星數最高 |
+
+星數比例條各組獨立正規化（組內最高 = 100%），顯示格式為 `+X.Xk`（實際數值）。
+
+### 分三張圖呈現
+
+1. **圖① 模型更新** — 各大廠模型發布、版本更新、社群反應（24h）
+2. **圖② 開發者熱榜** — GitHub 週榜真實星數 + 新工具發布（週榜 + 24h）
+3. **圖③ 社群熱議** — 當日最熱話題排行、熱度指標、明日預告（24h）
 
 ---
 
