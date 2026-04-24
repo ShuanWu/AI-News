@@ -104,18 +104,25 @@ jobs:
           pages = f"https://shuanwu.github.io/AI-News/{date}"
           raw   = f"https://raw.githubusercontent.com/ShuanWu/AI-News/main/{date}"
 
+          tagline_path = f"{date}/line_tagline.txt"
+          tagline = ""
+          if os.path.exists(tagline_path):
+              with open(tagline_path, 'r', encoding='utf-8') as f:
+                  tagline = f.read().strip()
+
+          text_body = (
+            f"📰 每日AI熱點速報 {date}\n\n"
+            f"🤖 模型更新速報\n{pages}/infographic_1_models.html\n\n"
+            f"📊 開發者熱榜\n{pages}/infographic_2_github.html\n\n"
+            f"💬 社群熱議\n{pages}/infographic_3_community.html"
+          )
+          if tagline:
+              text_body += f"\n\n今日亮點：{tagline}！"
+
           payload = {
             "to": "Ua0d46bed4477912cded2ad3db62d6b37",
             "messages": [
-              {
-                "type": "text",
-                "text": (
-                  f"每日AI熱點速報 {date}\n\n"
-                  f"圖① 模型更新:\n{pages}/infographic_1_models.html\n\n"
-                  f"圖② 開發者熱榜:\n{pages}/infographic_2_github.html\n\n"
-                  f"圖③ 社群熱議:\n{pages}/infographic_3_community.html"
-                )
-              },
+              {"type": "text", "text": text_body},
               {"type": "image", "originalContentUrl": f"{raw}/screenshot_1_models.png",    "previewImageUrl": f"{raw}/screenshot_1_models.png"},
               {"type": "image", "originalContentUrl": f"{raw}/screenshot_2_github.png",    "previewImageUrl": f"{raw}/screenshot_2_github.png"},
               {"type": "image", "originalContentUrl": f"{raw}/screenshot_3_community.png", "previewImageUrl": f"{raw}/screenshot_3_community.png"},
