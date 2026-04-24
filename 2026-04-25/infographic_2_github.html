@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>開發者熱榜速報 — 2026-04-25</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #FEFDF5;
+    font-family: 'Noto Sans TC', sans-serif;
+    width: 1080px;
+    margin: 0 auto;
+    color: #1C1914;
+  }
+  .header {
+    background: #1C1914;
+    padding: 28px 44px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-brand {
+    font-family: 'Caveat', cursive;
+    font-size: 40px;
+    color: #FFFFFF;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .header-brand span { color: #1E5FAE; }
+  .header-date {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    color: #FDE047;
+    font-weight: 500;
+  }
+  .summary-box {
+    margin: 36px 40px 0;
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 24px 30px;
+  }
+  .summary-label {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: #1E5FAE;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .summary-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #1C1914;
+  }
+  .hl { background: linear-gradient(transparent 38%, rgba(253,224,0,0.42) 38%); padding: 0 2px; }
+  .section-title {
+    font-family: 'Caveat', cursive;
+    font-size: 30px;
+    font-weight: 700;
+    color: #1C1914;
+    margin: 36px 40px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 3px;
+    background: #1E5FAE;
+    border-radius: 2px;
+  }
+  .section-note {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    color: #6B6150;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+  .rank-table {
+    margin: 0 40px 32px;
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 18px 22px;
+  }
+  .rank-row {
+    display: grid;
+    grid-template-columns: 44px 1.4fr 1.3fr 110px 120px;
+    align-items: center;
+    gap: 14px;
+    padding: 11px 4px;
+    border-bottom: 1px dashed #D6CFBC;
+  }
+  .rank-row:last-child { border-bottom: none; }
+  .rank-row.header-row {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #6B6150;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #1C1914;
+    padding-bottom: 8px;
+  }
+  .rank-num {
+    font-family: 'Caveat', cursive;
+    font-size: 30px;
+    font-weight: 700;
+    color: #1E5FAE;
+    text-align: center;
+  }
+  .rank-repo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #1C1914;
+    word-break: break-all;
+  }
+  .rank-desc {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 12.5px;
+    color: #1C1914;
+    line-height: 1.55;
+  }
+  .rank-gain {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1E5FAE;
+    text-align: right;
+  }
+  .rank-gain small {
+    display: block;
+    font-size: 10px;
+    font-weight: 500;
+    color: #6B6150;
+    margin-top: 1px;
+    letter-spacing: 0.3px;
+  }
+  .rank-lang {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .lang-ts  { background: #DBE7F7; color: #1E5FAE; }
+  .lang-py  { background: #FFF3E6; color: #9A3A00; }
+  .lang-md  { background: #EDE7D9; color: #6B6150; }
+  .lang-sh  { background: #EADFF3; color: #5B2A86; }
+  .lang-dart{ background: #D8F0F4; color: #0F6B76; }
+  .lang-js  { background: #FDF6C7; color: #7A6A0A; }
+  .lang-no  { background: #F0F0EC; color: #6B6150; }
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin: 0 40px 40px;
+  }
+  .card {
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 22px 24px;
+  }
+  .card:nth-child(odd) { transform: rotate(-0.35deg); }
+  .card:nth-child(even) { transform: rotate(0.25deg); }
+  .card-wide { grid-column: 1 / -1; }
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    gap: 12px;
+  }
+  .card-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+  .badge {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .badge-ai    { background: #1E5FAE; color: #fff; }
+  .badge-tool  { background: #FDE047; color: #1C1914; }
+  .badge-trend { background: #1C1914; color: #fff; }
+  .source-link {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    color: #1E5FAE;
+    text-decoration: none;
+    border-bottom: 1px dashed #1E5FAE;
+    margin-bottom: 11px;
+    word-break: break-all;
+  }
+  .card-desc {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: #1C1914;
+    margin-bottom: 12px;
+  }
+  .metric {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    background: #DBE7F7;
+    border: 1.5px solid #1E5FAE;
+    color: #0F3D78;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+  }
+  .reaction-label {
+    font-family: 'Caveat', cursive;
+    font-size: 15px;
+    color: #6B6150;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .reaction-text {
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: #6B6150;
+    border-left: 3px solid #FDE047;
+    padding-left: 10px;
+  }
+  .footer {
+    background: #1C1914;
+    color: #6B6150;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    text-align: center;
+    padding: 14px 40px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-brand">AI 日報<span> ②</span> 開發者熱榜</div>
+  <div class="header-date">2026-04-25 · Taiwan Time</div>
+</div>
+
+<div class="summary-box">
+  <div class="summary-label">📋 本週摘要（Week of 2026-04-20 → 2026-04-25）</div>
+  <div class="summary-text">
+    本週 GitHub 完全被 <span class="hl">Claude Code 生態系</span>攻陷：第一名 <span class="hl">andrej-karpathy-skills</span> 單週暴增 <span class="hl">+44,394 顆星</span>，一個 CLAUDE.md 設定檔征服全球開發者。第二名 <span class="hl">hermes-agent</span> 以 +30,630 緊追在後，「自我進化 Agent」成本週最熱關鍵詞。微軟的 <span class="hl">markitdown</span> 安靜累積 +7,084，顯示文件轉換工具需求持續旺盛。非 AI 陣營中，<span class="hl">browser-harness</span>（+4,372）以 LLM 直驅 Chrome DevTools 奪冠，<span class="hl">omi</span>（+3,634）可穿戴 AI 引發 HN 本週最高討論熱度。
+  </div>
+</div>
+
+<!-- ====== AI Top 5 ====== -->
+<div class="section-title">🧠 AI 相關 · 本週漲星 Top 5 <span class="section-note">&nbsp;(2026-04-20 Mon → 2026-04-25)</span></div>
+
+<div class="rank-table">
+  <div class="rank-row header-row">
+    <div>RANK</div><div>REPO</div><div>WHAT IT DOES</div><div>WEEKLY ⭐</div><div>LANG</div>
+  </div>
+
+  <div class="rank-row">
+    <div class="rank-num">1</div>
+    <div class="rank-repo">forrestchang/<br>andrej-karpathy-skills</div>
+    <div class="rank-desc">一個 CLAUDE.md 設定檔，整合 Karpathy 對 LLM 程式缺陷的觀察，<strong>大幅改善 Claude Code 行為</strong>，總星數 71,863</div>
+    <div class="rank-gain">+44,394<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-md">Markdown</div>
+  </div>
+
+  <div class="rank-row">
+    <div class="rank-num">2</div>
+    <div class="rank-repo">NousResearch/<br>hermes-agent</div>
+    <div class="rank-desc"><strong>自我進化 Agent</strong>，隨使用者成長持續改善技能樹，總星數已破 108K</div>
+    <div class="rank-gain">+30,630<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-py">Python</div>
+  </div>
+
+  <div class="rank-row">
+    <div class="rank-num">3</div>
+    <div class="rank-repo">thedotmack/<br>claude-mem</div>
+    <div class="rank-desc">Claude Code <strong>跨 session 記憶插件</strong>，解決長期任務記憶斷裂問題，總星數 65,121</div>
+    <div class="rank-gain">+12,472<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-ts">TypeScript</div>
+  </div>
+
+  <div class="rank-row">
+    <div class="rank-num">4</div>
+    <div class="rank-repo">microsoft/<br>markitdown</div>
+    <div class="rank-desc">微軟出品，<strong>Office 文件與各類格式一鍵轉 Markdown</strong>，RAG pipeline 標配，總星 114,020</div>
+    <div class="rank-gain">+7,084<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-py">Python</div>
+  </div>
+
+  <div class="rank-row">
+    <div class="rank-num">5</div>
+    <div class="rank-repo">multica-ai/<br>multica</div>
+    <div class="rank-desc">把<strong>程式 Agent 轉為真正的隊友</strong>，支援多 Agent 協作與任務分發，總星 18,471</div>
+    <div class="rank-gain">+7,009<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-ts">TypeScript</div>
+  </div>
+</div>
+
+<!-- ====== 非 AI Top 3 ====== -->
+<div class="section-title">🛠️ 非 AI · 本週漲星 Top 3 <span class="section-note">&nbsp;(2026-04-20 Mon → 2026-04-25)</span></div>
+
+<div class="rank-table">
+  <div class="rank-row header-row">
+    <div>RANK</div><div>REPO</div><div>WHAT IT DOES</div><div>WEEKLY ⭐</div><div>LANG</div>
+  </div>
+
+  <div class="rank-row">
+    <div class="rank-num">1</div>
+    <div class="rank-repo">browser-use/<br>browser-harness</div>
+    <div class="rank-desc">讓 LLM 直接透過 <strong>Chrome DevTools Protocol 操控瀏覽器</strong>，本週新 repo 一週吸星 4,372</div>
+    <div class="rank-gain">+4,372<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-js">JavaScript</div>
+  </div>
+
+  <div class="rank-row">
+    <div class="rank-num">2</div>
+    <div class="rank-repo">BasedHardware/<br>omi</div>
+    <div class="rank-desc"><strong>可穿戴 AI</strong>，即時「看見」你的螢幕並提供情境輔助，HN 本週討論度最高（19 pts）</div>
+    <div class="rank-gain">+3,634<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-dart">Dart</div>
+  </div>
+
+  <div class="rank-row">
+    <div class="rank-num">3</div>
+    <div class="rank-repo">SimoneAvogadro/<br>android-re-skill</div>
+    <div class="rank-desc">Claude Code 的 <strong>Android APK 逆向工程技能包</strong>，一行指令分析 APK 結構</div>
+    <div class="rank-gain">+2,299<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-sh">Shell</div>
+  </div>
+</div>
+
+<!-- ====== 焦點解讀（4 張卡） ====== -->
+<div class="section-title">🔥 本週焦點解讀</div>
+
+<div class="cards-grid">
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">Claude Code 技能生態大爆發</div>
+      <span class="badge badge-ai">TREND</span>
+    </div>
+    <a class="source-link" href="https://www.shareuhack.com/en/posts/github-trending-weekly-2026-04-22" target="_blank">shareuhack.com · 週榜詳細報告 2026-04-22</a>
+    <div class="card-desc">
+      <span class="metric">Top 1 +44,394 ⭐</span>
+      <span class="metric">Top 3 均為 Claude 生態</span>
+      本週 Top 5 中有 <strong>3 個 repo</strong> 直接圍繞 Claude Code 延伸功能，包含行為優化、跨 session 記憶、多 Agent 協作，印證 Claude Code 已從工具演變為開發平台。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">開發者稱 2026 年 Q2 為「Claude Code 技能爆炸期」；GitHub 上 .skill 副檔名搜尋量週比增 300%。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">自我進化 Agent 成熱門賽道</div>
+      <span class="badge badge-ai">AI AGENT</span>
+    </div>
+    <a class="source-link" href="https://www.shareuhack.com/en/posts/github-trending-weekly-2026-04-22" target="_blank">shareuhack.com · hermes-agent 分析</a>
+    <div class="card-desc">
+      <span class="metric">hermes-agent 108K ⭐</span>
+      <span class="metric">evolver +4,032 本週</span>
+      hermes-agent 與 GenericAgent / evolver 形成「自進化 Agent」叢集，共同特點：<strong>從少量種子代碼建構技能樹</strong>，消耗更少 token 達成更複雜任務。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">r/MachineLearning 熱議「Agent 能否真正自我改善」；研究者質疑評測方法，但星數仍持續上升。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">可穿戴 AI：omi 引爆 HN</div>
+      <span class="badge badge-tool">HARDWARE</span>
+    </div>
+    <a class="source-link" href="https://github.com/BasedHardware/omi" target="_blank">github.com/BasedHardware/omi</a>
+    <div class="card-desc">
+      <span class="metric">+3,634 本週 ⭐</span>
+      <span class="metric">HN 19 points 本週第一</span>
+      omi 是本週 HN 討論熱度最高的 repo，<strong>Dart 開發</strong>，可穿戴設備即時分析螢幕內容並提供 AI 輔助，比所有其他 repo HN 討論量加總還多。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">「眼鏡裡的 AI 助手」引發隱私疑慮討論；支持者認為這是 ambient computing 的真正實踐。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">markitdown 穩健複利成長</div>
+      <span class="badge badge-tool">UTILITY</span>
+    </div>
+    <a class="source-link" href="https://github.com/microsoft/markitdown" target="_blank">github.com/microsoft/markitdown</a>
+    <div class="card-desc">
+      <span class="metric">114,020 ⭐ 總計</span>
+      <span class="metric">+7,084 本週</span>
+      markitdown 以週均 7K+ 的穩定速度累積星數，反映<strong>文件預處理管道</strong>在 AI 應用中的長期需求。結合 DeepSeek V4 低成本 API，RAG pipeline 建設成本大幅降低。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">開發者稱其「最低調但最實用的微軟開源項目」；與 DeepSeek V4 的低價格搭配使用場景大幅擴展。</div>
+  </div>
+
+</div>
+
+<div class="footer">AI 日報 · 每日 08:00 台灣時間更新 · 資料截至 2026-04-25 08:00 UTC+8</div>
+</body>
+</html>

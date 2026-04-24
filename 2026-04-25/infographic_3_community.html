@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>社群熱議速報 — 2026-04-25</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #FEFDF5;
+    font-family: 'Noto Sans TC', sans-serif;
+    width: 1080px;
+    margin: 0 auto;
+    color: #1C1914;
+  }
+  .header {
+    background: #1C1914;
+    padding: 28px 44px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-brand {
+    font-family: 'Caveat', cursive;
+    font-size: 40px;
+    color: #FFFFFF;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .header-brand span { color: #C92A2A; }
+  .header-date {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    color: #FDE047;
+    font-weight: 500;
+  }
+  .summary-box {
+    margin: 36px 40px 0;
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 24px 30px;
+  }
+  .summary-label {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: #C92A2A;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .summary-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #1C1914;
+  }
+  .hl { background: linear-gradient(transparent 38%, rgba(253,224,0,0.42) 38%); padding: 0 2px; }
+  .section-title {
+    font-family: 'Caveat', cursive;
+    font-size: 30px;
+    font-weight: 700;
+    color: #1C1914;
+    margin: 36px 40px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 3px;
+    background: #C92A2A;
+    border-radius: 2px;
+  }
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin: 0 40px 40px;
+  }
+  .card {
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 22px 24px;
+  }
+  .card:nth-child(odd) { transform: rotate(-0.35deg); }
+  .card:nth-child(even) { transform: rotate(0.25deg); }
+  .card-wide { grid-column: 1 / -1; }
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    gap: 12px;
+  }
+  .card-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+  .badge {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .badge-hot    { background: #C92A2A; color: #fff; }
+  .badge-warn   { background: #FDE047; color: #1C1914; }
+  .badge-policy { background: #6B6150; color: #fff; }
+  .badge-buzz   { background: #1C1914; color: #fff; }
+  .source-link {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    color: #C92A2A;
+    text-decoration: none;
+    border-bottom: 1px dashed #C92A2A;
+    margin-bottom: 11px;
+    word-break: break-all;
+  }
+  .card-desc {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: #1C1914;
+    margin-bottom: 12px;
+  }
+  .tag {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    background: #FBE4E4;
+    border: 1.5px solid #C92A2A;
+    color: #7A1919;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+  }
+  .reaction-label {
+    font-family: 'Caveat', cursive;
+    font-size: 15px;
+    color: #6B6150;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .reaction-text {
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: #6B6150;
+    border-left: 3px solid #FDE047;
+    padding-left: 10px;
+  }
+  .heat-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    color: #6B6150;
+  }
+  .heat-track {
+    flex: 1;
+    height: 8px;
+    background: #F0E9D9;
+    border: 1.5px solid #1C1914;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .heat-fill { height: 100%; background: #C92A2A; }
+  .tomorrow-box {
+    margin: 0 40px 40px;
+    background: #FFFFFF;
+    border: 2px dashed #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    padding: 22px 28px;
+  }
+  .tomorrow-label {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    color: #C92A2A;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .tomorrow-text {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: #1C1914;
+  }
+  .footer {
+    background: #1C1914;
+    color: #6B6150;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    text-align: center;
+    padding: 14px 40px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-brand">AI 日報<span> ③</span> 社群熱議</div>
+  <div class="header-date">2026-04-25 · Taiwan Time</div>
+</div>
+
+<div class="summary-box">
+  <div class="summary-label">📋 今日摘要</div>
+  <div class="summary-text">
+    今日社群最大震撼：<span class="hl">DeepSeek V4</span> 在 4/24 發布後各大平台湧入測試貼文，「$3.48 output 對比 OpenAI $30」成本對比圖瘋傳全網。同時 <span class="hl">Claude Opus 4.7 tokenizer 隱性漲價 35%</span> 的爭議未平息，HN 稱其「最不透明的定價手法」。安全面，<span class="hl">LMDeploy CVE-2026-33626</span> SSRF 漏洞揭露後 13 小時即遭野外利用；Anthropic <span class="hl">Project Glasswing</span> 因 AI 漏洞挖掘能力過強而主動延後公開，引發責任揭露倫理爭議。<span class="hl">r/programming 禁止 LLM 相關內容</span>在開發者圈持續延燒。
+  </div>
+</div>
+
+<div class="section-title">🔥 今日高熱話題</div>
+
+<div class="cards-grid">
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">DeepSeek V4 震撼發布：$3.48 挑戰 $30</div>
+      <span class="badge badge-hot">HOT</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:95%"></div></div>
+      <span>95 / 100</span>
+    </div>
+    <a class="source-link" href="https://simonwillison.net/2026/Apr/24/deepseek-v4/" target="_blank">simonwillison.net · DeepSeek V4 深度分析</a>
+    <div class="card-desc">
+      <span class="tag">開源</span>
+      <span class="tag">定價戰</span>
+      DeepSeek V4-Pro 以 <strong>$3.48/1M output</strong> 對決 GPT-5.5 的 $30 與 Claude Opus 4.7 的 $25，差距達 8.6 倍。MIT 授權開源、原生 1M 上下文、SWE-bench 81%，Al Jazeera 稱「一年後再次顛覆全球科技」。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">X 上出現大量成本對比圖；Simon Willison 稱「幾乎觸及前沿卻是零頭價格」，HN 首頁霸榜數小時，GitHub 本機部署教學帖極速累積讚數。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">Claude Opus 4.7 隱性漲價 35%</div>
+      <span class="badge badge-warn">CONTROVERSY</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:88%"></div></div>
+      <span>88 / 100</span>
+    </div>
+    <a class="source-link" href="https://www.finout.io/blog/claude-opus-4.7-pricing-the-real-cost-story-behind-the-unchanged-price-tag" target="_blank">finout.io · Opus 4.7 真實定價分析</a>
+    <div class="card-desc">
+      <span class="tag">Anthropic</span>
+      <span class="tag">定價爭議</span>
+      標題定價不變（$5 input / $25 output），但新 tokenizer 讓相同文字多消耗<strong>最高 35% tokens</strong>，帳單靜悄悄上漲。Finout 分析稱「最不誠實的定價策略之一」。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">Reddit r/ClaudeAI 出現數十條「帳單暴增」投訴；部分用戶揚言切換 DeepSeek V4，要求 Anthropic 在文件中明示 tokenizer 差異影響。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">r/programming 全面禁止 LLM 討論</div>
+      <span class="badge badge-policy">POLICY</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:82%"></div></div>
+      <span>82 / 100</span>
+    </div>
+    <a class="source-link" href="https://www.tomshardware.com/tech-industry/artificial-intelligence/the-largest-programming-community-on-reddit-just-banned-all-content-related-to-ai-llms" target="_blank">tomshardware.com · r/programming LLM 禁令報導</a>
+    <div class="card-desc">
+      <span class="tag">Reddit</span>
+      <span class="tag">社群治理</span>
+      全球最大程式討論社群 r/programming 禁止所有 LLM 相關內容，優先保障高品質技術討論。版主稱 AI 生成內容充斥已嚴重傷害社群<strong>信噪比</strong>。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">開發者分裂為兩派：支持者稱「終於清靜了」，反對者認為過度審查阻礙合法技術討論；Tom's Hardware 等科技媒體大篇幅報導。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">LMDeploy CVE-2026-33626：揭露後 13 小時遭利用</div>
+      <span class="badge badge-hot">SECURITY</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:76%"></div></div>
+      <span>76 / 100</span>
+    </div>
+    <a class="source-link" href="https://thehackernews.com/search/label/artificial%20intelligence" target="_blank">thehackernews.com · AI 安全漏洞追蹤</a>
+    <div class="card-desc">
+      <span class="tag">SSRF</span>
+      <span class="tag">CVE-2026-33626</span>
+      LMDeploy 推理框架高危 SSRF 漏洞，公開揭露後<strong>僅 13 小時即遭野外利用</strong>。廣泛部署於企業 AI 推理管道，安全研究者建議立即升級修補版本。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">The Hacker News 頭條；安全研究者警告 AI 推理框架攻擊面擴張速度遠超防禦能力，呼籲廠商落實 SDL 安全開發流程。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">Anthropic Project Glasswing：AI 太強先給大廠修漏洞</div>
+      <span class="badge badge-buzz">AI SAFETY</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:70%"></div></div>
+      <span>70 / 100</span>
+    </div>
+    <a class="source-link" href="https://www.roborhythms.com/claude-opus-4-7-release/" target="_blank">roborhythms.com · Project Glasswing 分析</a>
+    <div class="card-desc">
+      <span class="tag">AI Safety</span>
+      <span class="tag">漏洞揭露</span>
+      Anthropic 秘密計畫讓 AI 自動發現軟體漏洞，效果過強因此<strong>延後公開</strong>，先給 Apple、Microsoft、Google、Amazon 搶先修補，引爆「誰有資格優先取得 AI 能力」的倫理爭論。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">HN 有人稱讚「負責任揭露的典範」，也有人批評「大廠優先的精英主義」；安全社群呼籲制定 AI 輔助漏洞揭露的統一標準。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">中國 AI 空間智能大戰：騰訊 / 阿里 / 字節齊發</div>
+      <span class="badge badge-buzz">INDUSTRY</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:65%"></div></div>
+      <span>65 / 100</span>
+    </div>
+    <a class="source-link" href="https://www.21jingji.com/article/20260423/herald/5b597cb5c813d31387d43378574f4407.html" target="_blank">21世紀經濟報道 · AI 空間智能競賽</a>
+    <div class="card-desc">
+      <span class="tag">世界模型</span>
+      <span class="tag">空間智能</span>
+      騰訊、阿里、字節跳動四月集中發布<strong>世界模型與空間智能</strong>產品，AI 競爭軸線從純語言擴至 3D 空間理解。DeepSeek V4 股價衝擊波：智譜 -8.07%、MiniMax -7.40%。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">量子位連發多篇深度報導；OpenRouter 數據顯示中國模型四月平台 token 消費量年增 7–8 倍，成全球增量主力。</div>
+  </div>
+
+</div>
+
+<div class="tomorrow-box">
+  <div class="tomorrow-label">🔮 明日（2026-04-26）關注</div>
+  <div class="tomorrow-text">
+    <strong>①</strong> DeepSeek V4 各大平台整合測試結果持續出爐，重點關注第三方 SWE-bench 驗證報告；開源社群量化版本與本機部署教學將密集出現。<br>
+    <strong>②</strong> Claude Opus 4.7 tokenizer 隱性漲價爭議持續發酵，觀察 Anthropic 是否正式回應；若無回應，用戶遷移至 DeepSeek V4 的聲量預計加速升溫。<br>
+    <strong>③</strong> LMDeploy CVE-2026-33626 補丁發布狀況與野外利用範圍統計，安全廠商 48 小時內影響評估報告值得關注。
+  </div>
+</div>
+
+<div class="footer">AI 日報 · 每日 08:00 台灣時間更新 · 資料截至 2026-04-25 08:00 UTC+8</div>
+</body>
+</html>
