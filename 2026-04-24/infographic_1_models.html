@@ -1,278 +1,173 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI 模型更新速報 2026-04-24</title>
+<meta name="viewport" content="width=1080">
+<title>AI 模型更新速報 — 2026-04-24</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'Noto Sans TC', sans-serif;
-    background: #FEFDF5;
-    color: #1C1914;
-    width: 1080px;
-    margin: 0 auto;
-    padding: 0 0 48px 0;
-  }
-
-  .header {
-    background: #1C1914;
-    padding: 36px 48px 32px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-  }
-
-  .header-title {
-    font-family: 'Caveat', cursive;
-    font-size: 40px;
-    color: #ffffff;
-    font-weight: 700;
-    line-height: 1.2;
-  }
-
-  .header-date {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 22px;
-    color: #FDE047;
-    font-weight: 600;
-  }
-
-  .summary-box {
-    margin: 36px 48px 0;
-    padding: 24px 28px;
-    border-left: 4px solid #E55A00;
-    background: #FFFFFF;
-    border: 2px solid #1C1914;
-    border-left: 6px solid #E55A00;
-    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
-    box-shadow: 3px 3px 0 #1C1914;
-  }
-
-  .summary-label {
-    font-family: 'Caveat', cursive;
-    font-size: 22px;
-    color: #E55A00;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-
-  .summary-text {
-    font-family: 'Noto Sans TC', sans-serif;
-    font-size: 15px;
-    line-height: 1.8;
-    color: #1C1914;
-  }
-
-  .section-title {
-    font-family: 'Caveat', cursive;
-    font-size: 30px;
-    color: #1C1914;
-    font-weight: 700;
-    margin: 40px 48px 20px;
-    padding-bottom: 8px;
-    border-bottom: 3px solid #E55A00;
-  }
-
-  .cards-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin: 0 48px;
-  }
-
-  .card {
-    background: #FFFFFF;
-    border: 2px solid #1C1914;
-    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
-    box-shadow: 3px 3px 0 #1C1914;
-    padding: 24px 24px 20px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .card:nth-child(odd) {
-    transform: rotate(-0.35deg);
-  }
-
-  .card:nth-child(even) {
-    transform: rotate(0.25deg);
-  }
-
-  .card-accent-bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: #E55A00;
-  }
-
-  .model-name {
-    font-family: 'Caveat', cursive;
-    font-size: 28px;
-    color: #E55A00;
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 6px;
-  }
-
-  .model-url {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 12px;
-    color: #888;
-    margin-bottom: 14px;
-    word-break: break-all;
-    text-decoration: none;
-  }
-
-  .model-url a {
-    color: #888;
-    text-decoration: none;
-  }
-
-  .model-desc {
-    font-family: 'Noto Sans TC', sans-serif;
-    font-size: 13.5px;
-    line-height: 1.75;
-    color: #1C1914;
-    margin-bottom: 14px;
-  }
-
-  .highlight {
-    background: linear-gradient(transparent 38%, rgba(253, 224, 0, 0.42) 38%);
-    padding: 0 2px;
-  }
-
-  .reaction-label {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    color: #E55A00;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 6px;
-  }
-
-  .reaction-text {
-    font-family: 'Noto Sans TC', sans-serif;
-    font-size: 13px;
-    line-height: 1.65;
-    color: #444;
-  }
-
-  .tag {
-    display: inline-block;
-    background: #E55A00;
-    color: white;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 2px 8px;
-    border-radius: 2px;
-    margin-bottom: 8px;
-    letter-spacing: 0.06em;
-  }
-
-  .footer {
-    margin: 48px 48px 0;
-    padding: 16px 20px;
-    background: #1C1914;
-    border-radius: 4px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 13px;
-    color: #FDE047;
-    text-align: center;
-  }
+  body { background: #FEFDF5; font-family: 'Noto Sans TC', sans-serif; width: 1080px; margin: 0 auto; color: #1C1914; }
+  .header { background: #1C1914; padding: 28px 44px 24px; display: flex; align-items: center; justify-content: space-between; }
+  .header-brand { font-family: 'Caveat', cursive; font-size: 40px; color: #FFFFFF; font-weight: 700; letter-spacing: 1px; }
+  .header-brand span { color: #E55A00; }
+  .header-date { font-family: 'Space Grotesk', sans-serif; font-size: 22px; color: #FDE047; font-weight: 500; }
+  .summary-box { margin: 36px 40px 0; background: #FFFFFF; border: 2px solid #1C1914; border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px; box-shadow: 3px 3px 0 #1C1914; padding: 24px 30px; }
+  .summary-label { font-family: 'Caveat', cursive; font-size: 22px; color: #E55A00; font-weight: 700; margin-bottom: 10px; }
+  .summary-text { font-size: 15px; line-height: 1.8; color: #1C1914; }
+  .hl { background: linear-gradient(transparent 38%, rgba(253,224,0,0.42) 38%); padding: 0 2px; }
+  .section-title { font-family: 'Caveat', cursive; font-size: 30px; font-weight: 700; color: #1C1914; margin: 36px 40px 20px; display: flex; align-items: center; gap: 12px; }
+  .section-title::after { content: ''; flex: 1; height: 3px; background: #E55A00; border-radius: 2px; }
+  .cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin: 0 40px 40px; }
+  .card { background: #FFFFFF; border: 2px solid #1C1914; border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px; box-shadow: 3px 3px 0 #1C1914; padding: 22px 24px; }
+  .card:nth-child(odd) { transform: rotate(-0.35deg); }
+  .card:nth-child(even) { transform: rotate(0.25deg); }
+  .card-wide { grid-column: 1 / -1; }
+  .card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 8px; gap: 12px; }
+  .card-name { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 700; line-height: 1.35; }
+  .badge { font-family: 'Space Grotesk', sans-serif; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+  .badge-new    { background: #E55A00; color: #fff; }
+  .badge-update { background: #FDE047; color: #1C1914; }
+  .badge-infra  { background: #6B6150; color: #fff; }
+  .badge-agent  { background: #1C1914; color: #fff; }
+  .source-link { display: inline-block; font-family: 'Space Grotesk', sans-serif; font-size: 11px; color: #E55A00; text-decoration: none; border-bottom: 1px dashed #E55A00; margin-bottom: 11px; word-break: break-all; }
+  .card-desc { font-size: 13.5px; line-height: 1.75; color: #1C1914; margin-bottom: 12px; }
+  .price-chip { display: inline-block; font-family: 'Space Grotesk', sans-serif; font-size: 11.5px; font-weight: 600; background: #FFF3E6; border: 1.5px solid #E55A00; color: #9A3A00; padding: 2px 8px; border-radius: 3px; margin-right: 6px; margin-bottom: 6px; }
+  .reaction-label { font-family: 'Caveat', cursive; font-size: 15px; color: #6B6150; font-weight: 600; margin-bottom: 4px; }
+  .reaction-text { font-size: 12.5px; line-height: 1.65; color: #6B6150; border-left: 3px solid #FDE047; padding-left: 10px; }
+  .footer { background: #1C1914; color: #6B6150; font-family: 'Space Grotesk', sans-serif; font-size: 12px; text-align: center; padding: 14px 40px; }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <div class="header-title">🤖 模型更新速報<br>AI Model Releases</div>
-  <div class="header-date">2026-04-24</div>
+  <div class="header-brand">AI 日報<span> ①</span> 模型更新</div>
+  <div class="header-date">2026-04-24 · Taiwan Time</div>
 </div>
 
 <div class="summary-box">
   <div class="summary-label">📋 今日摘要</div>
   <div class="summary-text">
-    2026年4月24日，AI領域同時迎來多項重大進展：Anthropic旗艦模型 Claude Mythos 5 因安全疑慮遭駭客入侵事件持續延燒，DeepSeek V4 仍在最後測試階段預計週內正式發布。全球開發者生態快速向 Agent 框架集中，整體趨勢顯示 AI 競爭已從模型能力比拼<span class="highlight">轉向工程化、商業化與安全治理的深水區</span>。
+    今日 AI 模型戰場迎來重磅炸彈：<span class="hl">DeepSeek V4-Pro</span> 正式發布，1.6T 參數旗艦以 <span class="hl">SWE-bench 80.6%</span> 挺進閉源前列，定價僅 <span class="hl">$1.74 / 1M input</span>，是同級閉源模型的七分之一，MIT 開源。伴生的 <span class="hl">V4-Flash</span> 以 $0.14 / 1M 強攻成本邊界。同時，Anthropic 的 <span class="hl">Claude Mythos Preview</span>（尚未正式發布）震撼業界：10T 參數、93.9% SWE-bench、94.6% GPQA Diamond，已在每一個主流 OS 與瀏覽器中找到數千個零日漏洞，安全圈炸鍋。中國陣營亦同步出擊：<span class="hl">Kimi K2.6</span> 在 OpenRouter 呼叫量排名第一（297B tokens），智譜 GLM-5.1 與阿里 Qwen3.6-Plus 齊步上新。
   </div>
 </div>
 
-<div class="section-title">本日模型動態</div>
+<div class="section-title">🤖 過去 24 小時 AI 模型與平台發布</div>
 
 <div class="cards-grid">
 
-  <!-- Card 1: Claude Mythos 5 -->
   <div class="card">
-    <div class="card-accent-bar"></div>
-    <div class="tag">ANTHROPIC</div>
-    <div class="model-name">Claude Mythos 5</div>
-    <div class="model-url"><a href="https://www.euronews.com/next/2026/04/22/hackers-breach-anthropics-too-dangerous-to-release-mythos-ai-model-report" target="_blank">euronews.com › Mythos-breach-report</a></div>
-    <div class="model-desc">
-      史上首個突破<span class="highlight">萬兆（10 Trillion）參數</span>規模的 AI 模型，專為網路安全、學術研究與複雜程式設計等高風險場景設計。Anthropic 以「對公眾具前所未有安全風險」為由暫未公開發布，但已向美國財政部及高盛、花旗、美銀、摩根士丹利等提供測試。
+    <div class="card-top">
+      <div class="card-name">DeepSeek V4-Pro</div>
+      <span class="badge badge-new">TODAY</span>
     </div>
-    <div class="reaction-label">社群反應</div>
-    <div class="reaction-text">
-      4/22 駭客透過第三方廠商入侵 Mythos，HackerNews 熱議「<span class="highlight">萬億參數閉源模型本身就是安全風險</span>」，對 AI 安全管控機制的有效性提出強烈質疑。
+    <a class="source-link" href="https://api-docs.deepseek.com/news/news260424" target="_blank">api-docs.deepseek.com · 2026-04-24</a>
+    <div class="card-desc">
+      <strong>2026-04-24 正式發布</strong>，MoE 架構 1.6T 總參數 / 49B 激活，33T tokens 預訓練，1M context，MIT 開源。SWE-bench Verified <strong>80.6%</strong>（距 Claude Opus 4.6 僅差 0.2pp），MMLU 88.4%，Humanities-X 92.1%。
+      <br><br>
+      <span class="price-chip">$1.74 / 1M input</span>
+      <span class="price-chip">$3.48 / 1M output</span>
     </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">Simon Willison：「幾乎達前沿水準，價格只有對手七分之一。」HN 前頁熱議定價策略是否可持續。開發者稱為「開源 Claude 殺手」。</div>
   </div>
 
-  <!-- Card 2: GPT-5.4 -->
   <div class="card">
-    <div class="card-accent-bar"></div>
-    <div class="tag">OPENAI</div>
-    <div class="model-name">GPT-5.4 Thinking</div>
-    <div class="model-url"><a href="https://llm-stats.com/ai-news" target="_blank">llm-stats.com › ai-news</a></div>
-    <div class="model-desc">
-      GPT-5.4 新增「Thinking」變體，整合<span class="highlight">測試時推算（test-time compute）</span>機制，允許模型在回答前進行多步驟自我推理。在桌面任務基準測試 OSWorld-Verified 達到 75.0%，成為首個在此測試中<span class="highlight">正式超越人類平均表現</span>的商用模型。
+    <div class="card-top">
+      <div class="card-name">DeepSeek V4-Flash</div>
+      <span class="badge badge-new">TODAY</span>
     </div>
-    <div class="reaction-label">社群反應</div>
-    <div class="reaction-text">
-      Reddit r/MachineLearning 對「是否真正通用」持懷疑態度，認為 OSWorld 不代表所有認知能力，但多數開發者承認其在複雜多步操作任務上<span class="highlight">實際進步顯著</span>。
+    <a class="source-link" href="https://letsdatascience.com/news/deepseek-launches-v4-preview-with-pro-and-flash-343285ec" target="_blank">letsdatascience.com · 2026-04-24</a>
+    <div class="card-desc">
+      與 V4-Pro 同日發布，284B 總參數 / 13B 激活，SWE-bench <strong>79.0%</strong>、LiveCodeBench <strong>91.6%</strong>，與 Pro 差距幾乎可忽略。針對 API 高吞吐場景設計，MIT 開源。
+      <br><br>
+      <span class="price-chip">$0.14 / 1M input</span>
+      <span class="price-chip">$0.28 / 1M output</span>
     </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">X 開發者測試顯示大多數 coding 任務 Flash 與 Pro 效果相當，$0.14 被稱「最便宜的前沿級模型」，LLM 路由策略討論升溫。</div>
   </div>
 
-  <!-- Card 3: Gemini 3.1 -->
   <div class="card">
-    <div class="card-accent-bar"></div>
-    <div class="tag">GOOGLE DEEPMIND</div>
-    <div class="model-name">Gemini 3.1 Flash-Lite</div>
-    <div class="model-url"><a href="https://llm-stats.com/llm-updates" target="_blank">llm-stats.com › llm-updates</a></div>
-    <div class="model-desc">
-      Gemini 3.1 新增即時語音與影像分析能力；Flash-Lite 版本較前代<span class="highlight">快 2.5 倍輸出速度</span>，記憶體需求壓縮六分之一，大幅降低運算成本，目標是讓企業在相同預算下處理更高流量，直接競爭 GPT-4o mini。
+    <div class="card-top">
+      <div class="card-name">Claude Mythos Preview</div>
+      <span class="badge badge-new">PREVIEW</span>
     </div>
-    <div class="reaction-label">社群反應</div>
-    <div class="reaction-text">
-      開發者社群普遍正面，Flash-Lite 的價格競爭力被認為將<span class="highlight">對 OpenAI GPT-4o mini 形成直接挑戰</span>；r/LocalLLaMA 指出量化版本已可在高階消費級 GPU 本地運行。
+    <a class="source-link" href="https://fortune.com/2026/04/23/ai-cybersecurity-standards-mythos-nist-owasp-sans-cosai-dc-meeting-eye-on-ai/" target="_blank">Fortune · 2026-04-23</a>
+    <div class="card-desc">
+      Anthropic 尚未正式發布的 <strong>10T 參數</strong>旗艦，首個廣泛認可的萬億級模型。SWE-bench Verified <strong>93.9%</strong>、GPQA Diamond <strong>94.6%</strong>。已在每個主流 OS 與瀏覽器中發現<strong>數千個零日漏洞</strong>，專為高風險安全環境設計。
+      <br><br>
+      <span class="price-chip">定價未公佈</span>
     </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">安全研究社群震驚：NIST 在 DC 召開緊急圓桌討論 AI 自動化漏洞挖掘倫理邊界；r/netsec 稱這是「攻防格局的分水嶺時刻」。</div>
   </div>
 
-  <!-- Card 4: DeepSeek V4 -->
   <div class="card">
-    <div class="card-accent-bar"></div>
-    <div class="tag">DEEPSEEK（即將發布）</div>
-    <div class="model-name">DeepSeek V4</div>
-    <div class="model-url"><a href="https://deepseekv4.app/news/2026-04-14-deepseek-v4-release-window" target="_blank">deepseekv4.app › release-window</a></div>
-    <div class="model-desc">
-      MoE 架構，<span class="highlight">總參數 1 兆</span>但每次推理僅啟動 370 億，理論實現 35 倍推理加速與 40% 能耗降低。選擇在<span class="highlight">華為昇騰 950PR 晶片</span>上獨家早期測試，明確迴避 NVIDIA，被解讀為美國出口管制下的地緣政治訊號。
+    <div class="card-top">
+      <div class="card-name">Claude Opus 4.7</div>
+      <span class="badge badge-update">UPDATE</span>
     </div>
-    <div class="reaction-label">社群反應</div>
-    <div class="reaction-text">
-      模型已<span class="highlight">三度延遲發布</span>，社群情緒從期待轉焦慮，分析認為延遲根因是 Huawei 晶片工程整合難度超出預期，一旦發布將對全球開源模型生態造成重大衝擊。
+    <a class="source-link" href="https://llm-stats.com/llm-updates" target="_blank">llm-stats.com · 2026-04-16</a>
+    <div class="card-desc">
+      <strong>2026-04-16 發布</strong>，Anthropic 最新旗艦，針對複雜推理與長時程 Agent 工作流優化，已於 Amazon Bedrock 上線。今日因 DeepSeek V4 比價在 Reddit 重新爆紅。
+      <br><br>
+      <span class="price-chip">$5.00 / 1M input</span>
+      <span class="price-chip">$25.00 / 1M output</span>
     </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">Reddit 批評定價相較 DeepSeek V4「高不可攀」，r/ClaudeAI 比價貼文衝上熱門；Anthropic 員工回應「品質有差異」但社群普遍不買單。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">GPT-5.5 &amp; GPT-5.5 Pro</div>
+      <span class="badge badge-update">UPDATE</span>
+    </div>
+    <a class="source-link" href="https://llm-stats.com/ai-news" target="_blank">llm-stats.com · 2026-04</a>
+    <div class="card-desc">
+      OpenAI 最新 Agent 優化模型，多工具切換設計，桌面任務 OSWorld-Verified <strong>75.0%</strong>（超越人類基準）。Pro 版為旗艦中最貴，今日再次被拿來與 DeepSeek V4 對比。
+      <br><br>
+      <span class="price-chip">$5 / 1M input</span>
+      <span class="price-chip">$30 / 1M output</span>
+      <span class="price-chip">Pro: $30 / $180</span>
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">X 對比帖：「GPT-5.5 Pro 比 V4-Pro 貴 17 倍，benchmark 未明顯佔優。」OpenAI 生態壁壘（Plugins / 企業合規）仍是主要留客理由。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">Gemini 3.1 Pro</div>
+      <span class="badge badge-infra">BENCHMARK</span>
+    </div>
+    <a class="source-link" href="https://renovateqr.com/blog/ai-model-releases-2026" target="_blank">renovateqr.com · 2026-03</a>
+    <div class="card-desc">
+      截至本週，以 <strong>Artificial Analysis Intelligence Index 57 分</strong>與 GPT-5.4 Pro 並列榜首，16 項 benchmark 拿下 13 項第一，多模態能力持續領先。DeepSeek V4 今日發布後，開放評測排名格局即將重洗牌。
+      <br><br>
+      <span class="price-chip">定價未公開</span>
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">「Gemini 贏 benchmark，DeepSeek 贏錢包」成為今日社群共識；Google I/O 2026 預告將有更多 Gemini 更新，開發者等待排名重洗。</div>
+  </div>
+
+  <div class="card card-wide">
+    <div class="card-top">
+      <div class="card-name">中國陣營集體推新：Kimi K2.6 · DeepSeek V4 · GLM-5.1 · Qwen3.6-Plus</div>
+      <span class="badge badge-agent">TREND</span>
+    </div>
+    <a class="source-link" href="https://techorange.com/2026/04/24/deepseek-v4-ai/" target="_blank">TechOrange · 2026-04-24</a>
+    <div class="card-desc">
+      中國大模型陣營 4 月下旬集體出擊：<strong>Kimi K2.6</strong>（Moonshot AI）以長週期代碼生成 + 自主執行能力躍居 OpenRouter 呼叫量排名第一（<strong>297B tokens / 月</strong>）；<strong>DeepSeek V4-Pro</strong> 今日以 MIT 開源衝擊成本底線，全面支援華為昇騰產品線，$1.74 定價比 V3.2 再降 50%，使中國模型在 1/50 的價格下達到閉源前沿 ~90% 效能；<strong>智譜 GLM-5.1</strong> 強化代碼能力；<strong>阿里 Qwen3.6-Plus</strong> 主攻企業 Agent 部署加速。NVIDIA CEO 黃仁勳警告：若 DeepSeek 在昇騰上跑起來，「對美國非常不利」，可能形成獨立技術生態。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">量子位與機器之心同步報道；知乎熱議「中國模型開源策略是否已形成獨立技術生態」；DeepSeek × 華為合作傳聞登上微博科技熱榜前三。</div>
   </div>
 
 </div>
 
-<div class="footer">
-  每日AI熱點速報 · Daily AI Intelligence Brief · 2026-04-24 · Taiwan Time
-</div>
-
+<div class="footer">AI 日報 · 每日 08:00 台灣時間更新 · 資料截至 2026-04-24 08:00 UTC+8</div>
 </body>
 </html>
