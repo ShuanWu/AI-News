@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>社群熱議速報 — 2026-04-27</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #FEFDF5;
+    font-family: 'Noto Sans TC', sans-serif;
+    width: 1080px;
+    margin: 0 auto;
+    color: #1C1914;
+  }
+  .header {
+    background: #1C1914;
+    padding: 28px 44px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-brand {
+    font-family: 'Caveat', cursive;
+    font-size: 40px;
+    color: #FFFFFF;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .header-brand span { color: #C92A2A; }
+  .header-date {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    color: #FDE047;
+    font-weight: 500;
+  }
+  .summary-box {
+    margin: 36px 40px 0;
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 24px 30px;
+  }
+  .summary-label {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: #C92A2A;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .summary-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #1C1914;
+  }
+  .hl { background: linear-gradient(transparent 38%, rgba(253,224,0,0.42) 38%); padding: 0 2px; }
+  .section-title {
+    font-family: 'Caveat', cursive;
+    font-size: 30px;
+    font-weight: 700;
+    color: #1C1914;
+    margin: 36px 40px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 3px;
+    background: #C92A2A;
+    border-radius: 2px;
+  }
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin: 0 40px 40px;
+  }
+  .card {
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 22px 24px;
+  }
+  .card:nth-child(odd) { transform: rotate(-0.35deg); }
+  .card:nth-child(even) { transform: rotate(0.25deg); }
+  .card-wide { grid-column: 1 / -1; }
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    gap: 12px;
+  }
+  .card-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+  .badge {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .badge-hot    { background: #C92A2A; color: #fff; }
+  .badge-warn   { background: #FDE047; color: #1C1914; }
+  .badge-policy { background: #6B6150; color: #fff; }
+  .badge-buzz   { background: #1C1914; color: #fff; }
+  .source-link {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    color: #C92A2A;
+    text-decoration: none;
+    border-bottom: 1px dashed #C92A2A;
+    margin-bottom: 11px;
+    word-break: break-all;
+  }
+  .card-desc {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: #1C1914;
+    margin-bottom: 12px;
+  }
+  .tag {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    background: #FBE4E4;
+    border: 1.5px solid #C92A2A;
+    color: #7A1919;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+  }
+  .reaction-label {
+    font-family: 'Caveat', cursive;
+    font-size: 15px;
+    color: #6B6150;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .reaction-text {
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: #6B6150;
+    border-left: 3px solid #FDE047;
+    padding-left: 10px;
+  }
+  .heat-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    color: #6B6150;
+  }
+  .heat-track {
+    flex: 1;
+    height: 8px;
+    background: #F0E9D9;
+    border: 1.5px solid #1C1914;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .heat-fill { height: 100%; background: #C92A2A; }
+  .tomorrow-box {
+    margin: 0 40px 40px;
+    background: #FFFFFF;
+    border: 2px dashed #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    padding: 22px 28px;
+  }
+  .tomorrow-label {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    color: #C92A2A;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .tomorrow-text {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: #1C1914;
+  }
+  .footer {
+    background: #1C1914;
+    color: #6B6150;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    text-align: center;
+    padding: 14px 40px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-brand">AI 日報<span> ③</span> 社群熱議</div>
+  <div class="header-date">2026-04-27 · Taiwan Time</div>
+</div>
+
+<div class="summary-box">
+  <div class="summary-label">📋 今日摘要</div>
+  <div class="summary-text">
+    今日 AI 社群的主旋律是「資安崩潰與政策地震的同步引爆」。<span class="hl">Claude Mythos 遭駭</span>事件席捲各大媒體，承包商帳號失守讓「限制級 AI 不該存在」的論戰再度爆發；同天 <span class="hl">CVE-2026-33626</span>（LMDeploy SSRF，CVSS 7.5）在公開後 13 小時內即遭野外利用。政策面，<span class="hl">美國聯邦政府下令停用 Anthropic</span> 全線產品、<span class="hl">r/programming 封禁 LLM 討論</span>更象徵開發者社群對 AI 的反彈進入制度化階段。Vercel 透過 Context AI 遭入侵的供應鏈事件，讓整個 AI 工具生態系的信任鏈岌岌可危。
+  </div>
+</div>
+
+<div class="section-title">🔥 今日高熱話題</div>
+
+<div class="cards-grid">
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">Claude Mythos 遭駭：Project Glasswing 洩密</div>
+      <span class="badge badge-hot">HOT</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:97%"></div></div>
+      <span>97 / 100</span>
+    </div>
+    <a class="source-link" href="https://www.euronews.com/next/2026/04/22/hackers-breach-anthropics-too-dangerous-to-release-mythos-ai-model-report" target="_blank">Euronews · 2026-04-22</a>
+    <div class="card-desc">
+      <span class="tag">資安</span><span class="tag">Anthropic</span>
+      Anthropic 限制級資安模型 <strong>Claude Mythos</strong> 遭未授權用戶入侵，途徑為承包商帳號遭竊 + Mercor 數據洩露中的 OAuth token。<strong>公告後 24 小時內</strong>即被突破，同時約 <strong>2,000 份源碼檔</strong>意外曝光三小時。Mythos 本身已在各大 OS 找出<strong>數千個高危零日漏洞</strong>。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">CBS News、Fortune、Tom's Hardware 同步跟進；資安圈批評 Anthropic 安全流程嚴重失職；X 上「#ProjectGlasswing」趨勢不斷，部分人士質疑 Anthropic 應停止開發此類工具。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">r/programming 封禁 LLM 討論</div>
+      <span class="badge badge-buzz">BUZZ</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:88%"></div></div>
+      <span>88 / 100</span>
+    </div>
+    <a class="source-link" href="https://www.tomshardware.com/tech-industry/artificial-intelligence/the-largest-programming-community-on-reddit-just-banned-all-content-related-to-ai-llms" target="_blank">Tom's Hardware · 2026-04-27</a>
+    <div class="card-desc">
+      <span class="tag">Reddit</span><span class="tag">反 AI 浪潮</span>
+      Reddit 最大程式設計社群 <strong>r/programming</strong> 宣布全面封禁 AI LLM 相關討論，要求回歸「高品質技術討論」。這是開發者社群對 AI 生成內容氾濫的制度化反彈，象徵 AI 內容在主流程式開發圈觸礁。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">r/MachineLearning 上出現「我們需要自己的 LLM 討論區」的聲音；反對者批評此舉因噎廢食；支持者認為 LLM 低品質貼文早已淹沒真正的技術討論。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">CVE-2026-33626：LMDeploy 13 小時被打穿</div>
+      <span class="badge badge-warn">WARN</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:82%"></div></div>
+      <span>82 / 100</span>
+    </div>
+    <a class="source-link" href="https://thehackernews.com/" target="_blank">The Hacker News · 2026-04-27</a>
+    <div class="card-desc">
+      <span class="tag">CVE</span><span class="tag">SSRF</span>
+      開源 LLM 部署工具 <strong>LMDeploy</strong> 的 Server-Side Request Forgery 漏洞，CVSS <strong>7.5</strong>，公開後<strong>不到 13 小時</strong>即遭野外利用。攻擊者可透過 SSRF 竊取雲端 metadata 服務憑證，危及所有自架 LLM 推理伺服器。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">The Hacker News 報導後安全社群立刻爆發討論；多家 MLOps 廠商緊急發布緊急修補通知；開發者呼籲「所有自架 LLM infra 應立即隔離外部網路存取」。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">美國聯邦政府下令停用 Anthropic</div>
+      <span class="badge badge-policy">POLICY</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:79%"></div></div>
+      <span>79 / 100</span>
+    </div>
+    <a class="source-link" href="https://www.promptzone.com/elena_vasquez_1e15ec89/ai-industry-faces-public-backlash-36im" target="_blank">PromptZone · AI Backlash Report</a>
+    <div class="card-desc">
+      <span class="tag">政策</span><span class="tag">美國政府</span>
+      Trump 政府下令全美聯邦機構<strong>即刻停用 Anthropic 所有技術</strong>，直接衝擊政府 AI 採購格局。此舉被業界解讀為對 Anthropic Mythos 資安事件的政治回應，同時引發外界對 OpenAI、Google 是否成為受益者的揣測。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">華府科技記者廣泛引述此令；Anthropic 高層未正式回應；業界擔憂此舉為監管收緊的前奏，部分企業客戶開始詢問替代方案。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">Vercel × Context AI 供應鏈入侵</div>
+      <span class="badge badge-hot">SEC</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:74%"></div></div>
+      <span>74 / 100</span>
+    </div>
+    <a class="source-link" href="https://thehackernews.com/2026/04/vercel-breach-tied-to-context-ai-hack.html" target="_blank">The Hacker News · Vercel Breach</a>
+    <div class="card-desc">
+      <span class="tag">供應鏈</span><span class="tag">OAuth</span>
+      Context AI 三月資安事件外溢：攻擊者利用竊得的 <strong>OAuth token</strong> 存取 Vercel 的 Google Workspace，洩露部分用戶憑證。AI 工具整合鏈的薄弱節點再度暴露，凸顯 AI 服務互連帶來的新型供應鏈風險。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">前端開發者社群強烈不安，大量 Vercel 用戶詢問帳號是否受影響；資安研究員警告「AI 整合 OAuth 是未來最大的攻擊面之一」。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">SpaceX 以 $250B 收購 xAI</div>
+      <span class="badge badge-buzz">BUZZ</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:71%"></div></div>
+      <span>71 / 100</span>
+    </div>
+    <a class="source-link" href="https://www.devflokers.com/blog/ai-news-last-24-hours-april-2026-model-releases-breakthroughs" target="_blank">devFlokers · AI News Last 24h</a>
+    <div class="card-desc">
+      <span class="tag">併購</span><span class="tag">Musk</span>
+      SpaceX 宣布以 <strong>$250 億美元</strong>收購 xAI，馬斯克旗下 Grok 系列模型正式與火箭、衛星資產整合。市場解讀此舉為 Musk 對 OpenAI 的長期反制，同時將 xAI 的算力需求與 Starlink 算力部署掛鉤。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">科技媒體廣泛報導，業界詫異於估值；X 平台自然成為討論主場，部分用戶調侃「馬斯克現在連推特都買不完，還要買 AI 公司」；反壟斷學者呼籲監管介入。</div>
+  </div>
+
+</div>
+
+<div class="tomorrow-box">
+  <div class="tomorrow-label">🔮 明日（2026-04-28）關注</div>
+  <div class="tomorrow-text">
+    1. <strong>Anthropic 官方回應</strong>：Claude Mythos 資安事件後，Anthropic 是否召開記者會或發布正式聲明，以及 Project Glasswing 是否暫停，是明日最重要的觀察點。<br>
+    2. <strong>LMDeploy CVE-2026-33626 修補進度</strong>：漏洞被打穿後修補版本是否已推出，各大雲廠商的緊急回應是否到位。<br>
+    3. <strong>SpaceX × xAI 整合細節</strong>：併購宣布後首個工作日，市場反應與監管機關初步態度值得持續追蹤。
+  </div>
+</div>
+
+<div class="footer">AI 日報 · 每日 08:00 台灣時間更新 · 資料截至 2026-04-27 08:00 UTC+8</div>
+</body>
+</html>

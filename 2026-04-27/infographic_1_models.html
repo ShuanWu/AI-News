@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>AI 模型更新速報 — 2026-04-27</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #FEFDF5;
+    font-family: 'Noto Sans TC', sans-serif;
+    width: 1080px;
+    margin: 0 auto;
+    color: #1C1914;
+  }
+  .header {
+    background: #1C1914;
+    padding: 28px 44px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-brand {
+    font-family: 'Caveat', cursive;
+    font-size: 40px;
+    color: #FFFFFF;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .header-brand span { color: #E55A00; }
+  .header-date {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    color: #FDE047;
+    font-weight: 500;
+  }
+  .summary-box {
+    margin: 36px 40px 0;
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 24px 30px;
+  }
+  .summary-label {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: #E55A00;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .summary-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #1C1914;
+  }
+  .hl { background: linear-gradient(transparent 38%, rgba(253,224,0,0.42) 38%); padding: 0 2px; }
+  .section-title {
+    font-family: 'Caveat', cursive;
+    font-size: 30px;
+    font-weight: 700;
+    color: #1C1914;
+    margin: 36px 40px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 3px;
+    background: #E55A00;
+    border-radius: 2px;
+  }
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin: 0 40px 40px;
+  }
+  .card {
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 22px 24px;
+  }
+  .card:nth-child(odd) { transform: rotate(-0.35deg); }
+  .card:nth-child(even) { transform: rotate(0.25deg); }
+  .card-wide { grid-column: 1 / -1; }
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    gap: 12px;
+  }
+  .card-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+  .badge {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .badge-new    { background: #E55A00; color: #fff; }
+  .badge-update { background: #FDE047; color: #1C1914; }
+  .badge-infra  { background: #6B6150; color: #fff; }
+  .badge-agent  { background: #1C1914; color: #fff; }
+  .source-link {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    color: #E55A00;
+    text-decoration: none;
+    border-bottom: 1px dashed #E55A00;
+    margin-bottom: 11px;
+    word-break: break-all;
+  }
+  .card-desc {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: #1C1914;
+    margin-bottom: 12px;
+  }
+  .price-chip {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    background: #FFF3E6;
+    border: 1.5px solid #E55A00;
+    color: #9A3A00;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+  }
+  .reaction-label {
+    font-family: 'Caveat', cursive;
+    font-size: 15px;
+    color: #6B6150;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .reaction-text {
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: #6B6150;
+    border-left: 3px solid #FDE047;
+    padding-left: 10px;
+  }
+  .footer {
+    background: #1C1914;
+    color: #6B6150;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    text-align: center;
+    padding: 14px 40px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-brand">AI 日報<span> ①</span> 模型更新</div>
+  <div class="header-date">2026-04-27 · Taiwan Time</div>
+</div>
+
+<div class="summary-box">
+  <div class="summary-label">📋 今日摘要</div>
+  <div class="summary-text">
+    過去 24 小時 AI 模型戰場以「安全」與「效能競賽」為雙主軸：Anthropic 限制級旗艦 <span class="hl">Claude Mythos</span> 遭駭客透過承包商帳號入侵，同步在各大系統發現數千個高危零日漏洞；<span class="hl">GPT-5.5 Pro</span> 正式亮相，桌面任務 OSWorld-Verified 達 <strong>75.0%</strong>，首宣超越人類水準，定價高出 Opus 4.7 兩倍。中國陣營由 <span class="hl">DeepSeek V4-Flash</span>（284B 參數、1M 上下文）、阿里 <span class="hl">Qwen 3.6-27B</span> 和騰訊混元 MoE 集體出擊，空間智能賽道同步全面開火。Google <span class="hl">Gemma 4</span> 鞏固開源邊緣部署地位。
+  </div>
+</div>
+
+<div class="section-title">🤖 過去 24 小時 AI 模型與平台發布</div>
+
+<div class="cards-grid">
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">Claude Opus 4.7</div>
+      <span class="badge badge-update">UPDATE</span>
+    </div>
+    <a class="source-link" href="https://llm-stats.com/ai-news" target="_blank">llm-stats.com · AI News</a>
+    <div class="card-desc">
+      <strong>最新更新（2026-04 月內）</strong>。在 10 項主要 benchmark 中拿下 6 項第一，延續 Opus 系列的推理優勢。定價與前代 Opus 4.6 持平，主打「相同成本、更高智慧」策略。<br>
+      <span class="price-chip">$5 / 1M input</span><span class="price-chip">$25 / 1M output</span>
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">X 上廣泛對比 Gemini 3.1 Pro，多數評測認為 Opus 4.7 長推理最穩；Reddit r/ClaudeAI 高票帖批評未降價。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">GPT-5.5 Pro</div>
+      <span class="badge badge-new">NEW</span>
+    </div>
+    <a class="source-link" href="https://llm-stats.com/ai-news" target="_blank">llm-stats.com · AI News</a>
+    <div class="card-desc">
+      <strong>發布日：2026-04-27</strong>。企業級深度推理模型，主攻 FrontierMath 與 Expert-SWE。桌面任務 OSWorld-Verified 得分 <strong>75.0%</strong>，OpenAI 官方宣稱「超越人類水準」。定價約 Opus 4.7 的兩倍。<br>
+      <span class="price-chip">~$10 / 1M input（估）</span><span class="price-chip">~$50 / 1M output（估）</span>
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">HN 討論串對「超越人類」聲明持高度懷疑；開發者批評 OSWorld 測試場景設計存疑，定價定性為「割韭菜」。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">Claude Mythos（外洩預覽）</div>
+      <span class="badge badge-new">BREACH</span>
+    </div>
+    <a class="source-link" href="https://thehackernews.com/2026/04/anthropics-claude-mythos-finds.html" target="_blank">The Hacker News · 2026-04-27</a>
+    <div class="card-desc">
+      Anthropic 資安計畫 <strong>Project Glasswing</strong> 的核心模型，已在各大 OS 與瀏覽器找出<strong>數千個高危零日漏洞</strong>，含 27 年前 OpenBSD bug 與 16 年前 FFmpeg 缺陷。承包商帳號遭入侵，無授權使用者在公告後 <strong>24 小時內</strong>即取得存取。同時有 2,000 份源碼意外曝光約 3 小時。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">Euronews、CBS News、Fortune 三媒同步報導；資安圈強烈質疑 Anthropic 應否開發如此危險的工具，X 上「Project Glasswing」登熱搜。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">Gemma 4（Google DeepMind）</div>
+      <span class="badge badge-new">OPEN</span>
+    </div>
+    <a class="source-link" href="https://www.buildfastwithai.com/blogs/best-ai-models-april-2026" target="_blank">Build Fast with AI · 2026-04</a>
+    <div class="card-desc">
+      <strong>發布日：2026-04 月內</strong>。Google DeepMind 新一代開源小模型，架構聚焦計算與記憶體效率，多參數版本覆蓋邊緣裝置到高效能運算。個人裝置可跑完整 fine-tune 流程，多語言推理顯著優於 Gemma 3。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">r/LocalLLaMA 熱討「能不能跑在 RTX 4060」；開發者普遍肯定邊緣效率方向，認為是截至目前最適合本機部署的官方開源模型。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">DeepSeek V4-Flash</div>
+      <span class="badge badge-new">NEW</span>
+    </div>
+    <a class="source-link" href="https://tokenmix.ai/blog/best-chinese-ai-models-2026-comparison-guide" target="_blank">TokenMix Blog · 2026-04</a>
+    <div class="card-desc">
+      <strong>發布日：2026-04 月內</strong>。混合推理架構，<strong>284B 總參數 / 13B 活躍</strong>，支援 <strong>1M Token 上下文</strong>。性能達 GPT-5.4 約 <strong>90%</strong>，定價僅後者 <strong>1/50</strong>。同系列另有 V4-Pro、V4-Pro-Thinking、V4-Flash-Thinking 四款分工明確的推理模型。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">量子位、機器之心強調「性價比再破紀錄」；r/LocalLLaMA 討論 API 高峰期延遲問題，部分評測者對實際 90% 性能存疑。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">Qwen 3.6-27B（Alibaba 通義）</div>
+      <span class="badge badge-new">NEW</span>
+    </div>
+    <a class="source-link" href="https://tokenmix.ai/blog/best-chinese-ai-models-2026-comparison-guide" target="_blank">TokenMix Blog · 2026-04</a>
+    <div class="card-desc">
+      <strong>發布日：2026-04 月內</strong>。阿里通義千問 <strong>27B 參數</strong> 稠密多模態模型，Agent 程式設計超越前代旗艦，多項核心程式 benchmark 刷新阿里紀錄。<span class="price-chip">開源可商用</span> 支援工具呼叫與長文本推理，定位「旗艦級效能、中型模型尺寸」甜蜜點。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">知乎 #通義千問# 話題下讚譽熱烈，工程師認為 27B 適合企業私有化部署；與 DeepSeek V4-Flash 的橫向比較貼文爆文。</div>
+  </div>
+
+  <!-- Chinese cluster (card-wide) -->
+  <div class="card card-wide">
+    <div class="card-top">
+      <div class="card-name">中國陣營集體推新：騰訊混元 Fast-Slow MoE · 空間智能賽道全面開火</div>
+      <span class="badge badge-agent">TREND</span>
+    </div>
+    <a class="source-link" href="https://www.21jingji.com/article/20260423/herald/5b597cb5c813d31387d43378574f4407.html" target="_blank">21 經濟網 · 2026-04-23</a>
+    <div class="card-desc">
+      騰訊混元發布首款「快慢融合 MoE」，<strong>295B 總參數（21B 活躍）</strong>，<strong>256K 上下文</strong>，企業服務與多模態快速跟進 DeepSeek 路線。同期騰訊、阿里、字節跳動三大巨頭集中押注<strong>空間智能</strong>與世界模型——特斯拉車型已整合字節豆包大模型 × DeepSeek Chat 雙架構，透過火山引擎落地，多模態 AI 正式規模化進入自動駕駛。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">36kr、新浪財經大篇幅報導「空間智能格局」；微博熱議特斯拉 × 字節聯手是否動搖 Tesla 自研 AI 路線；知乎討論混元「快慢融合」是否具真正架構創新。</div>
+  </div>
+
+</div>
+
+<div class="footer">AI 日報 · 每日 08:00 台灣時間更新 · 資料截至 2026-04-27 08:00 UTC+8</div>
+</body>
+</html>
