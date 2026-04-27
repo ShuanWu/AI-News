@@ -8,7 +8,7 @@
 
 | 圖① 模型更新 | 圖② 開發者熱榜 | 圖③ 社群熱議 |
 |:---:|:---:|:---:|
-| ![](2026-04-23/nlm_1_models.png) | ![](2026-04-23/nlm_2_github_tools.png) | ![](2026-04-23/nlm_3_community.png) |
+| ![](2026-04-27/nlm_1_models.png) | ![](2026-04-27/nlm_2_github_tools.png) | ![](2026-04-27/nlm_3_community.png) |
 
 每天一個日期資料夾（`YYYY-MM-DD/`），內含當日全部輸出。
 
