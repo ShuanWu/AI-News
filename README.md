@@ -17,39 +17,52 @@
 ## 🔄 自動化流程
 
 ```
-WebSearch 蒐集今日 AI 熱點
-        │
-        ▼
- TASK 1  繁體中文報告（6 個段落）
-        │
-        ├──▶  TASK 2  生成 3 張 HTML 資訊圖（馬克筆風格）
-        │
-        ├──▶  TASK 3  Claude Preview MCP 截圖 → 3 個 PNG
-        │
-        ├──▶  TASK 4  NotebookLM MCP 生成資訊圖 → 3 個 PNG
-        │
-        ├──▶  TASK 5  Push 所有檔案到 GitHub
-        │
-        └──▶  TASK 6  LINE Messaging API 推播
+[07:30] Windows Task Scheduler 觸發本機 claude -p
+              │
+              ▼
+        §1  Haiku Agent — 並行 WebSearch × 6
+            蒐集模型發布 / GitHub Trending / 社群熱議
+            → news_data_YYYY-MM-DD.json
+              │
+              ▼
+        §2  Python fill_template.py — 零 LLM token
+            JSON → HTML 模板填充
+            → infographic_{1,2,3}_*.html × 3
+              │
+              ▼
+        §3  NotebookLM MCP（單一 notebook，3 sources）
+            studio_create × 3（馬克筆手繪風 infographic）
+            + Python httpx 下載 PNG
+            → nlm_{1,2,3}_*.png × 3
+              │
+              ▼
+        §4  git push → ShuanWu/AI-News
+              │
+              ├──▶  GitHub Actions — Playwright 截圖
+              │                    → screenshot_*.png
+              │
+              └──▶  LINE Messaging API 推播
+                    （文字連結 + 3 張 NotebookLM 圖）
 ```
 
 ---
 
 ## 📂 每日輸出檔案
 
-每次執行後，以下 9 個檔案會存入 `YYYY-MM-DD/` 資料夾並 push 到 GitHub：
+每次執行後，以下檔案會存入 `YYYY-MM-DD/` 資料夾：
 
 | 檔案 | 說明 | 用途 |
 |------|------|------|
 | `infographic_1_models.html` | 模型發布與更新（橙色主題） | 電腦瀏覽器，1080px |
 | `infographic_2_github.html` | GitHub Trending + 新工具（藍色主題） | 電腦瀏覽器，1080px |
 | `infographic_3_community.html` | 社群熱議（紅色主題） | 電腦瀏覽器，1080px |
-| `screenshot_1_models.png` | HTML 全頁截圖版① | 備用 PNG |
-| `screenshot_2_github.png` | HTML 全頁截圖版② | 備用 PNG |
-| `screenshot_3_community.png` | HTML 全頁截圖版③ | 備用 PNG |
-| `nlm_1_models.png` | NotebookLM sketch_note 資訊圖① | LINE 推播、iPhone 分享 |
-| `nlm_2_github_tools.png` | NotebookLM sketch_note 資訊圖② | LINE 推播、iPhone 分享 |
-| `nlm_3_community.png` | NotebookLM sketch_note 資訊圖③ | LINE 推播、iPhone 分享 |
+| `nlm_1_models.png` | NotebookLM 馬克筆手繪資訊圖① | LINE 推播、iPhone 分享 |
+| `nlm_2_github_tools.png` | NotebookLM 馬克筆手繪資訊圖② | LINE 推播、iPhone 分享 |
+| `nlm_3_community.png` | NotebookLM 馬克筆手繪資訊圖③ | LINE 推播、iPhone 分享 |
+| `screenshot_1_models.png` | HTML 全頁截圖（GitHub Actions 自動生成） | 備用 PNG |
+| `screenshot_2_github.png` | HTML 全頁截圖（GitHub Actions 自動生成） | 備用 PNG |
+| `screenshot_3_community.png` | HTML 全頁截圖（GitHub Actions 自動生成） | 備用 PNG |
+| `line_tagline.txt` | 今日亮點摘要（3 句）| LINE 訊息末行 |
 
 ---
 
@@ -71,11 +84,11 @@ https://shuanwu.github.io/AI-News/YYYY-MM-DD/infographic_3_community.html
 |------|------|
 | **Windows 工作排程器** | 每天 07:30 觸發本機 `claude -p` 執行完整 pipeline |
 | **Claude Code CLI** | 驅動所有 Agent 工作流，載入本機 MCP 工具 |
-| **WebSearch / WebFetch MCP** | 蒐集 TechCrunch、HackerNews、Reddit、GitHub Trending、36kr 等來源 |
-| **Claude Preview MCP** | 啟動本機 HTTP server，對 HTML 進行全頁截圖 |
-| **NotebookLM MCP** | 以文字報告為素材，生成 sketch_note 風格資訊圖 |
+| **Haiku Agent** | 以 1/20 的 token 成本執行 WebSearch 並輸出結構化 JSON |
+| **Python fill_template.py** | 零 LLM token 將 JSON 填入 HTML 模板 |
+| **NotebookLM MCP** | 以結構化文字為素材，生成馬克筆手繪風格資訊圖 PNG |
 | **GitHub Pages** | 託管 HTML，提供可公開瀏覽的網址 |
-| **GitHub Actions** | 備援截圖（若本機未跑）；本機已跑時自動跳過 |
+| **GitHub Actions** | push 後自動 Playwright 截圖 + LINE 推播 |
 | **LINE Messaging API** | 推播文字連結 + 3 張 NotebookLM 資訊圖到個人 LINE |
 
 ### HTML 設計規格（馬克筆風格）
@@ -107,7 +120,7 @@ background: linear-gradient(transparent 38%, rgba(253,224,0,0.42) 38%);
 
 - **Claude Code** — 安裝於本機，登入 claude.ai 帳號
 - **NotebookLM MCP** — 已安裝 `nlm` CLI 並完成 `nlm login` Google 帳號認證
-- **Claude Preview MCP** — Claude Code 已安裝此 MCP Server
+- **Python 3.12** — 用於 `fill_template.py` 零 token HTML 生成
 - **Git** — 已設定可推送此 repo 的認證憑證
 - **LINE Messaging API** — 已建立 Messaging API Channel，Bot 已加為好友
 
@@ -115,14 +128,17 @@ background: linear-gradient(transparent 38%, rgba(253,224,0,0.42) 38%);
 
 ```
 C:\Users\{user}\Desktop\Claude\
-├── ai-daily-report\                ← 每日輸出暫存區（9 個檔案 + log）
-├── AI-News\                        ← 本 repo 的本機 clone
-│   ├── YYYY-MM-DD\                 ← 每日歸檔資料夾
-│   └── README.md
-├── run_daily_report.ps1            ← 主排程腳本（6 個 TASK）
-├── run_daily_report.bat            ← 工作排程器啟動包裝器
-└── .claude\
-    └── launch.json                 ← Claude Preview MCP server 設定
+├── ai-daily-report\                ← 每日輸出暫存區
+│   ├── news_data_YYYY-MM-DD.json   ← Haiku Agent 輸出
+│   ├── infographic_{1,2,3}_*.html  ← Python 填模板輸出
+│   ├── nlm_{1,2,3}_*_YYYY-MM-DD.png ← NotebookLM 下載
+│   ├── logs\                       ← 每日執行 log（Task Scheduler）
+│   │   └── YYYY-MM-DD.log
+│   ├── run_daily_report.ps1        ← Task Scheduler 排程腳本
+│   ├── fill_template.py            ← HTML 模板填充腳本
+│   └── templates\                  ← HTML 模板
+└── AI-News\                        ← 本 repo 的本機 clone
+    └── YYYY-MM-DD\                 ← 每日歸檔資料夾
 ```
 
 ---
@@ -132,10 +148,14 @@ C:\Users\{user}\Desktop\Claude\
 | 項目 | 值 |
 |------|-----|
 | 執行時間 | 每天早上 **7:30**（台北時間，UTC+8） |
-| 觸發平台 | Windows 工作排程器 |
-| 執行指令 | `powershell.exe -WindowStyle Hidden -ExecutionPolicy Bypass -File run_daily_report.ps1` |
+| 觸發平台 | Windows 工作排程器（Task Scheduler） |
+| 任務名稱 | `AI-Daily-Report` |
+| 執行指令 | `pwsh.exe -NonInteractive -ExecutionPolicy Bypass -File run_daily_report.ps1` |
+| 若錯過（電腦關著） | 開機後自動補跑（StartWhenAvailable） |
+| 執行上限 | 1 小時 |
+| Log 位置 | `ai-daily-report\logs\YYYY-MM-DD.log` |
 
-> ⚠️ **注意**：排程在本機執行，電腦需處於開機狀態。若早上電腦未開機，當天報告將不會產出。GitHub Actions 可作為備援產生截圖，但 NotebookLM 資訊圖仍需本機執行。
+> ⚠️ **注意**：排程在本機執行，電腦需處於開機（且已登入）狀態。若早上電腦未開機，當天報告將在下次開機時補跑。GitHub Actions 可作為備援產生截圖，但 NotebookLM 資訊圖仍需本機執行。
 
 ---
 
@@ -155,9 +175,11 @@ https://shuanwu.github.io/AI-News/YYYY-MM-DD/infographic_2_github.html
 
 圖③ 社群熱議:
 https://shuanwu.github.io/AI-News/YYYY-MM-DD/infographic_3_community.html
+
+今日亮點：{line_tagline.txt 內容}！
 ```
 
-**第 2–4 則 — sketch_note 資訊圖片**（直接顯示於 LINE 對話中）
+**第 2–4 則 — 馬克筆手繪資訊圖**（直接顯示於 LINE 對話中）
 
 ---
 
@@ -173,29 +195,17 @@ https://shuanwu.github.io/AI-News/YYYY-MM-DD/infographic_3_community.html
 
 | 來源 | 類型 | 時間窗口 |
 |------|------|----------|
-| TechCrunch | AI 產業新聞 | 24h |
+| openai.com / anthropic.com / deepmind.google | 模型官方發布 | 24h |
 | HackerNews | 技術社群熱議 | 24h |
-| Reddit (r/MachineLearning, r/LocalLLaMA, r/ChatGPT) | 社群討論 | 24h |
-| Twitter / X | AI 研究者即時動態 | 24h |
-| 36kr | 中文科技媒體 | 24h |
+| Reddit (r/MachineLearning, r/LocalLLaMA) | 社群討論 | 24h |
+| 36kr / blocktempo | 中文科技媒體 | 24h |
 | github.com/trending?since=weekly | GitHub 週榜（真實星數成長） | 本週一起 |
-
-### GitHub 熱榜邏輯（圖②）
-
-直接 `WebFetch` 官方 GitHub Trending 週榜，取得**真實「本週新增星數」**，分兩組顯示：
-
-| 組別 | 數量 | 篩選條件 |
-|------|------|----------|
-| 🤖 AI 相關本週最熱 | 前 5 名 | 與 AI / ML / LLM / Agent 相關 |
-| 🔥 整體趨勢前三（非 AI） | 前 3 名 | 非 AI 類，週榜星數最高 |
-
-星數比例條各組獨立正規化（組內最高 = 100%），顯示格式為 `+X.Xk`（實際數值）。
 
 ### 分三張圖呈現
 
-1. **圖① 模型更新** — 各大廠模型發布、版本更新、社群反應（24h）
-2. **圖② 開發者熱榜** — GitHub 週榜真實星數 + 新工具發布（週榜 + 24h）
-3. **圖③ 社群熱議** — 當日最熱話題排行、熱度指標、明日預告（24h）
+1. **圖① 模型更新**（橙色）— 各大廠模型發布、版本更新、定價、社群反應
+2. **圖② 開發者熱榜**（藍色）— GitHub 週榜真實漲星數 × AI Top 5 + 非 AI Top 3 + 焦點解讀
+3. **圖③ 社群熱議**（紅色）— 當日最熱話題排行、熱度指標（0–100）、明日關注預告
 
 ---
 
