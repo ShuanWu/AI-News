@@ -180,7 +180,7 @@
 
 <div class="summary-box">
   <div class="summary-label">📋 今日摘要</div>
-  <div class="summary-text">本週 AI 界蓬勃發展，<span class="hl">OpenAI GPT-5.4</span> 展現多模態領先地位，<span class="hl">Anthropic Claude Mythos 5</span> 以 10 兆參數創新，<span class="hl">DeepSeek V4</span> 採華為芯片打破美國依賴。Google DeepMind <span class="hl">Genie 3</span> 升級世界模擬引擎，Gemma 4 開源版強化編程能力。中美 AI 競爭進入新階段。</div>
+  <div class="summary-text">本週 AI 模型發布密集：<span class='hl'>OpenAI GPT-5 Turbo</span> 正式推出原生多模態支援，<span class='hl'>DeepSeek V4</span> 以 1.6T MoE 架構大幅降低推論成本，<span class='hl'>Kimi K2.6</span> 帶來 256K 超長 context 視窗，<span class='hl'>百度 Ernie 5.0</span> 規模達 2.4T 參數，同期 Google Gemma 4 與 Mistral Medium 3 開源釋出，競爭格局全面升溫。</div>
 </div>
 
 <div class="section-title">🤖 過去 24 小時 AI 模型與平台發布</div>
@@ -188,83 +188,63 @@
 <div class="cards-grid">
   <div class="card">
     <div class="card-top">
-      <div class="card-name">GPT-5.4 Turbo</div>
+      <div class="card-name">GPT-5 Turbo</div>
       <span class="badge badge-new">NEW</span>
     </div>
-    <a class="source-link" href="https://openai.com" target="_blank">openai.com</a>
-    <div class="card-desc"><strong>OpenAI</strong> 最新旗艦模型，March 5 發布。以<strong>編程、電腦操作、推理、知識工作</strong>全面領先，為目前最多才多藝的前沿模型。單一模型涵蓋多個專家變體能力。</div>
+    <a class="source-link" href="https://llm-stats.com/llm-updates" target="_blank">llm-stats.com</a>
+    <div class="card-desc">OpenAI 正式推出 <strong>GPT-5 Turbo</strong>，原生支援圖像與音訊輸入輸出，多模態能力全面整合。主打低延遲推論場景，相較 GPT-4o 推論速度提升顯著。</div>
     <div class="reaction-label">💬 社群反應</div>
-    <div class="reaction-text">HN 討論指稱 GPT-5.4 建立新標竿，但用戶反映定價策略激進。</div>
+    <div class="reaction-text">HN 討論熱烈，開發者關注其 function calling 效能是否較 GPT-4o 有實質提升。</div>
   </div>
   <div class="card">
     <div class="card-top">
-      <div class="card-name">Claude Mythos 5</div>
-      <span class="badge badge-new">NEW</span>
-    </div>
-    <a class="source-link" href="https://anthropic.com" target="_blank">anthropic.com</a>
-    <div class="card-desc"><span class="price-chip">$20/月</span> <strong>Anthropic</strong> April 發布，<strong>10 兆參數</strong>，專精網路安全與編程。Anthropic 另有一款更強模型已完成但尚未發布，成為首家保留超能力模型的前沿實驗室。</div>
-    <div class="reaction-label">💬 社群反應</div>
-    <div class="reaction-text">安全社群讚賞其安全導向，但質疑為何不開放。</div>
-  </div>
-  <div class="card">
-    <div class="card-top">
-      <div class="card-name">DeepSeek V4</div>
+      <div class="card-name">Claude Opus 4.6</div>
       <span class="badge badge-update">UPDATE</span>
     </div>
-    <a class="source-link" href="https://deepseek.com" target="_blank">deepseek.com</a>
-    <div class="card-desc">中國新創發布 V4 預覽。<strong>Pro 版 1.6 兆參數</strong>、<strong>Flash 版 2,840 億參數</strong>，支援 <strong>100 萬 token</strong> 上下文。採 <span class="price-chip">Flash: $0.14/$0.28、Pro: $1.74/$3.48 (per M tokens)</span>，搭華為 Ascend 950 晶片，降低美國技術依賴。</div>
+    <a class="source-link" href="https://whatllm.org/blog/new-ai-models-april-2026" target="_blank">whatllm.org</a>
+    <div class="card-desc">Anthropic <strong>Claude Opus 4.6</strong> 刷新 LMSYS 排行，SWE-bench Verified 達 <strong>65.3%</strong>，程式碼生成能力達新高。同期傳出 Mythos 計畫探索更大規模訓練路線。</div>
     <div class="reaction-label">💬 社群反應</div>
-    <div class="reaction-text">中文技術圈稱「定價絕殺」，阿里字節搶投資。</div>
+    <div class="reaction-text">Reddit r/MachineLearning 質疑 SWE-bench 評測效度，部分用戶反映此版本定價明顯漲幅。</div>
   </div>
   <div class="card">
     <div class="card-top">
-      <div class="card-name">Google Genie 3</div>
-      <span class="badge badge-new">NEW</span>
+      <div class="card-name">Gemma 4（31B）</div>
+      <span class="badge badge-new">OPEN SOURCE</span>
     </div>
-    <a class="source-link" href="https://deepmind.google.com" target="_blank">deepmind.google.com</a>
-    <div class="card-desc">Google DeepMind 世界模擬引擎升級。升級至 <strong>數分鐘互動 3D 環境</strong>、<strong>720p 24fps</strong> 解析度（前代僅 10-20 秒），用戶可即時互動生成虛擬世界。遊戲開發與研究應用看好。</div>
+    <a class="source-link" href="https://fazm.ai/blog/new-llm-releases-april-2026" target="_blank">fazm.ai</a>
+    <div class="card-desc">Google 以 <strong>Apache 2.0</strong> 釋出 Gemma 4 31B，在多個基準測試中超越規模 <strong>20 倍</strong>以上的模型。輕量設計適合本地部署與邊緣推論場景。</div>
     <div class="reaction-label">💬 社群反應</div>
-    <div class="reaction-text">遊戲產業討論其商業化可能，但隱私數據使用引疑慮。</div>
+    <div class="reaction-text">HN 社群稱讚 Google 開源力道，Ollama 用戶第一天即完成本地部署。</div>
   </div>
   <div class="card">
     <div class="card-top">
-      <div class="card-name">Gemma 4 Open Weight</div>
-      <span class="badge badge-new">NEW</span>
+      <div class="card-name">DeepSeek V4（1.6T MoE）</div>
+      <span class="badge badge-new">OPEN SOURCE</span>
     </div>
-    <a class="source-link" href="https://ai.google.dev" target="_blank">ai.google.dev</a>
-    <div class="card-desc">Google DeepMind 開源模型家族。<strong>四個新版本</strong>強化編程、代理式 AI、推理能力，支援多模態輸入，跨智慧型手機到資料中心運行。推動邊界 AI 民主化。</div>
+    <a class="source-link" href="https://36kr.com/p/3781956007730439" target="_blank">36kr.com</a>
+    <div class="card-desc"><strong>DeepSeek V4</strong> 採用 1.6T 參數 MoE 架構，相較 V3.2 推論成本降低 <strong>73%</strong>，同時維持接近 GPT-5 水準的評測表現，成本效益比引業界關注。</div>
     <div class="reaction-label">💬 社群反應</div>
-    <div class="reaction-text">開源社群歡迎，認為有力對抗商業模型壟斷。</div>
+    <div class="reaction-text">X / Twitter 中文 AI 圈廣傳，國際開發者評估作為 API 替代方案的可行性。</div>
   </div>
   <div class="card">
     <div class="card-top">
-      <div class="card-name">GPT-5.5 發布</div>
-      <span class="badge badge-update">UPDATE</span>
+      <div class="card-name">Kimi K2.6（256K Context）</div>
+      <span class="badge badge-update">API</span>
     </div>
-    <a class="source-link" href="https://openai.com/blog" target="_blank">openai.com</a>
-    <div class="card-desc">OpenAI 於 4 月 23 日推出 GPT-5.5。<span class="price-chip">$5 起</span> 主打自主任務、編程、科研輔助。用戶反映定價壓倒 Claude、Gemini，但詬病用量限制。</div>
+    <a class="source-link" href="https://36kr.com/p/3777437597586178" target="_blank">36kr.com</a>
+    <div class="card-desc">月之暗面 <strong>Kimi K2.6</strong> 支援 <strong>256K</strong> token 超長 context 視窗，多模態 MoE 架構，適合長文件分析與多輪對話場景。</div>
     <div class="reaction-label">💬 社群反應</div>
-    <div class="reaction-text">Reddit 熱議 API 定價策略，開發者稱轉移至其他模型。</div>
-  </div>
-  <div class="card">
-    <div class="card-top">
-      <div class="card-name">Lovable AI 平台</div>
-      <span class="badge badge-warn">WARN</span>
-    </div>
-    <a class="source-link" href="https://lovable.dev" target="_blank">lovable.dev</a>
-    <div class="card-desc">流行 AI 編程工具爆 <strong>BOLA 漏洞</strong>，免費帳戶可讀他人<strong>原始碼與憑證</strong>。一週內修補，但影響評估進行中。警示 AI DevTools 安全 Supply Chain 風險。</div>
-    <div class="reaction-label">💬 社群反應</div>
-    <div class="reaction-text">安全社群籲加強審計，開發者擔心類似工具未被發現漏洞。</div>
+    <div class="reaction-text">中文社群對超長 context 實際表現持觀望態度，期待長文稠密推理的評測結果。</div>
   </div>
   <div class="card card-wide">
     <div class="card-top">
-      <div class="card-name">中國 AI 新格局</div>
-      <span class="badge badge-buzz">BUZZ</span>
+      <div class="card-name">Ernie 5.0 Preview & Mistral Medium 3</div>
+      <span class="badge badge-new">PREVIEW</span>
     </div>
-    <a class="source-link" href="https://blocktempo.com/deepseek-v4-openai-competition-ai-pricing-strategy-infrastructure/" target="_blank">區塊鏈新聞媒體</a>
-    <div class="card-desc">DeepSeek V4 採華為晶片，阿里、字節、騰訊搶投資拉抬估值至 <strong>1,560 億人民幣</strong>。中國 AI 廠商集體降價對抗 OpenAI，開源策略+本土芯片成競爭關鍵。形成<strong>米其林 vs 預製菜</strong>商業模式之爭。</div>
+    <a class="source-link" href="https://zhuanlan.zhihu.com/p/670574382" target="_blank">36kr / Mistral</a>
+    <div class="card-desc">百度 <strong>Ernie 5.0 Preview</strong> 以 <strong>2.4T</strong> 參數打入多模態旗艦競賽；同期 Mistral <strong>Medium 3</strong> 針對歐洲語系優化開源釋出，主打多語言推論效能。</div>
     <div class="reaction-label">💬 社群反應</div>
-    <div class="reaction-text">中文科技圈沸騰，視為中美 AI 戰略分水嶺。</div>
+    <div class="reaction-text">業界觀察兩家路線分歧：百度押注規模、Mistral 押注本地化，都在觀望市場反應。</div>
   </div>
 </div>
 

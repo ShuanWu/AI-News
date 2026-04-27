@@ -1,1 +1,1 @@
-DeepSeek V4 搭華為芯片挑戰 OpenAI、Karpathy CLAUDE.md 爆衝 29,944 星、4 萬 OpenClaw 部署陷 RCE 危機
+DeepSeek V4 成本降 73%、Copilot Pro 停止新用戶訂閱、GPU 漲價 40% 衝擊 AI 產業
