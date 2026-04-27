@@ -123,9 +123,9 @@ jobs:
             "to": "Ua0d46bed4477912cded2ad3db62d6b37",
             "messages": [
               {"type": "text", "text": text_body},
-              {"type": "image", "originalContentUrl": f"{raw}/screenshot_1_models.png",    "previewImageUrl": f"{raw}/screenshot_1_models.png"},
-              {"type": "image", "originalContentUrl": f"{raw}/screenshot_2_github.png",    "previewImageUrl": f"{raw}/screenshot_2_github.png"},
-              {"type": "image", "originalContentUrl": f"{raw}/screenshot_3_community.png", "previewImageUrl": f"{raw}/screenshot_3_community.png"},
+              {"type": "image", "originalContentUrl": f"{raw}/nlm_1_models.png",    "previewImageUrl": f"{raw}/nlm_1_models.png"},
+              {"type": "image", "originalContentUrl": f"{raw}/nlm_2_github_tools.png",    "previewImageUrl": f"{raw}/nlm_2_github_tools.png"},
+              {"type": "image", "originalContentUrl": f"{raw}/nlm_3_community.png", "previewImageUrl": f"{raw}/nlm_3_community.png"},
             ]
           }
 
