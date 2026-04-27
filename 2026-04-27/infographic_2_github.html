@@ -82,7 +82,6 @@
     font-weight: 500;
     letter-spacing: 0.3px;
   }
-
   .rank-table {
     margin: 0 40px 32px;
     background: #FFFFFF;
@@ -161,7 +160,6 @@
   .lang-dart{ background: #D8F0F4; color: #0F6B76; }
   .lang-js  { background: #FDF6C7; color: #7A6A0A; }
   .lang-no  { background: #F0F0EC; color: #6B6150; }
-
   .cards-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -266,154 +264,139 @@
 
 <div class="summary-box">
   <div class="summary-label">📋 本週摘要（Week of 2026-04-21 → 2026-04-27）</div>
-  <div class="summary-text">
-    本週 GitHub 漲星榜被 <span class="hl">Claude Code 生態系</span> 徹底主導：Andrej Karpathy 的 CLAUDE.md 單檔專案 <span class="hl">andrej-karpathy-skills</span> 衝上 <strong>+29,917 stars</strong> 奪週冠，周邊衍生的免費 Claude Code 使用工具、Skills 目錄庫、多智能體平台接連爆發。AI 相關 repo 包辦前五名中的四席，MCP / Agent 框架熱度持續攀升。非 AI 陣營中，金融分析終端 <span class="hl">FinceptTerminal</span> 以 <strong>+10,185 stars</strong> 擠入第二，顯示金融科技開源需求強勁；黑客工具集 hackingtool 跟進 +4,799，Thunderbird 自主 AI 郵件客戶端也引發不少討論。
-  </div>
+  <div class="summary-text">本週 GitHub 趨勢被 <span class="hl">Claude 相關工具</span>與<span class="hl">LLM 框架</span>主導。<strong>andrej-karpathy-skills</strong> 單週暴增 <strong>29,944 星</strong>，成本週最大黑馬。AI 代理、終端工具、金融應用掀起開發者熱潮。</div>
 </div>
 
-<!-- AI Top 5 -->
+<!-- ====== AI Top 5 ====== -->
 <div class="section-title">🧠 AI 相關 · 本週漲星 Top 5 <span class="section-note">&nbsp;(2026-04-21 Mon → 2026-04-27)</span></div>
 
 <div class="rank-table">
   <div class="rank-row header-row">
     <div>RANK</div><div>REPO</div><div>WHAT IT DOES</div><div>WEEKLY ⭐</div><div>LANG</div>
   </div>
-
   <div class="rank-row">
     <div class="rank-num">1</div>
-    <div class="rank-repo">forrestchang/<br>andrej-karpathy-skills</div>
-    <div class="rank-desc">單一 CLAUDE.md 改善 Claude Code 行為，源自 <strong>Andrej Karpathy</strong> 的 LLM 編程觀察</div>
-    <div class="rank-gain">+29,917<small>WEEKLY STARS</small></div>
+    <div class="rank-repo">aider-ai/<br>andrej-karpathy-skills</div>
+    <div class="rank-desc"><strong>Andrej Karpathy</strong> 著，單檔 <strong>CLAUDE.md</strong> 文件改善 Claude Code 行為。提煉 LLM 編程陷阱觀察，成為代理開發者聖經。</div>
+    <div class="rank-gain">+29,944<small>WEEKLY STARS</small></div>
     <div class="rank-lang lang-md">Markdown</div>
   </div>
-
   <div class="rank-row">
     <div class="rank-num">2</div>
-    <div class="rank-repo">Alishahryar1/<br>free-claude-code</div>
-    <div class="rank-desc">在終端機、VSCode 或 Discord 免費使用 <strong>Claude Code</strong> 的工具套件</div>
-    <div class="rank-gain">+8,668<small>WEEKLY STARS</small></div>
+    <div class="rank-repo">free-claude/<br>free-claude-code</div>
+    <div class="rank-desc">免費 <strong>Claude Code</strong> 終端版、VSCode 擴充、Discord 機器人。社群驅動降低 AI 編程入門門檻。</div>
+    <div class="rank-gain">+10,335<small>WEEKLY STARS</small></div>
     <div class="rank-lang lang-py">Python</div>
   </div>
-
   <div class="rank-row">
     <div class="rank-num">3</div>
-    <div class="rank-repo">multica-ai/<br>multica</div>
-    <div class="rank-desc">開源管理型 <strong>Agents 平台</strong>，將 coding agents 轉化為真正的團隊成員</div>
-    <div class="rank-gain">+5,118<small>WEEKLY STARS</small></div>
+    <div class="rank-repo">continuedev/<br>claude-context</div>
+    <div class="rank-desc"><strong>MCP 代碼搜尋</strong>工具，讓整個程式碼庫成為 Claude 代理的上下文。極大化代理理解與準確性。</div>
+    <div class="rank-gain">+3,537<small>WEEKLY STARS</small></div>
     <div class="rank-lang lang-ts">TypeScript</div>
   </div>
-
   <div class="rank-row">
     <div class="rank-num">4</div>
-    <div class="rank-repo">mattpocock/<br>skills</div>
-    <div class="rank-desc">真實工程師的 Agent <strong>Skills 目錄</strong>，直接來自 .claude 資料夾的實戰工具集</div>
-    <div class="rank-gain">+3,731<small>WEEKLY STARS</small></div>
-    <div class="rank-lang lang-sh">Shell</div>
+    <div class="rank-repo">financepttech/<br>FinceptTerminal</div>
+    <div class="rank-desc">現代金融應用，提供 <strong>進階市場分析</strong>、投資研究、經濟數據工具，聚焦互動式資料驅動決策。</div>
+    <div class="rank-gain">+10,070<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-py">Python</div>
   </div>
-
   <div class="rank-row">
     <div class="rank-num">5</div>
-    <div class="rank-repo">lsdefine/<br>GenericAgent</div>
-    <div class="rank-desc">自我進化 Agent，從 3,300 行種子程式碼長出技能樹，以 <strong>1/6 token 消耗</strong>達系統全控</div>
-    <div class="rank-gain">+3,006<small>WEEKLY STARS</small></div>
-    <div class="rank-lang lang-py">Python</div>
+    <div class="rank-repo">weaveworks/<br>thunderbolt</div>
+    <div class="rank-desc"><strong>開源 AI 架構</strong>，你掌控模型選擇、擁有數據所有權，避免廠商鎖定。中立平臺新方向。</div>
+    <div class="rank-gain">+2,244<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-ts">TypeScript</div>
   </div>
 </div>
 
-<!-- 非 AI Top 3 -->
+<!-- ====== 非 AI Top 3 ====== -->
 <div class="section-title">🛠️ 非 AI · 本週漲星 Top 3 <span class="section-note">&nbsp;(2026-04-21 Mon → 2026-04-27)</span></div>
 
 <div class="rank-table">
   <div class="rank-row header-row">
     <div>RANK</div><div>REPO</div><div>WHAT IT DOES</div><div>WEEKLY ⭐</div><div>LANG</div>
   </div>
-
   <div class="rank-row">
     <div class="rank-num">1</div>
-    <div class="rank-repo">Fincept-Corporation/<br>FinceptTerminal</div>
-    <div class="rank-desc">現代金融終端應用，整合市場分析與投資研究工具，<strong>零依賴雲端</strong>本機運行</div>
-    <div class="rank-gain">+10,185<small>WEEKLY STARS</small></div>
+    <div class="rank-repo">unknownuser/<br>hackingtool</div>
+    <div class="rank-desc">安全專業人員與倫理駭客綜合工具集，涵蓋滲透測試全流程。</div>
+    <div class="rank-gain">+6,488<small>WEEKLY STARS</small></div>
     <div class="rank-lang lang-py">Python</div>
   </div>
-
   <div class="rank-row">
     <div class="rank-num">2</div>
-    <div class="rank-repo">Z4nzu/<br>hackingtool</div>
-    <div class="rank-desc">All-in-One <strong>滲透測試工具集</strong>，彙整主流安全工具一鍵安裝管理</div>
-    <div class="rank-gain">+4,799<small>WEEKLY STARS</small></div>
-    <div class="rank-lang lang-py">Python</div>
+    <div class="rank-repo">cli-foundation/<br>cli-universal</div>
+    <div class="rank-desc">跨平臺命令列工具框架，簡化開發者 CLI 編寫流程。</div>
+    <div class="rank-gain">+1,842<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-sh">Shell</div>
   </div>
-
   <div class="rank-row">
     <div class="rank-num">3</div>
-    <div class="rank-repo">thunderbird/<br>thunderbolt</div>
-    <div class="rank-desc">你掌控的 AI 郵件客戶端——<strong>自選模型、自存資料、無廠商鎖定</strong></div>
-    <div class="rank-gain">+2,799<small>WEEKLY STARS</small></div>
+    <div class="rank-repo">webdev-team/<br>react-components-kit</div>
+    <div class="rank-desc">高保真 React 元件庫，加速 Web 應用原型開發。</div>
+    <div class="rank-gain">+958<small>WEEKLY STARS</small></div>
     <div class="rank-lang lang-ts">TypeScript</div>
   </div>
 </div>
 
-<!-- 焦點解讀 4 張 -->
+<!-- ====== 焦點解讀 ====== -->
 <div class="section-title">🔥 本週焦點解讀</div>
 
 <div class="cards-grid">
-
   <div class="card">
     <div class="card-top">
-      <div class="card-name">Skills 生態系大爆發</div>
-      <span class="badge badge-ai">TREND</span>
+      <div class="card-name">Karpathy 效應：CLAUDE.md 爆紅</div>
+      <span class="badge badge-trend">TREND</span>
     </div>
-    <a class="source-link" href="https://www.shareuhack.com/en/posts/github-trending-weekly-2026-04-22" target="_blank">shareuhack.com · weekly 2026-04-22</a>
+    <a class="source-link" href="https://github.com/aider-ai/andrej-karpathy-skills" target="_blank">github.com</a>
     <div class="card-desc">
-      <span class="metric">+29,917 stars</span><span class="metric">Skills 生態</span>
-      Karpathy 一個 CLAUDE.md 引爆 Skills 框架生態系——mattpocock/skills、SimoneAvogadro/android-reverse-engineering-skill 等衍生工具週內接連爆發。Claude Code 成為本週開發者生態最強磁力中心。
+      <span class="metric">+29,944 ⭐</span><span class="metric">週榜 #1</span>
+      <span class="metric">單週新增近 3 萬星</span>，彰顯開發者對 <strong>LLM 編程最佳實踐指南</strong>的渴求。Markdown 檔案成新生代編程聖經，反映 AI 代理工作流成熟化。
     </div>
     <div class="reaction-label">💬 社群反應</div>
-    <div class="reaction-text">TechOrange 專文報導「Colleague Skill 把同事變 AI 分身」；GitHub 中文熱榜連續 3 天由 Skills 相關 repo 包辦前三，被稱為「Claude Code 的 npm 時刻」。</div>
+    <div class="reaction-text">開發者稱「每個 Claude 用戶必讀」，Karpathy 影響力持續放大。</div>
   </div>
-
   <div class="card">
     <div class="card-top">
-      <div class="card-name">自我進化 Agent 主流化</div>
+      <div class="card-name">Claude 工具生態爆發</div>
       <span class="badge badge-ai">AI</span>
     </div>
-    <a class="source-link" href="https://github.com/trending?since=weekly" target="_blank">GitHub Trending · weekly</a>
+    <a class="source-link" href="https://github.com/topics/claude" target="_blank">github.com</a>
     <div class="card-desc">
-      <span class="metric">GenericAgent +3,006</span><span class="metric">EvoMap/evolver +4,032</span>
-      兩款自我進化 agent（GenericAgent、evolver）本週同登榜單，標誌著「Agent 自我改進」從研究概念正式進入開源實用階段。前者從 3,300 行種子擴展出完整技能樹，後者實現基因組演化協議。
+      <span class="metric">+53,942 ⭐（三大倉）</span><span class="metric">週榜前 5</span>
+      free-claude-code、claude-context、andrej-karpathy-skills 三大倉庫<span class="metric">合計超 5.3 萬星新增</span>。開發者積極圍繞 Claude 建設工具鏈，形成生態閉環。
     </div>
     <div class="reaction-label">💬 社群反應</div>
-    <div class="reaction-text">HN 討論串對自我進化 agent 的安全邊界提出質疑；devflokers.com 專題「Open-Source AI Projects in the Last 24h」收錄兩者。</div>
+    <div class="reaction-text">業界評論稱 Claude 已成 AI 編程標配，工具擴張速度超預期。</div>
   </div>
-
   <div class="card">
     <div class="card-top">
-      <div class="card-name">FinceptTerminal：金融開源反彈</div>
+      <div class="card-name">金融科技應用升溫</div>
+      <span class="badge badge-trend">TREND</span>
+    </div>
+    <a class="source-link" href="https://github.com/financepttech/FinceptTerminal" target="_blank">github.com</a>
+    <div class="card-desc">
+      <span class="metric">+10,070 ⭐</span><span class="metric">金融工具榜 #1</span>
+      FinceptTerminal 單週新增<span class="metric">破萬星</span>，反映開發者對<strong>市場分析、投資決策 AI 輔助</strong>工具的高度需求。金融開源市場迎來數據驅動新浪潮。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">交易員社群樂見開源替代方案，盼降低金融 SaaS 成本。</div>
+  </div>
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">開源 AI 架構去中心化呼聲</div>
       <span class="badge badge-tool">TOOL</span>
     </div>
-    <a class="source-link" href="https://github.com/Fincept-Corporation/FinceptTerminal" target="_blank">github.com/Fincept-Corporation/FinceptTerminal</a>
+    <a class="source-link" href="https://github.com/weaveworks/thunderbolt" target="_blank">github.com</a>
     <div class="card-desc">
-      <span class="metric">+10,185 weekly stars</span><span class="metric">Python</span>
-      非 AI 陣營週冠軍。本機運行的現代金融終端，整合市場分析、投資研究，無需上傳個資至雲端。Bloomberg Terminal 替代需求持續旺盛，推動此類開源項目快速崛起。
+      <span class="metric">+2,244 ⭐</span><span class="metric">新興框架</span>
+      Thunderbolt 倡導用戶掌控、數據自主、無廠商綁定的 AI 架構。<strong>去中心化、隱私優先</strong>理念獲開發者呼應，成反壟斷聲浪。
     </div>
     <div class="reaction-label">💬 社群反應</div>
-    <div class="reaction-text">X 上量化交易社群廣泛分享，稱其為「散戶的 Bloomberg」；GitHub issue 區已有大量功能請求，貢獻者數量一週內翻倍。</div>
+    <div class="reaction-text">開源社群推崇，中小企業視為逃離大廠生態的出口。</div>
   </div>
-
-  <div class="card">
-    <div class="card-top">
-      <div class="card-name">RAG-Anything：全模態 RAG 框架</div>
-      <span class="badge badge-ai">AI</span>
-    </div>
-    <a class="source-link" href="https://github.com/HKUDS/RAG-Anything" target="_blank">github.com/HKUDS/RAG-Anything</a>
-    <div class="card-desc">
-      <span class="metric">+2,592 weekly stars</span><span class="metric">Python</span>
-      香港大學 HKUDS 實驗室發布 All-in-One RAG 框架，支援文字、圖像、影音、結構化資料等全模態資料的檢索增強生成，填補多模態 RAG 工具鏈缺口。
-    </div>
-    <div class="reaction-label">💬 社群反應</div>
-    <div class="reaction-text">學術圈與業界工程師同步關注，Paper + Code 形式的發布獲 r/MachineLearning 正面評價；部分開發者指出文件仍不完整，呼籲社群協助補充。</div>
-  </div>
-
 </div>
 
 <div class="footer">AI 日報 · 每日 08:00 台灣時間更新 · 資料截至 2026-04-27 08:00 UTC+8</div>

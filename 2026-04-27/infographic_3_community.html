@@ -217,138 +217,125 @@
 
 <div class="summary-box">
   <div class="summary-label">📋 今日摘要</div>
-  <div class="summary-text">
-    今日 AI 社群的主旋律是「資安崩潰與政策地震的同步引爆」。<span class="hl">Claude Mythos 遭駭</span>事件席捲各大媒體，承包商帳號失守讓「限制級 AI 不該存在」的論戰再度爆發；同天 <span class="hl">CVE-2026-33626</span>（LMDeploy SSRF，CVSS 7.5）在公開後 13 小時內即遭野外利用。政策面，<span class="hl">美國聯邦政府下令停用 Anthropic</span> 全線產品、<span class="hl">r/programming 封禁 LLM 討論</span>更象徵開發者社群對 AI 的反彈進入制度化階段。Vercel 透過 Context AI 遭入侵的供應鏈事件，讓整個 AI 工具生態系的信任鏈岌岌可危。
-  </div>
+  <div class="summary-text">社群聚焦三大議題：<span class="hl">AI 安全漏洞</span>（OpenClaw、Lovable BOLA）衝擊企業信心，<span class="hl">訂閱費爆炸</span>（$20–200 價差）引發用戶反思，<span class="hl">AI 隱私風險</span>（資料外洩、模型記憶）成監管焦點。中國市場價格戰打響，西方廠商獲利空間受壓。</div>
 </div>
 
 <div class="section-title">🔥 今日高熱話題</div>
 
 <div class="cards-grid">
-
   <div class="card">
     <div class="card-top">
-      <div class="card-name">Claude Mythos 遭駭：Project Glasswing 洩密</div>
-      <span class="badge badge-hot">HOT</span>
-    </div>
-    <div class="heat-bar">
-      <span>熱度</span>
-      <div class="heat-track"><div class="heat-fill" style="width:97%"></div></div>
-      <span>97 / 100</span>
-    </div>
-    <a class="source-link" href="https://www.euronews.com/next/2026/04/22/hackers-breach-anthropics-too-dangerous-to-release-mythos-ai-model-report" target="_blank">Euronews · 2026-04-22</a>
-    <div class="card-desc">
-      <span class="tag">資安</span><span class="tag">Anthropic</span>
-      Anthropic 限制級資安模型 <strong>Claude Mythos</strong> 遭未授權用戶入侵，途徑為承包商帳號遭竊 + Mercor 數據洩露中的 OAuth token。<strong>公告後 24 小時內</strong>即被突破，同時約 <strong>2,000 份源碼檔</strong>意外曝光三小時。Mythos 本身已在各大 OS 找出<strong>數千個高危零日漏洞</strong>。
-    </div>
-    <div class="reaction-label">💬 社群反應</div>
-    <div class="reaction-text">CBS News、Fortune、Tom's Hardware 同步跟進；資安圈批評 Anthropic 安全流程嚴重失職；X 上「#ProjectGlasswing」趨勢不斷，部分人士質疑 Anthropic 應停止開發此類工具。</div>
-  </div>
-
-  <div class="card">
-    <div class="card-top">
-      <div class="card-name">r/programming 封禁 LLM 討論</div>
-      <span class="badge badge-buzz">BUZZ</span>
-    </div>
-    <div class="heat-bar">
-      <span>熱度</span>
-      <div class="heat-track"><div class="heat-fill" style="width:88%"></div></div>
-      <span>88 / 100</span>
-    </div>
-    <a class="source-link" href="https://www.tomshardware.com/tech-industry/artificial-intelligence/the-largest-programming-community-on-reddit-just-banned-all-content-related-to-ai-llms" target="_blank">Tom's Hardware · 2026-04-27</a>
-    <div class="card-desc">
-      <span class="tag">Reddit</span><span class="tag">反 AI 浪潮</span>
-      Reddit 最大程式設計社群 <strong>r/programming</strong> 宣布全面封禁 AI LLM 相關討論，要求回歸「高品質技術討論」。這是開發者社群對 AI 生成內容氾濫的制度化反彈，象徵 AI 內容在主流程式開發圈觸礁。
-    </div>
-    <div class="reaction-label">💬 社群反應</div>
-    <div class="reaction-text">r/MachineLearning 上出現「我們需要自己的 LLM 討論區」的聲音；反對者批評此舉因噎廢食；支持者認為 LLM 低品質貼文早已淹沒真正的技術討論。</div>
-  </div>
-
-  <div class="card">
-    <div class="card-top">
-      <div class="card-name">CVE-2026-33626：LMDeploy 13 小時被打穿</div>
+      <div class="card-name">OpenClaw 遠端執行漏洞大爆炸</div>
       <span class="badge badge-warn">WARN</span>
     </div>
     <div class="heat-bar">
       <span>熱度</span>
-      <div class="heat-track"><div class="heat-fill" style="width:82%"></div></div>
-      <span>82 / 100</span>
+      <div class="heat-track"><div class="heat-fill" style="width:92%"></div></div>
+      <span>92 / 100</span>
     </div>
-    <a class="source-link" href="https://thehackernews.com/" target="_blank">The Hacker News · 2026-04-27</a>
+    <a class="source-link" href="https://www.informationsecurity.com.tw/article/article_detail.aspx?aid=12689" target="_blank">資安人科技網</a>
     <div class="card-desc">
-      <span class="tag">CVE</span><span class="tag">SSRF</span>
-      開源 LLM 部署工具 <strong>LMDeploy</strong> 的 Server-Side Request Forgery 漏洞，CVSS <strong>7.5</strong>，公開後<strong>不到 13 小時</strong>即遭野外利用。攻擊者可透過 SSRF 竊取雲端 metadata 服務憑證，危及所有自架 LLM 推理伺服器。
+      <span class="tag">漏洞</span><span class="tag">開源</span><span class="tag">遠端執行</span>
+      全球超過 <strong>4 萬個 OpenClaw 部署</strong>暴露於公開網路。其中 <strong>63% 存在漏洞</strong>、<strong>12,812 個</strong>可透過<span class="hl">遠端代碼執行（RCE）</span>利用。駭客已有活動跡象，企業紧急修補。
     </div>
     <div class="reaction-label">💬 社群反應</div>
-    <div class="reaction-text">The Hacker News 報導後安全社群立刻爆發討論；多家 MLOps 廠商緊急發布緊急修補通知；開發者呼籲「所有自架 LLM infra 應立即隔離外部網路存取」。</div>
+    <div class="reaction-text">資安社群發佈緊急警告，建議立即檢查部署；開源維護者被批響應遲緩。</div>
   </div>
-
   <div class="card">
     <div class="card-top">
-      <div class="card-name">美國聯邦政府下令停用 Anthropic</div>
-      <span class="badge badge-policy">POLICY</span>
+      <div class="card-name">AI 編程平台 Lovable 隱私漏洞</div>
+      <span class="badge badge-warn">WARN</span>
     </div>
     <div class="heat-bar">
       <span>熱度</span>
-      <div class="heat-track"><div class="heat-fill" style="width:79%"></div></div>
-      <span>79 / 100</span>
+      <div class="heat-track"><div class="heat-fill" style="width:78%"></div></div>
+      <span>78 / 100</span>
     </div>
-    <a class="source-link" href="https://www.promptzone.com/elena_vasquez_1e15ec89/ai-industry-faces-public-backlash-36im" target="_blank">PromptZone · AI Backlash Report</a>
+    <a class="source-link" href="https://unwire.pro/2026/04/21/lovable-bola-api-vulnerability-data-leak/security/" target="_blank">unwire.pro</a>
     <div class="card-desc">
-      <span class="tag">政策</span><span class="tag">美國政府</span>
-      Trump 政府下令全美聯邦機構<strong>即刻停用 Anthropic 所有技術</strong>，直接衝擊政府 AI 採購格局。此舉被業界解讀為對 Anthropic Mythos 資安事件的政治回應，同時引發外界對 OpenAI、Google 是否成為受益者的揣測。
+      <span class="tag">API漏洞</span><span class="tag">認證</span><span class="tag">代碼洩露</span>
+      Lovable AI 平台爆出 <strong>BOLA（破碎物件級授權）漏洞</strong>。<strong>免費帳戶</strong>可讀其他用戶的<strong>完整原始碼與 API 憑證</strong>。已修補，但評估影響範圍進行中。
     </div>
     <div class="reaction-label">💬 社群反應</div>
-    <div class="reaction-text">華府科技記者廣泛引述此令；Anthropic 高層未正式回應；業界擔憂此舉為監管收緊的前奏，部分企業客戶開始詢問替代方案。</div>
+    <div class="reaction-text">開發者社群警惕，稱 AI DevTools 應更嚴肅對待安全；Lovable 推出補償計畫。</div>
   </div>
-
   <div class="card">
     <div class="card-top">
-      <div class="card-name">Vercel × Context AI 供應鏈入侵</div>
-      <span class="badge badge-hot">SEC</span>
+      <div class="card-name">微軟漏洞賞金大賽：逾 80 個雲 AI 漏洞</div>
+      <span class="badge badge-hot">HOT</span>
     </div>
     <div class="heat-bar">
       <span>熱度</span>
-      <div class="heat-track"><div class="heat-fill" style="width:74%"></div></div>
-      <span>74 / 100</span>
+      <div class="heat-track"><div class="heat-fill" style="width:85%"></div></div>
+      <span>85 / 100</span>
     </div>
-    <a class="source-link" href="https://thehackernews.com/2026/04/vercel-breach-tied-to-context-ai-hack.html" target="_blank">The Hacker News · Vercel Breach</a>
+    <a class="source-link" href="https://finance.sina.com.cn/tech/digi/2026-04-16/doc-inhusenh2923369.shtml" target="_blank">新浪科技</a>
     <div class="card-desc">
-      <span class="tag">供應鏈</span><span class="tag">OAuth</span>
-      Context AI 三月資安事件外溢：攻擊者利用竊得的 <strong>OAuth token</strong> 存取 Vercel 的 Google Workspace，洩露部分用戶憑證。AI 工具整合鏈的薄弱節點再度暴露，凸顯 AI 服務互連帶來的新型供應鏈風險。
+      <span class="tag">漏洞賞金</span><span class="tag">雲安全</span><span class="tag">AI</span>
+      微軟 2026 漏洞賞金大賽支付 <strong>230 萬美元</strong>，高中生到教授齐上陣。<strong>揪出 80+ 個雲與 AI 漏洞</strong>，涵蓋 Azure AI、部署安全等領域。彰顯企業級 AI 基礎設施的安全急迫性。
     </div>
     <div class="reaction-label">💬 社群反應</div>
-    <div class="reaction-text">前端開發者社群強烈不安，大量 Vercel 用戶詢問帳號是否受影響；資安研究員警告「AI 整合 OAuth 是未來最大的攻擊面之一」。</div>
+    <div class="reaction-text">安全研究社群盛讚微軟透明度，但質疑漏洞規模是否代表潛在更大風險。</div>
   </div>
-
   <div class="card">
     <div class="card-top">
-      <div class="card-name">SpaceX 以 $250B 收購 xAI</div>
-      <span class="badge badge-buzz">BUZZ</span>
+      <div class="card-name">AI 訂閱費大爆炸：$20–200 價差引反思</div>
+      <span class="badge badge-hot">HOT</span>
     </div>
     <div class="heat-bar">
       <span>熱度</span>
-      <div class="heat-track"><div class="heat-fill" style="width:71%"></div></div>
-      <span>71 / 100</span>
+      <div class="heat-track"><div class="heat-fill" style="width:89%"></div></div>
+      <span>89 / 100</span>
     </div>
-    <a class="source-link" href="https://www.devflokers.com/blog/ai-news-last-24-hours-april-2026-model-releases-breakthroughs" target="_blank">devFlokers · AI News Last 24h</a>
+    <a class="source-link" href="https://www.aiposthub.com/ai-subscription-cost-2026/" target="_blank">AI Post Hub</a>
     <div class="card-desc">
-      <span class="tag">併購</span><span class="tag">Musk</span>
-      SpaceX 宣布以 <strong>$250 億美元</strong>收購 xAI，馬斯克旗下 Grok 系列模型正式與火箭、衛星資產整合。市場解讀此舉為 Musk 對 OpenAI 的長期反制，同時將 xAI 的算力需求與 Starlink 算力部署掛鉤。
+      <span class="tag">定價</span><span class="tag">訂閱</span><span class="tag">商業模式</span>
+      2026 年 AI 訂閱進入「收割期」。ChatGPT、Claude、Gemini 個人版全落在<span class="hl">$20</span>，但<strong>旗艦版衝上 $200/月</strong>。用戶陷入「用不用得起」困境，Reddit 熱議轉移廠商可行性。
     </div>
     <div class="reaction-label">💬 社群反應</div>
-    <div class="reaction-text">科技媒體廣泛報導，業界詫異於估值；X 平台自然成為討論主場，部分用戶調侃「馬斯克現在連推特都買不完，還要買 AI 公司」；反壟斷學者呼籲監管介入。</div>
+    <div class="reaction-text">小型開發者轉投 DeepSeek 等低價替代方案；OpenAI 被批「米其林化」；中國價格戰趨勢明顯。</div>
   </div>
-
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">AI 模型隱私風險：記憶與資料外洩灰地帶</div>
+      <span class="badge badge-warn">WARN</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:81%"></div></div>
+      <span>81 / 100</span>
+    </div>
+    <a class="source-link" href="https://infosecu.technews.tw/2026/04/27/will-ai-remember-you" target="_blank">TechNews 科技新報</a>
+    <div class="card-desc">
+      <span class="tag">隱私</span><span class="tag">法律</span><span class="tag">資料洩露</span>
+      若 AI 輸出包含他人<strong>私密對話或商業機密</strong>，現有法律多規範<strong>資料蒐集</strong>但對<strong>模型記憶再現</strong>規範仍為灰色地帶。企業面臨數據洩露新風險，監管遲滯。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">法律與資安社群籲速立法；企業主憂心；隱私倡議者呼籲強化模型審計。</div>
+  </div>
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">Anthropic 發現 500+ 開源漏洞</div>
+      <span class="badge badge-hot">HOT</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:86%"></div></div>
+      <span>86 / 100</span>
+    </div>
+    <a class="source-link" href="https://www.informationsecurity.com.tw/article/article_detail.aspx?aid=12690" target="_blank">資安人科技網</a>
+    <div class="card-desc">
+      <span class="tag">開源審計</span><span class="tag">高風險</span><span class="tag">漏洞</span>
+      Anthropic 最新 AI 模型在開源軟體審計中發現<strong>超過 500 個高風險漏洞</strong>。Ghostscript、OpenSC 等知名專案已完成修補。反映 <strong>AI 驅動代碼審計</strong>的威力與開源生態的脆弱性。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">開源維護者感謝 Anthropic 幫助修補；安全社群盛讚 AI 審計潛力；亦有聲音擔心漏洞被濫用。</div>
+  </div>
 </div>
 
 <div class="tomorrow-box">
   <div class="tomorrow-label">🔮 明日（2026-04-28）關注</div>
-  <div class="tomorrow-text">
-    1. <strong>Anthropic 官方回應</strong>：Claude Mythos 資安事件後，Anthropic 是否召開記者會或發布正式聲明，以及 Project Glasswing 是否暫停，是明日最重要的觀察點。<br>
-    2. <strong>LMDeploy CVE-2026-33626 修補進度</strong>：漏洞被打穿後修補版本是否已推出，各大雲廠商的緊急回應是否到位。<br>
-    3. <strong>SpaceX × xAI 整合細節</strong>：併購宣布後首個工作日，市場反應與監管機關初步態度值得持續追蹤。
-  </div>
+  <div class="tomorrow-text">2026 年 4 月 28 日關注重點：Anthropic 安全審計報告公開發佈、DeepSeek 華為合作技術細節披露預期、OpenAI 與 Google 新一輪競爭動向。社群持續監控定價戰與漏洞修補進展。</div>
 </div>
 
 <div class="footer">AI 日報 · 每日 08:00 台灣時間更新 · 資料截至 2026-04-27 08:00 UTC+8</div>
