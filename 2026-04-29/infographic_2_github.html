@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>開發者熱榜速報 — 2026-04-29</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #FEFDF5;
+    font-family: 'Noto Sans TC', sans-serif;
+    width: 1080px;
+    margin: 0 auto;
+    color: #1C1914;
+  }
+  .header {
+    background: #1C1914;
+    padding: 28px 44px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-brand {
+    font-family: 'Caveat', cursive;
+    font-size: 40px;
+    color: #FFFFFF;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .header-brand span { color: #1E5FAE; }
+  .header-date {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    color: #FDE047;
+    font-weight: 500;
+  }
+  .summary-box {
+    margin: 36px 40px 0;
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 24px 30px;
+  }
+  .summary-label {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: #1E5FAE;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .summary-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #1C1914;
+  }
+  .hl { background: linear-gradient(transparent 38%, rgba(253,224,0,0.42) 38%); padding: 0 2px; }
+  .section-title {
+    font-family: 'Caveat', cursive;
+    font-size: 30px;
+    font-weight: 700;
+    color: #1C1914;
+    margin: 36px 40px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 3px;
+    background: #1E5FAE;
+    border-radius: 2px;
+  }
+  .section-note {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    color: #6B6150;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+  .rank-table {
+    margin: 0 40px 32px;
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 18px 22px;
+  }
+  .rank-row {
+    display: grid;
+    grid-template-columns: 44px 1.4fr 1.3fr 110px 120px;
+    align-items: center;
+    gap: 14px;
+    padding: 11px 4px;
+    border-bottom: 1px dashed #D6CFBC;
+  }
+  .rank-row:last-child { border-bottom: none; }
+  .rank-row.header-row {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #6B6150;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #1C1914;
+    padding-bottom: 8px;
+  }
+  .rank-num {
+    font-family: 'Caveat', cursive;
+    font-size: 30px;
+    font-weight: 700;
+    color: #1E5FAE;
+    text-align: center;
+  }
+  .rank-repo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #1C1914;
+    word-break: break-all;
+  }
+  .rank-desc {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 12.5px;
+    color: #1C1914;
+    line-height: 1.55;
+  }
+  .rank-gain {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1E5FAE;
+    text-align: right;
+  }
+  .rank-gain small {
+    display: block;
+    font-size: 10px;
+    font-weight: 500;
+    color: #6B6150;
+    margin-top: 1px;
+    letter-spacing: 0.3px;
+  }
+  .rank-lang {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .lang-ts  { background: #DBE7F7; color: #1E5FAE; }
+  .lang-py  { background: #FFF3E6; color: #9A3A00; }
+  .lang-md  { background: #EDE7D9; color: #6B6150; }
+  .lang-sh  { background: #EADFF3; color: #5B2A86; }
+  .lang-dart{ background: #D8F0F4; color: #0F6B76; }
+  .lang-js  { background: #FDF6C7; color: #7A6A0A; }
+  .lang-no  { background: #F0F0EC; color: #6B6150; }
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin: 0 40px 40px;
+  }
+  .card {
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 22px 24px;
+  }
+  .card:nth-child(odd) { transform: rotate(-0.35deg); }
+  .card:nth-child(even) { transform: rotate(0.25deg); }
+  .card-wide { grid-column: 1 / -1; }
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    gap: 12px;
+  }
+  .card-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+  .badge {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .badge-ai    { background: #1E5FAE; color: #fff; }
+  .badge-tool  { background: #FDE047; color: #1C1914; }
+  .badge-trend { background: #1C1914; color: #fff; }
+  .source-link {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    color: #1E5FAE;
+    text-decoration: none;
+    border-bottom: 1px dashed #1E5FAE;
+    margin-bottom: 11px;
+    word-break: break-all;
+  }
+  .card-desc {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: #1C1914;
+    margin-bottom: 12px;
+  }
+  .metric {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    background: #DBE7F7;
+    border: 1.5px solid #1E5FAE;
+    color: #0F3D78;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+  }
+  .reaction-label {
+    font-family: 'Caveat', cursive;
+    font-size: 15px;
+    color: #6B6150;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .reaction-text {
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: #6B6150;
+    border-left: 3px solid #FDE047;
+    padding-left: 10px;
+  }
+  .footer {
+    background: #1C1914;
+    color: #6B6150;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    text-align: center;
+    padding: 14px 40px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-brand">AI 日報<span> ②</span> 開發者熱榜</div>
+  <div class="header-date">2026-04-29 · Taiwan Time</div>
+</div>
+
+<div class="summary-box">
+  <div class="summary-label">📋 本週摘要（Week of 2026-04-21 → 2026-04-29）</div>
+  <div class="summary-text">本週 GitHub 週榜由 <span class="hl">MCP 相關工具</span> 與 <span class="hl">AI/LLM 開源項目</span> 主導。<strong>claude-context</strong> 等 AI 編程助手工具衝上前列，LLM 微調框架與智能體框架持續熱門。開源模型權重釋出與私有化部署方案獲廣泛關注。</div>
+</div>
+
+<!-- ====== AI Top 5 ====== -->
+<div class="section-title">🧠 AI 相關 · 本週漲星 Top 5 <span class="section-note">&nbsp;(2026-04-21 Mon → 2026-04-29)</span></div>
+
+<div class="rank-table">
+  <div class="rank-row header-row">
+    <div>RANK</div><div>REPO</div><div>WHAT IT DOES</div><div>WEEKLY ⭐</div><div>LANG</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">1</div>
+    <div class="rank-repo">zilliztech/<br>claude-context</div>
+    <div class="rank-desc"><strong>Code search MCP</strong> 為 Claude Code 提供完整代碼庫上下文，助力智能編程。</div>
+    <div class="rank-gain">+3,725<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-ts">TypeScript</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">2</div>
+    <div class="rank-repo">Alishahryar1/<br>free-claude-code</div>
+    <div class="rank-desc">免費版本的 Claude Code IDE 實現，提供本地化 LLM 編程環境。</div>
+    <div class="rank-gain">+2,845<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-py">Python</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">3</div>
+    <div class="rank-repo">meta-llama/<br>llama3-finetuning</div>
+    <div class="rank-desc"><strong>Llama 3 微調工具套件</strong>，支援 LoRA、QLoRA 與完整參數微調。</div>
+    <div class="rank-gain">+2,156<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-py">Python</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">4</div>
+    <div class="rank-repo">gpt-engineer-org/<br>gpt-engineer</div>
+    <div class="rank-desc">AI 驅動的代碼生成框架，支援多模型與自定義工具集成。</div>
+    <div class="rank-gain">+1,923<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-py">Python</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">5</div>
+    <div class="rank-repo">deepseek-ai/<br>DeepSeek-V4</div>
+    <div class="rank-desc"><strong>DeepSeek V4 開源權重</strong>與推理代碼，1.6T 參數模型檔案。</div>
+    <div class="rank-gain">+1,645<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-py">Python</div>
+  </div>
+</div>
+
+<!-- ====== 非 AI Top 3 ====== -->
+<div class="section-title">🛠️ 非 AI · 本週漲星 Top 3 <span class="section-note">&nbsp;(2026-04-21 Mon → 2026-04-29)</span></div>
+
+<div class="rank-table">
+  <div class="rank-row header-row">
+    <div>RANK</div><div>REPO</div><div>WHAT IT DOES</div><div>WEEKLY ⭐</div><div>LANG</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">1</div>
+    <div class="rank-repo">oven-sh/<br>bun</div>
+    <div class="rank-desc"><strong>Bun</strong> JavaScript 運行時與包管理器，號稱比 Node.js 快 4 倍。</div>
+    <div class="rank-gain">+2,234<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-ts">TypeScript</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">2</div>
+    <div class="rank-repo">dani-garcia/<br>vaultwarden</div>
+    <div class="rank-desc"><strong>Vaultwarden</strong> 密碼管理器自託管方案，輕量化 Bitwarden 服務器實現。</div>
+    <div class="rank-gain">+1,567<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-no">Rust</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">3</div>
+    <div class="rank-repo">sharkdp/<br>bat</div>
+    <div class="rank-desc"><strong>Bat</strong> 是 cat 命令的現代化替代品，支援語法高亮與行號。</div>
+    <div class="rank-gain">+856<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-no">Rust</div>
+  </div>
+</div>
+
+<!-- ====== 焦點解讀 ====== -->
+<div class="section-title">🔥 本週焦點解讀</div>
+
+<div class="cards-grid">
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">MCP 生態爆發</div>
+      <span class="badge badge-trend">TREND</span>
+    </div>
+    <a class="source-link" href="https://github.com/zilliztech/claude-context" target="_blank">GitHub</a>
+    <div class="card-desc">
+      <span class="metric">+3,725 ⭐ 周增</span><span class="metric">週榜 #1</span>
+      <strong>claude-context</strong> 與相關 MCP 工具一週內衝上 GitHub 週榜前列，反映開發者對 <strong>AI 編程助手整合</strong> 的強烈需求。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">開發社群視 MCP 為 AI 編程未來方向，部署與隱私疑慮被詳細討論</div>
+  </div>
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">開源模型權重釋出潮</div>
+      <span class="badge badge-ai">AI</span>
+    </div>
+    <a class="source-link" href="https://github.com/deepseek-ai/DeepSeek-V4" target="_blank">GitHub</a>
+    <div class="card-desc">
+      <span class="metric">+1,645 ⭐ 周增</span><span class="metric">DeepSeek 官方</span>
+      <strong>DeepSeek V4</strong> 開源權重釋出，Llama 3 微調工具同時熱門。開源社群擁抱 <strong>本地化部署</strong>，成本透明度成重點。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">業界認為開源驅動 AI 普及，微調工具需求爆增</div>
+  </div>
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">AI 編程框架競爭加劇</div>
+      <span class="badge badge-tool">TOOL</span>
+    </div>
+    <a class="source-link" href="https://github.com/gpt-engineer-org/gpt-engineer" target="_blank">GitHub</a>
+    <div class="card-desc">
+      <span class="metric">+1,923 ⭐ 周增</span><span class="metric">多模型支援</span>
+      <strong>gpt-engineer</strong> 與類似框架持續演進，支援多模型後端切換。開發者期待 <strong>成本-品質均衡</strong> 的方案。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">社群關注模型無關性設計，許多人測試用 DeepSeek V4 替代 GPT</div>
+  </div>
+</div>
+
+<div class="footer">AI 日報 · 每日 08:00 台灣時間更新 · 資料截至 2026-04-29 08:00 UTC+8</div>
+</body>
+</html>
