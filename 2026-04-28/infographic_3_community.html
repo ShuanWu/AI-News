@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>社群熱議速報 — 2026-04-28</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #FEFDF5;
+    font-family: 'Noto Sans TC', sans-serif;
+    width: 1080px;
+    margin: 0 auto;
+    color: #1C1914;
+  }
+  .header {
+    background: #1C1914;
+    padding: 28px 44px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-brand {
+    font-family: 'Caveat', cursive;
+    font-size: 40px;
+    color: #FFFFFF;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .header-brand span { color: #C92A2A; }
+  .header-date {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    color: #FDE047;
+    font-weight: 500;
+  }
+  .summary-box {
+    margin: 36px 40px 0;
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 24px 30px;
+  }
+  .summary-label {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: #C92A2A;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .summary-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #1C1914;
+  }
+  .hl { background: linear-gradient(transparent 38%, rgba(253,224,0,0.42) 38%); padding: 0 2px; }
+  .section-title {
+    font-family: 'Caveat', cursive;
+    font-size: 30px;
+    font-weight: 700;
+    color: #1C1914;
+    margin: 36px 40px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 3px;
+    background: #C92A2A;
+    border-radius: 2px;
+  }
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin: 0 40px 40px;
+  }
+  .card {
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 22px 24px;
+  }
+  .card:nth-child(odd) { transform: rotate(-0.35deg); }
+  .card:nth-child(even) { transform: rotate(0.25deg); }
+  .card-wide { grid-column: 1 / -1; }
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    gap: 12px;
+  }
+  .card-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+  .badge {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .badge-hot    { background: #C92A2A; color: #fff; }
+  .badge-warn   { background: #FDE047; color: #1C1914; }
+  .badge-policy { background: #6B6150; color: #fff; }
+  .badge-buzz   { background: #1C1914; color: #fff; }
+  .source-link {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    color: #C92A2A;
+    text-decoration: none;
+    border-bottom: 1px dashed #C92A2A;
+    margin-bottom: 11px;
+    word-break: break-all;
+  }
+  .card-desc {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: #1C1914;
+    margin-bottom: 12px;
+  }
+  .tag {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    background: #FBE4E4;
+    border: 1.5px solid #C92A2A;
+    color: #7A1919;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+  }
+  .reaction-label {
+    font-family: 'Caveat', cursive;
+    font-size: 15px;
+    color: #6B6150;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .reaction-text {
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: #6B6150;
+    border-left: 3px solid #FDE047;
+    padding-left: 10px;
+  }
+  .heat-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    color: #6B6150;
+  }
+  .heat-track {
+    flex: 1;
+    height: 8px;
+    background: #F0E9D9;
+    border: 1.5px solid #1C1914;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .heat-fill { height: 100%; background: #C92A2A; }
+  .tomorrow-box {
+    margin: 0 40px 40px;
+    background: #FFFFFF;
+    border: 2px dashed #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    padding: 22px 28px;
+  }
+  .tomorrow-label {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    color: #C92A2A;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .tomorrow-text {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: #1C1914;
+  }
+  .footer {
+    background: #1C1914;
+    color: #6B6150;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    text-align: center;
+    padding: 14px 40px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-brand">AI 日報<span> ③</span> 社群熱議</div>
+  <div class="header-date">2026-04-28 · Taiwan Time</div>
+</div>
+
+<div class="summary-box">
+  <div class="summary-label">📋 今日摘要</div>
+  <div class="summary-text">AI 定價暴漲引發社群嘩然，GitHub Copilot Pro 關閉新用戶註冊、雲廠商漲價 400%+ ；<strong>OpenAI、Anthropic、Google 聯手圍剿蒸餾</strong>引發開源陣營反彈；ServiceNow 爆漏洞威脅 AI 自動化安全；DeepSeek 融資突破 200 億美元，中美 AI 競局進入新階段。</div>
+</div>
+
+<div class="section-title">🔥 今日高熱話題</div>
+
+<div class="cards-grid">
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">AI 平價訂閱計畫崩潰，定價漲幅 463%</div>
+      <span class="badge badge-warn">WARN</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:92%"></div></div>
+      <span>92 / 100</span>
+    </div>
+    <a class="source-link" href="https://technews.tw/2026/04/22/flat-rate-ai-plans-are-broken-blame-ai-agents/" target="_blank">technews.tw</a>
+    <div class="card-desc">
+      <span class="tag">定價</span><span class="tag">雲計算</span><span class="tag">Agent</span>
+      <strong>GitHub Copilot Pro</strong> 4 月 20 日停止新用戶註冊，騰訊雲混元 2.0 漲價 <span class="hl">463%</span>，AI Agent 爆發導致雲廠商<strong>近 20 年來首次集體提價</strong>。社群質疑平價 AI 時代終結。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">Reddit 與 HN 用戶表達不滿，擔憂 AI 服務進入寡頭割據時代</div>
+  </div>
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">三巨頭聯手圍剿蒸餾技術</div>
+      <span class="badge badge-warn">WARN</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:78%"></div></div>
+      <span>78 / 100</span>
+    </div>
+    <a class="source-link" href="https://www.capitalfutures.com.tw/zh-tw/financial/breakingnewsarticle?contentid=c26042400401" target="_blank">capitalfutures.com.tw</a>
+    <div class="card-desc">
+      <span class="tag">知識產權</span><span class="tag">開源</span><span class="tag">監管</span>
+      OpenAI、Anthropic、Google 透過 <strong>Frontier Model Forum</strong> 聯手打擊<span class="hl">蒸餾（distillation）技術</span>，指責中國團隊竊取模型。開源社群反彈，認為妨礙知識自由流通。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">開源倡導者與中文社群質疑西方大廠壟斷，促進監管介入</div>
+  </div>
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">ServiceNow 爆帳號接管漏洞</div>
+      <span class="badge badge-hot">HOT</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:85%"></div></div>
+      <span>85 / 100</span>
+    </div>
+    <a class="source-link" href="https://blog.trendmicro.com.tw/?p=91056" target="_blank">trendmicro.com.tw</a>
+    <div class="card-desc">
+      <span class="tag">安全</span><span class="tag">漏洞</span><span class="tag">自動化</span>
+      ServiceNow 平台爆發 <strong>嚴重帳號冒用漏洞</strong>，攻擊者可接管 AI 自動化任務與流程。企業與資安社群高度關注 AI 自動化環境的<span class="hl">安全基礎設施風險</span>。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">HN 與安全社群警惕 AI 自動化規模化部署的潛伏威脅</div>
+  </div>
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">DeepSeek 融資飆至 200 億美元</div>
+      <span class="badge badge-hot">HOT</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:88%"></div></div>
+      <span>88 / 100</span>
+    </div>
+    <a class="source-link" href="https://finance.sina.com.cn/wm/2026-04-10/doc-inhtznzy5020286.shtml" target="_blank">sina.com.cn</a>
+    <div class="card-desc">
+      <span class="tag">融資</span><span class="tag">估值</span><span class="tag">中國</span><span class="tag">競爭</span>
+      DeepSeek 4 月融資突飆，<strong>估值推升至 200 億美元以上</strong>。騰訊甚至提出收購 20% 股份但遭拒。社群關注<span class="hl">中國 AI 獨角獸崛起</span>對全球格局衝擊。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">中文社群樂觀看待國產 AI 融資，西方社群關注估值合理性與競爭威脅</div>
+  </div>
+  <div class="card card-wide">
+    <div class="card-top">
+      <div class="card-name">AI 行業公眾反感持續發酵</div>
+      <span class="badge badge-buzz">BUZZ</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:72%"></div></div>
+      <span>72 / 100</span>
+    </div>
+    <a class="source-link" href="https://news.ycombinator.com/item?id=47904568" target="_blank">news.ycombinator.com</a>
+    <div class="card-desc">
+      <span class="tag">輿論</span><span class="tag">失業</span><span class="tag">社會議題</span>
+      <strong>《The AI industry is discovering that the public hates it》</strong> 討論熱烈，公眾對 AI 導致失業、財富不均的擔憂升溫。社群評論指出<span class="hl">LLM 會被妖魔化，但人人仍會使用</span>。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">HN 用戶分化，樂觀派認為 AI 長期創造價值，悲觀派呼籲分享 AI 紅利</div>
+  </div>
+</div>
+
+<div class="tomorrow-box">
+  <div class="tomorrow-label">🔮 明日（2026-04-29）關注</div>
+  <div class="tomorrow-text">觀察重點：DeepSeek V4 在華為晶片部署進展、OpenAI IPO 計畫最新動向、各國 AI 監管政策協調。預期週末前更多 Agent 應用框架開源，平價 AI 替代方案競速。</div>
+</div>
+
+<div class="footer">AI 日報 · 每日 08:00 台灣時間更新 · 資料截至 2026-04-28 08:00 UTC+8</div>
+</body>
+</html>
