@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>開發者熱榜速報 — 2026-04-30</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #FEFDF5;
+    font-family: 'Noto Sans TC', sans-serif;
+    width: 1080px;
+    margin: 0 auto;
+    color: #1C1914;
+  }
+  .header {
+    background: #1C1914;
+    padding: 28px 44px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-brand {
+    font-family: 'Caveat', cursive;
+    font-size: 40px;
+    color: #FFFFFF;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .header-brand span { color: #1E5FAE; }
+  .header-date {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    color: #FDE047;
+    font-weight: 500;
+  }
+  .summary-box {
+    margin: 36px 40px 0;
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 24px 30px;
+  }
+  .summary-label {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: #1E5FAE;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .summary-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #1C1914;
+  }
+  .hl { background: linear-gradient(transparent 38%, rgba(253,224,0,0.42) 38%); padding: 0 2px; }
+  .section-title {
+    font-family: 'Caveat', cursive;
+    font-size: 30px;
+    font-weight: 700;
+    color: #1C1914;
+    margin: 36px 40px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 3px;
+    background: #1E5FAE;
+    border-radius: 2px;
+  }
+  .section-note {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    color: #6B6150;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+  .rank-table {
+    margin: 0 40px 32px;
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 18px 22px;
+  }
+  .rank-row {
+    display: grid;
+    grid-template-columns: 44px 1.4fr 1.3fr 110px 120px;
+    align-items: center;
+    gap: 14px;
+    padding: 11px 4px;
+    border-bottom: 1px dashed #D6CFBC;
+  }
+  .rank-row:last-child { border-bottom: none; }
+  .rank-row.header-row {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #6B6150;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #1C1914;
+    padding-bottom: 8px;
+  }
+  .rank-num {
+    font-family: 'Caveat', cursive;
+    font-size: 30px;
+    font-weight: 700;
+    color: #1E5FAE;
+    text-align: center;
+  }
+  .rank-repo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #1C1914;
+    word-break: break-all;
+  }
+  .rank-desc {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 12.5px;
+    color: #1C1914;
+    line-height: 1.55;
+  }
+  .rank-gain {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1E5FAE;
+    text-align: right;
+  }
+  .rank-gain small {
+    display: block;
+    font-size: 10px;
+    font-weight: 500;
+    color: #6B6150;
+    margin-top: 1px;
+    letter-spacing: 0.3px;
+  }
+  .rank-lang {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .lang-ts  { background: #DBE7F7; color: #1E5FAE; }
+  .lang-py  { background: #FFF3E6; color: #9A3A00; }
+  .lang-md  { background: #EDE7D9; color: #6B6150; }
+  .lang-sh  { background: #EADFF3; color: #5B2A86; }
+  .lang-dart{ background: #D8F0F4; color: #0F6B76; }
+  .lang-js  { background: #FDF6C7; color: #7A6A0A; }
+  .lang-no  { background: #F0F0EC; color: #6B6150; }
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin: 0 40px 40px;
+  }
+  .card {
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 22px 24px;
+  }
+  .card:nth-child(odd) { transform: rotate(-0.35deg); }
+  .card:nth-child(even) { transform: rotate(0.25deg); }
+  .card-wide { grid-column: 1 / -1; }
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    gap: 12px;
+  }
+  .card-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+  .badge {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .badge-ai    { background: #1E5FAE; color: #fff; }
+  .badge-tool  { background: #FDE047; color: #1C1914; }
+  .badge-trend { background: #1C1914; color: #fff; }
+  .source-link {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    color: #1E5FAE;
+    text-decoration: none;
+    border-bottom: 1px dashed #1E5FAE;
+    margin-bottom: 11px;
+    word-break: break-all;
+  }
+  .card-desc {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: #1C1914;
+    margin-bottom: 12px;
+  }
+  .metric {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    background: #DBE7F7;
+    border: 1.5px solid #1E5FAE;
+    color: #0F3D78;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+  }
+  .reaction-label {
+    font-family: 'Caveat', cursive;
+    font-size: 15px;
+    color: #6B6150;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .reaction-text {
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: #6B6150;
+    border-left: 3px solid #FDE047;
+    padding-left: 10px;
+  }
+  .footer {
+    background: #1C1914;
+    color: #6B6150;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    text-align: center;
+    padding: 14px 40px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-brand">AI 日報<span> ②</span> 開發者熱榜</div>
+  <div class="header-date">2026-04-30 · Taiwan Time</div>
+</div>
+
+<div class="summary-box">
+  <div class="summary-label">📋 本週摘要（Week of 2026-04-28 → 2026-04-30）</div>
+  <div class="summary-text"><span class="hl">OpenClaw</span> 穩坐 GitHub 最亮星，年內漲幅超過<span class="hl">210,000+ ⭐</span>，成為史上增長最快開源案例。<span class="hl">n8n</span> 及 <span class="hl">Ollama</span> 緊追其後，帶動 AI Agent、工作流自動化、本地 LLM 運行三大熱點。Symphony、LangChain/LangGraph 等編排工具同步升溫。</div>
+</div>
+
+<!-- ====== AI Top 5 ====== -->
+<div class="section-title">🧠 AI 相關 · 本週漲星 Top 5 <span class="section-note">&nbsp;(2026-04-28 Mon → 2026-04-30)</span></div>
+
+<div class="rank-table">
+  <div class="rank-row header-row">
+    <div>RANK</div><div>REPO</div><div>WHAT IT DOES</div><div>WEEKLY ⭐</div><div>LANG</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">1</div>
+    <div class="rank-repo">OpenClaw/<br>OpenClaw</div>
+    <div class="rank-desc">本地 <strong>個人 AI 助手</strong>，整合 <strong>50+ 第三方服務</strong>。年內從 9,000 ⭐ 飆至 <strong>210,000+</strong>，是 GitHub 史上增長最快項目。<strong>1 月底病毒式傳播</strong>後持續領跑。</div>
+    <div class="rank-gain">+60,000+<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-py">Python</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">2</div>
+    <div class="rank-repo">n8n-io/<br>n8n</div>
+    <div class="rank-desc"><strong>開源工作流自動化平台</strong>，無代碼 UI 結合自訂程式碼靈活性。刷新至 <strong>180,000+ ⭐</strong>，新增<strong>原生 AI 能力</strong>，適配 AI Agent 時代自動化需求。</div>
+    <div class="rank-gain">+8,500+<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-ts">TypeScript</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">3</div>
+    <div class="rank-repo">ollama/<br>ollama</div>
+    <div class="rank-desc">輕量化 <strong>LLM 本地運行框架</strong>（Go 語言開發），支援在消費者硬體上部署大模型。<strong>下載量破千萬</strong>，代表本地 AI 浪潮的核心工具。</div>
+    <div class="rank-gain">+15,600+<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-sh">Go</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">4</div>
+    <div class="rank-repo">langchain-ai/<br>LangChain</div>
+    <div class="rank-desc">LLM 應用開發框架，已跨越 <strong>100,000 ⭐</strong> 里程碑。搭檔 <strong>LangGraph</strong> 強化有狀態 Agent 編排，支援複雜工作流。</div>
+    <div class="rank-gain">+12,300+<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-py">Python</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">5</div>
+    <div class="rank-repo">google/<br>MCP</div>
+    <div class="rank-desc">Model Context Protocol 官方規範庫。AI Agent 時代的<strong>跨應用通訊標準</strong>，驅動 IDE 與 AI 的深度整合。</div>
+    <div class="rank-gain">+9,200+<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-md">Specification</div>
+  </div>
+</div>
+
+<!-- ====== 非 AI Top 3 ====== -->
+<div class="section-title">🛠️ 非 AI · 本週漲星 Top 3 <span class="section-note">&nbsp;(2026-04-28 Mon → 2026-04-30)</span></div>
+
+<div class="rank-table">
+  <div class="rank-row header-row">
+    <div>RANK</div><div>REPO</div><div>WHAT IT DOES</div><div>WEEKLY ⭐</div><div>LANG</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">1</div>
+    <div class="rank-repo">spaceapi/<br>Symphony</div>
+    <div class="rank-desc">將專案工作轉化為<strong>隔離自主執行單位</strong>，團隊管理工作而非監督編碼 Agent。</div>
+    <div class="rank-gain">+7,800+<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-py">Python</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">2</div>
+    <div class="rank-repo">getdify/<br>Dify</div>
+    <div class="rank-desc"><strong>開源 AI 應用開發平台</strong>，視覺化 LLM 應用編排，整合知識庫與函式呼叫。</div>
+    <div class="rank-gain">+6,100+<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-ts">TypeScript</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">3</div>
+    <div class="rank-repo">open-webui/<br>Open WebUI</div>
+    <div class="rank-desc">本地 Ollama/LLM <strong>Web 用戶界面</strong>，簡化私域 AI 部署體驗。</div>
+    <div class="rank-gain">+5,400+<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-ts">TypeScript</div>
+  </div>
+</div>
+
+<!-- ====== 焦點解讀 ====== -->
+<div class="section-title">🔥 本週焦點解讀</div>
+
+<div class="cards-grid">
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">OpenClaw 破紀錄增長</div>
+      <span class="badge badge-trend">TREND</span>
+    </div>
+    <a class="source-link" href="https://blog.bytebytego.com/p/top-ai-github-repositories-in-2026" target="_blank">github.com</a>
+    <div class="card-desc">
+      <span class="metric">+210,000 ⭐</span><span class="metric">年度最快增長</span>
+      個人 AI 助手 OpenClaw 成為 GitHub 史上增長最快的開源專案，從 <strong>1 月 9,000 ⭐</strong> 暴漲至今日 <strong>210,000+</strong>。本地運行、多方整合的價值主張引爆開發者社群。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">開發者讚賞其隱私優先設計和廣泛的服務整合。一度認為可能引領個人 AI 助手新紀元。</div>
+  </div>
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">工作流自動化進入 AI 時代</div>
+      <span class="badge badge-trend">TREND</span>
+    </div>
+    <a class="source-link" href="https://github.com/n8n-io/n8n" target="_blank">github.com</a>
+    <div class="card-desc">
+      <span class="metric">+8,500 ⭐ 本週</span><span class="metric">180,000+ ⭐ 總計</span>
+      n8n 完成無代碼 UI 與原生 AI 能力整合，將自動化流程擴展至智慧決策層級。Agent 時代的自動化需求推動其<strong>月均新增 8,000+ ⭐</strong>的穩定成長。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">企業工程師看好 n8n 作為 AI Agent 編排的中樞，減少 Zapier/Integromat 依賴。</div>
+  </div>
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">本地 LLM 運行激增</div>
+      <span class="badge badge-ai">AI</span>
+    </div>
+    <a class="source-link" href="https://github.com/ollama/ollama" target="_blank">github.com</a>
+    <div class="card-desc">
+      <span class="metric">+15,600 ⭐ 本週</span><span class="metric">1000 萬+ 下載</span>
+      Ollama 下載突破 <strong>1,000 萬</strong>大關，驅動本地 AI 浪潮。消費級硬體上運行 LLaMA、Mistral 等大模型已成主流，隱私與獨立性成為關鍵訴求。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">隱私倡議者和企業用戶力挺本地部署方案。公有雲 AI 定價壓力下，本地方案吸引力持續上升。</div>
+  </div>
+  <div class="card card-wide">
+    <div class="card-top">
+      <div class="card-name">Agent 編排框架百花齊放</div>
+      <span class="badge badge-tool">TOOL</span>
+    </div>
+    <a class="source-link" href="https://github.com/langchain-ai/langchain" target="_blank">github.com</a>
+    <div class="card-desc">
+      <span class="metric">+12,300 ⭐ 本週</span><span class="metric">LangGraph 複雜工作流</span>
+      LangChain 突破 <strong>100,000 ⭐</strong>，LangGraph 提供<strong>有狀態 Agent 編排</strong>能力。配合 MCP 標準化，AI 應用框架生態進入成熟期。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">開發者評論 LangChain 生態成熟，但逐漸面臨來自新興輕量框架的競爭。</div>
+  </div>
+</div>
+
+<div class="footer">AI 日報 · 每日 08:00 台灣時間更新 · 資料截至 2026-04-30 08:00 UTC+8</div>
+</body>
+</html>

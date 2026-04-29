@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>社群熱議速報 — 2026-04-30</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #FEFDF5;
+    font-family: 'Noto Sans TC', sans-serif;
+    width: 1080px;
+    margin: 0 auto;
+    color: #1C1914;
+  }
+  .header {
+    background: #1C1914;
+    padding: 28px 44px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-brand {
+    font-family: 'Caveat', cursive;
+    font-size: 40px;
+    color: #FFFFFF;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .header-brand span { color: #C92A2A; }
+  .header-date {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    color: #FDE047;
+    font-weight: 500;
+  }
+  .summary-box {
+    margin: 36px 40px 0;
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 24px 30px;
+  }
+  .summary-label {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: #C92A2A;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .summary-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #1C1914;
+  }
+  .hl { background: linear-gradient(transparent 38%, rgba(253,224,0,0.42) 38%); padding: 0 2px; }
+  .section-title {
+    font-family: 'Caveat', cursive;
+    font-size: 30px;
+    font-weight: 700;
+    color: #1C1914;
+    margin: 36px 40px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 3px;
+    background: #C92A2A;
+    border-radius: 2px;
+  }
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin: 0 40px 40px;
+  }
+  .card {
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 22px 24px;
+  }
+  .card:nth-child(odd) { transform: rotate(-0.35deg); }
+  .card:nth-child(even) { transform: rotate(0.25deg); }
+  .card-wide { grid-column: 1 / -1; }
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    gap: 12px;
+  }
+  .card-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+  .badge {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .badge-hot    { background: #C92A2A; color: #fff; }
+  .badge-warn   { background: #FDE047; color: #1C1914; }
+  .badge-policy { background: #6B6150; color: #fff; }
+  .badge-buzz   { background: #1C1914; color: #fff; }
+  .source-link {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    color: #C92A2A;
+    text-decoration: none;
+    border-bottom: 1px dashed #C92A2A;
+    margin-bottom: 11px;
+    word-break: break-all;
+  }
+  .card-desc {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: #1C1914;
+    margin-bottom: 12px;
+  }
+  .tag {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    background: #FBE4E4;
+    border: 1.5px solid #C92A2A;
+    color: #7A1919;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+  }
+  .reaction-label {
+    font-family: 'Caveat', cursive;
+    font-size: 15px;
+    color: #6B6150;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .reaction-text {
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: #6B6150;
+    border-left: 3px solid #FDE047;
+    padding-left: 10px;
+  }
+  .heat-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    color: #6B6150;
+  }
+  .heat-track {
+    flex: 1;
+    height: 8px;
+    background: #F0E9D9;
+    border: 1.5px solid #1C1914;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .heat-fill { height: 100%; background: #C92A2A; }
+  .tomorrow-box {
+    margin: 0 40px 40px;
+    background: #FFFFFF;
+    border: 2px dashed #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    padding: 22px 28px;
+  }
+  .tomorrow-label {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    color: #C92A2A;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .tomorrow-text {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: #1C1914;
+  }
+  .footer {
+    background: #1C1914;
+    color: #6B6150;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    text-align: center;
+    padding: 14px 40px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-brand">AI 日報<span> ③</span> 社群熱議</div>
+  <div class="header-date">2026-04-30 · Taiwan Time</div>
+</div>
+
+<div class="summary-box">
+  <div class="summary-label">📋 今日摘要</div>
+  <div class="summary-text">AI 定價危機成為本月社群焦點，GitHub Copilot 停招新用戶、全業界轉向按量計費引發開發者不滿。AI 安全漏洞曝光增多，MCP 伺服器和 IDE 安全掃描成為新風險。DeepSeek/Kimi 同週發佈引發「中美 AI 競速」討論，本地化與芯片適配話題升溫。社群辯論焦點轉向 AI 可負擔性危機與開發者成本壓力。</div>
+</div>
+
+<div class="section-title">🔥 今日高熱話題</div>
+
+<div class="cards-grid">
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">平價 AI 訂閱計畫崩潰</div>
+      <span class="badge badge-hot">HOT</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:92%"></div></div>
+      <span>92 / 100</span>
+    </div>
+    <a class="source-link" href="https://technews.tw/2026/04/22/flat-rate-ai-plans-are-broken-blame-ai-agents/" target="_blank">technews.tw & reddit.com/r/MachineLearning</a>
+    <div class="card-desc">
+      <span class="tag">計費模式</span><span class="tag">AI Agent 濫用</span><span class="tag">開發者體驗</span>
+      GitHub 於 <strong>2026 年 4 月 20 日</strong>停止 Copilot Pro+ 新用戶註冊，原月費 <strong>$20 無限方案</strong>因 AI Agent 任務超量使用而無法維持，強制轉向<span class="price-chip">按量計費 + 使用限額</span>。Cursor、Amazon CodeWhisperer、Codeium 全業界跟進。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">Reddit 和 HN 開發者社群分為兩派：一派稱之為「平價 AI 時代終結」，另一派認為這是商業模式調整的必然。有人擔心開發者工具成本飆升；也有人支持按量計費更公平。</div>
+  </div>
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">AI IDE 與 MCP 伺服器安全危機</div>
+      <span class="badge badge-warn">WARN</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:78%"></div></div>
+      <span>78 / 100</span>
+    </div>
+    <a class="source-link" href="https://tw.stock.yahoo.com/news/%E4%BD%A0%E7%9A%84ai%E6%9C%83%E4%B8%8B%E6%AF%92%E5%97%8E-%E5%85%A8%E6%96%B0ide%E8%B3%87%E5%AE%89%E6%8F%8F%E6%8F%8F%E5%99%A8%E5%95%8F%E4%B8%96-%E5%B0%88%E5%89%8Bmcp%E4%BC%BA%E5%8A%A1%E5%99%A8%E8%88%87ai%E4%BB%A3%E7%90%86%E6%BC%8F%E6%B4%9E-041500484.html" target="_blank">yahoo.com & HackerNews</a>
+    <div class="card-desc">
+      <span class="tag">安全漏洞</span><span class="tag">MCP</span><span class="tag">IDE 風險</span>
+      全新 IDE 資安掃描器問世，專門檢測 MCP 伺服器與 AI Agent 漏洞。安全研究員指出，AI Agent 被賦予檔案系統、API 與殼層命令權限時，若第三方 MCP 外掛未嚴格驗證，恐成為<strong>後門入口</strong>。Microsoft 2026 Zero Day Quest 競賽共收<strong>近 700 份漏洞提交</strong>，支付 <strong>$230 萬</strong>，其中<strong>80+ 件涉及雲與 AI 系統</strong>。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">HN 安全討論升溫，開發者呼籲 MCP 生態建立信任驗證機制。有人認為隱式信任第三方工具是 AI 開發的重大隱患。</div>
+  </div>
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">DeepSeek V4 與 Kimi K2.6 同週發佈引爆中美競速論</div>
+      <span class="badge badge-buzz">BUZZ</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:88%"></div></div>
+      <span>88 / 100</span>
+    </div>
+    <a class="source-link" href="https://technews.tw/2026/04/29/big-chinese-tech-want-huawei-ai-chips-deepseek-v4-launch/" target="_blank">36kr.com & technews.tw</a>
+    <div class="card-desc">
+      <span class="tag">中國 AI</span><span class="tag">芯片自主</span><span class="tag">萬亿參數</span><span class="tag">開源競爭</span>
+      DeepSeek 與 Kimi 在同週發佈<strong>萬級 MoE 模型</strong>，DeepSeek V4 <strong>1.6T 參數</strong>完成華為昇騰深度適配，Kimi K2.6 <strong>1T 參數</strong>創造<strong>13 小時不間斷編碼</strong>紀錄。兩家「第 N 次偶遇」發佈、相互採用對方技術（MLA 注意力、Muon 優化器），引發中文社群關於「國產 AI 崛起」與「芯片自主破冰」的熱烈討論。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">中國科技圈樂觀評估國產模型與芯片協同發展，企業搶購華為晶片供應吃緊；但國際社群則持保留態度，認為大模型品質與成本仍需驗證。</div>
+  </div>
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">OpenAI 超越 $25B 年收，Anthropic $30B 融資風波</div>
+      <span class="badge badge-buzz">BUZZ</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:75%"></div></div>
+      <span>75 / 100</span>
+    </div>
+    <a class="source-link" href="https://blog.mean.ceo/new-ai-model-releases-news-april-2026/" target="_blank">techcrunch.com & HackerNews</a>
+    <div class="card-desc">
+      <span class="tag">融資</span><span class="tag">估值</span><span class="tag">商業化</span><span class="tag">壟斷憂慮</span>
+      OpenAI 年營收突破 <strong>$25B</strong>，傳聞籌備年末上市；Anthropic 獲 <strong>$30B Series G</strong> 融資，年營收接近 <strong>$19B</strong>。xAI 遭 SpaceX 以 <strong>$250B</strong> 收購。融資金額創新高，但開發者社群開始擔憂<strong>頭部企業壟斷</strong>與新創生存空間縮小。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">HN 與 Reddit 討論分化：樂觀派見證 AI 產業成熟與資本投入規模；悲觀派擔心商業化導致開源生態被邊緣化、小團隊無法參與。</div>
+  </div>
+  <div class="card card-wide">
+    <div class="card-top">
+      <div class="card-name">Google TurboQuant：KV Cache 記憶體突破</div>
+      <span class="badge badge-ai">AI</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:62%"></div></div>
+      <span>62 / 100</span>
+    </div>
+    <a class="source-link" href="https://devflokers.com/blog/ai-news-last-24-hours-april-2026-model-releases-breakthroughs" target="_blank">iclr2026 & google.com</a>
+    <div class="card-desc">
+      <span class="tag">效率</span><span class="tag">推論成本</span><span class="tag">硬體優化</span>
+      Google 研究團隊於 <strong>ICLR 2026</strong> 發表 <strong>TurboQuant</strong> 演算法，顯著降低大模型推論中 KV cache 的記憶體開銷，解決 LLM 部署的<strong>最大瓶頸之一</strong>。配合新一代 TPU 硬體，推論成本與延遲大幅優化。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">開發者與研究員看好 TurboQuant 加速本地 LLM 與邊界 AI 部署，有望降低自部署 AI 成本。</div>
+  </div>
+</div>
+
+<div class="tomorrow-box">
+  <div class="tomorrow-label">🔮 明日（2026-05-01）關注</div>
+  <div class="tomorrow-text">5 月 1 日預期：AI 安全與定價模式將持續主導社群討論，GitHub Copilot 新計費政策將進一步執行；預留關注中國廠商後續優化迭代與 OpenAI 上市籌備進展。</div>
+</div>
+
+<div class="footer">AI 日報 · 每日 08:00 台灣時間更新 · 資料截至 2026-04-30 08:00 UTC+8</div>
+</body>
+</html>
