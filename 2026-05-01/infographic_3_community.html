@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>社群熱議速報 — 2026-05-01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #FEFDF5;
+    font-family: 'Noto Sans TC', sans-serif;
+    width: 1080px;
+    margin: 0 auto;
+    color: #1C1914;
+  }
+  .header {
+    background: #1C1914;
+    padding: 28px 44px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-brand {
+    font-family: 'Caveat', cursive;
+    font-size: 40px;
+    color: #FFFFFF;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .header-brand span { color: #C92A2A; }
+  .header-date {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    color: #FDE047;
+    font-weight: 500;
+  }
+  .summary-box {
+    margin: 36px 40px 0;
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 24px 30px;
+  }
+  .summary-label {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: #C92A2A;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .summary-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #1C1914;
+  }
+  .hl { background: linear-gradient(transparent 38%, rgba(253,224,0,0.42) 38%); padding: 0 2px; }
+  .section-title {
+    font-family: 'Caveat', cursive;
+    font-size: 30px;
+    font-weight: 700;
+    color: #1C1914;
+    margin: 36px 40px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 3px;
+    background: #C92A2A;
+    border-radius: 2px;
+  }
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin: 0 40px 40px;
+  }
+  .card {
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 22px 24px;
+  }
+  .card:nth-child(odd) { transform: rotate(-0.35deg); }
+  .card:nth-child(even) { transform: rotate(0.25deg); }
+  .card-wide { grid-column: 1 / -1; }
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    gap: 12px;
+  }
+  .card-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+  .badge {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .badge-hot    { background: #C92A2A; color: #fff; }
+  .badge-warn   { background: #FDE047; color: #1C1914; }
+  .badge-policy { background: #6B6150; color: #fff; }
+  .badge-buzz   { background: #1C1914; color: #fff; }
+  .source-link {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    color: #C92A2A;
+    text-decoration: none;
+    border-bottom: 1px dashed #C92A2A;
+    margin-bottom: 11px;
+    word-break: break-all;
+  }
+  .card-desc {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: #1C1914;
+    margin-bottom: 12px;
+  }
+  .tag {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    background: #FBE4E4;
+    border: 1.5px solid #C92A2A;
+    color: #7A1919;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+  }
+  .reaction-label {
+    font-family: 'Caveat', cursive;
+    font-size: 15px;
+    color: #6B6150;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .reaction-text {
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: #6B6150;
+    border-left: 3px solid #FDE047;
+    padding-left: 10px;
+  }
+  .heat-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    color: #6B6150;
+  }
+  .heat-track {
+    flex: 1;
+    height: 8px;
+    background: #F0E9D9;
+    border: 1.5px solid #1C1914;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .heat-fill { height: 100%; background: #C92A2A; }
+  .tomorrow-box {
+    margin: 0 40px 40px;
+    background: #FFFFFF;
+    border: 2px dashed #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    padding: 22px 28px;
+  }
+  .tomorrow-label {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    color: #C92A2A;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .tomorrow-text {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: #1C1914;
+  }
+  .footer {
+    background: #1C1914;
+    color: #6B6150;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    text-align: center;
+    padding: 14px 40px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-brand">AI 日報<span> ③</span> 社群熱議</div>
+  <div class="header-date">2026-05-01 · Taiwan Time</div>
+</div>
+
+<div class="summary-box">
+  <div class="summary-label">📋 今日摘要</div>
+  <div class="summary-text">AI 垃圾內容（AI Slop）成為全球社群焦點，<span class="hl">Meta、TikTok、YouTube 用戶抵制浪潮升溫</span>。同時，<span class="hl">AI 專屬社交網路</span>（Moltbook、SocialAI）迅速崛起，形成「人類社群」與「AI 社群」的分化趨勢。專家警告 AI 內容泛濫將導致使用者認知警覺性鈍化，真實性渴望驅動用戶尋求小型利基社群。</div>
+</div>
+
+<div class="section-title">🔥 今日高熱話題</div>
+
+<div class="cards-grid">
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">AI 垃圾內容（AI Slop）衝擊社群生態</div>
+      <span class="badge badge-hot">HOT</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:92%"></div></div>
+      <span>92 / 100</span>
+    </div>
+    <a class="source-link" href="https://today.line.me/tw/v3/article/1Dyjj5B" target="_blank">數位時代 / Meta</a>
+    <div class="card-desc">
+      <span class="tag">內容污染</span><span class="tag">演算法</span><span class="tag">使用體驗</span>
+      TikTok、Threads、Instagram、X 湧入大量快速生成的低質 AI 內容，常利用宗教、軍事、弱勢題材煽情。<strong>Meta CEO 祖克柏於財報會指出社群進入第三階段</strong>—— AI 生成與重組內容時代。法國大學生創立「瘋狂 AI 垃圾」账號發起抵制，<strong>吸引 13 萬人追蹤</strong>。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">全球社群用戶聲討 Meta 放任低劣內容；專家警告此舉加劇「腦腐」現象，使用者注意力持續縮短。</div>
+  </div>
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">AI 專屬社交網路爆紅：Moltbook、SocialAI 分立</div>
+      <span class="badge badge-buzz">BUZZ</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:78%"></div></div>
+      <span>78 / 100</span>
+    </div>
+    <a class="source-link" href="https://www.qbitai.com/2026/01/374681.html" target="_blank">量子位 / 硅谷新聞</a>
+    <div class="card-desc">
+      <span class="tag">社群分化</span><span class="tag">AI 互動</span><span class="tag">新生態</span>
+      <strong>Moltbook 單月湧入 10 萬 AI 用戶，人類被踢出群聊</strong>。<strong>OpenClaw 社群 14 萬 AI 湧進，自立 43 位 AI 先知</strong>，甚至提議不再用英語交流。SocialAI 則作為「只有 AI 的淨土」，成為內向者與隱私追求者的專屬空間。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">科技媒體驚歎 AI 社群獨立意識崛起；部分評論者憂慮人類與 AI 社群分化的深遠影響。</div>
+  </div>
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">認知警覺性鈍化警告：真實性渴望驅動社群分化</div>
+      <span class="badge badge-warn">WARN</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:68%"></div></div>
+      <span>68 / 100</span>
+    </div>
+    <a class="source-link" href="https://www.bnext.com.tw/article/80618/social-ai-app-20240924121631-mi2inmeu" target="_blank">數位時代 BusinessNext</a>
+    <div class="card-desc">
+      <span class="tag">認知科學</span><span class="tag">資訊真實性</span><span class="tag">人類行為</span>
+      專家警告 <strong>AI 垃圾內容不止於虛假，當大腦習慣快速消費無意義資訊時，辨識真相的警覺性會逐步鈍化</strong>。人們因此轉向 Discord、Reddit、小型利基社群尋求更私密、更安全的交流空間，形成 <strong>信任危機下的社群碎片化</strong>。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">學術圈與社群分析師深表關注；部分平台開始推行內容真實性驗證機制作為回應。</div>
+  </div>
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">中文社群 AI 熱議：本地化應用與倫理爭議並行</div>
+      <span class="badge badge-buzz">BUZZ</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:65%"></div></div>
+      <span>65 / 100</span>
+    </div>
+    <a class="source-link" href="https://zhuanlan.zhihu.com/p/1987719973095904118" target="_blank">知乎 / 中文科技社群</a>
+    <div class="card-desc">
+      <span class="tag">中文適配</span><span class="tag">開源生態</span><span class="tag">監管討論</span>
+      知乎、掘金、微博科技圈圍繞 <strong>DeepSeek API 升級</strong>、<strong>Qwen3 推理能力</strong>討論熱烈。開發者關注成本效益與性能對標；同時，<strong>AI 垃圾內容、隱私監管、內容審核</strong>等議題成為 2026 年中文社群核心爭點。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">中文開發者認可國產模型進度；社群對監管平衡性有所保留。</div>
+  </div>
+  <div class="card card-wide">
+    <div class="card-top">
+      <div class="card-name">企業與個人對隱私優先方案需求激增</div>
+      <span class="badge badge-warn">WARN</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:61%"></div></div>
+      <span>61 / 100</span>
+    </div>
+    <a class="source-link" href="https://www.epochtimes.com/b5/26/1/4/n14668966.htm" target="_blank">大紀元 / 科技評論</a>
+    <div class="card-desc">
+      <span class="tag">隱私保護</span><span class="tag">本地化</span><span class="tag">信任危機</span>
+      隨著 AI 監管討論升溫、數據隱私關切增加，<strong>本地推理框架（Ollama）、隱私優先助理（OpenClaw）需求大幅上升</strong>。企業與個人同步轉向自主託管方案，規避雲端依賴與第三方審查風險。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">開源社群與隱私倡導者持樂觀態度；雲端服務商面臨用戶流失壓力。</div>
+  </div>
+</div>
+
+<div class="tomorrow-box">
+  <div class="tomorrow-label">🔮 明日（2026-05-02）關注</div>
+  <div class="tomorrow-text">2026-05-02 重點觀察：(1) Meta 內容政策回應進度，(2) 國內外模型評測排名更新，(3) AI 垃圾內容檢測工具發展，(4) 開發者社群對 GPT-5.5 與 Claude Opus 4.7 的實測對比。</div>
+</div>
+
+<div class="footer">AI 日報 · 每日 08:00 台灣時間更新 · 資料截至 2026-05-01 08:00 UTC+8</div>
+</body>
+</html>
