@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>社群熱議速報 — 2026-05-04</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #FEFDF5;
+    font-family: 'Noto Sans TC', sans-serif;
+    width: 1080px;
+    margin: 0 auto;
+    color: #1C1914;
+  }
+  .header {
+    background: #1C1914;
+    padding: 28px 44px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-brand {
+    font-family: 'Caveat', cursive;
+    font-size: 40px;
+    color: #FFFFFF;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .header-brand span { color: #C92A2A; }
+  .header-date {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    color: #FDE047;
+    font-weight: 500;
+  }
+  .summary-box {
+    margin: 36px 40px 0;
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 24px 30px;
+  }
+  .summary-label {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: #C92A2A;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .summary-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #1C1914;
+  }
+  .hl { background: linear-gradient(transparent 38%, rgba(253,224,0,0.42) 38%); padding: 0 2px; }
+  .section-title {
+    font-family: 'Caveat', cursive;
+    font-size: 30px;
+    font-weight: 700;
+    color: #1C1914;
+    margin: 36px 40px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 3px;
+    background: #C92A2A;
+    border-radius: 2px;
+  }
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin: 0 40px 40px;
+  }
+  .card {
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 22px 24px;
+  }
+  .card:nth-child(odd) { transform: rotate(-0.35deg); }
+  .card:nth-child(even) { transform: rotate(0.25deg); }
+  .card-wide { grid-column: 1 / -1; }
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    gap: 12px;
+  }
+  .card-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+  .badge {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .badge-hot    { background: #C92A2A; color: #fff; }
+  .badge-warn   { background: #FDE047; color: #1C1914; }
+  .badge-policy { background: #6B6150; color: #fff; }
+  .badge-buzz   { background: #1C1914; color: #fff; }
+  .source-link {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    color: #C92A2A;
+    text-decoration: none;
+    border-bottom: 1px dashed #C92A2A;
+    margin-bottom: 11px;
+    word-break: break-all;
+  }
+  .card-desc {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: #1C1914;
+    margin-bottom: 12px;
+  }
+  .tag {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    background: #FBE4E4;
+    border: 1.5px solid #C92A2A;
+    color: #7A1919;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+  }
+  .reaction-label {
+    font-family: 'Caveat', cursive;
+    font-size: 15px;
+    color: #6B6150;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .reaction-text {
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: #6B6150;
+    border-left: 3px solid #FDE047;
+    padding-left: 10px;
+  }
+  .heat-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    color: #6B6150;
+  }
+  .heat-track {
+    flex: 1;
+    height: 8px;
+    background: #F0E9D9;
+    border: 1.5px solid #1C1914;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .heat-fill { height: 100%; background: #C92A2A; }
+  .tomorrow-box {
+    margin: 0 40px 40px;
+    background: #FFFFFF;
+    border: 2px dashed #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    padding: 22px 28px;
+  }
+  .tomorrow-label {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    color: #C92A2A;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .tomorrow-text {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: #1C1914;
+  }
+  .footer {
+    background: #1C1914;
+    color: #6B6150;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    text-align: center;
+    padding: 14px 40px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-brand">AI 日報<span> ③</span> 社群熱議</div>
+  <div class="header-date">2026-05-04 · Taiwan Time</div>
+</div>
+
+<div class="summary-box">
+  <div class="summary-label">📋 今日摘要</div>
+  <div class="summary-text">本日社群最熱三線：<span class="hl">91起版權訴訟</span>合併紐約引爆法律圈，<span class="hl">史丹福AI透明度指數</span>暴跌至40引發監管討論，<span class="hl">反AI暴力事件</span>升級令業界警覺。消費者厭倦過度行銷情緒同步升高。</div>
+</div>
+
+<div class="section-title">🔥 今日高熱話題</div>
+
+<div class="cards-grid">
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">91起版權訴訟合併，OpenAI 恐交 2000 萬條對話</div>
+      <span class="badge badge-hot">HOT</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:96%"></div></div>
+      <span>96 / 100</span>
+    </div>
+    <a class="source-link" href="https://news.ycombinator.com" target="_blank">news.ycombinator.com</a>
+    <div class="card-desc">
+      <span class="tag">版權</span><span class="tag">訴訟</span><span class="tag">OpenAI</span>
+      法院下令 OpenAI 交出 <strong>2000萬條用戶對話記錄</strong>，調查 ChatGPT 是否實質替代原創內容點擊。《紐約時報》、大英百科等 91 起訴訟合併紐約審理。Sora 日耗 <strong>$1,500萬</strong> GPU 算力（年耗 $54 億），運營成本危機並發。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">HN 熱議：「這次 OpenAI 真的難逃了」，法律社群關注發現記錄保存義務是否涵蓋所有對話。</div>
+  </div>
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">史丹福 AI 透明度指數：最強模型最不透</div>
+      <span class="badge badge-warn">WARN</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:88%"></div></div>
+      <span>88 / 100</span>
+    </div>
+    <a class="source-link" href="https://news.ycombinator.com" target="_blank">news.ycombinator.com</a>
+    <div class="card-desc">
+      <span class="tag">透明度</span><span class="tag">監管</span><span class="tag">學術</span>
+      2026年AI透明度指數從 <strong>58 跌至 40</strong>（滿分100），呈反向趨勢。越強大的 AI 模型透明度越低，引發學術圈與監管層要求提高模型可解釋性與可審計性。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">Reddit /r/MachineLearning：「公司越大越能藏」，歐洲監管單位引用此報告要求立法。</div>
+  </div>
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">反 AI 運動升級至暴力，Sam Altman 遭攻擊</div>
+      <span class="badge badge-hot">HOT</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:94%"></div></div>
+      <span>94 / 100</span>
+    </div>
+    <a class="source-link" href="https://news.ycombinator.com" target="_blank">news.ycombinator.com</a>
+    <div class="card-desc">
+      <span class="tag">暴力事件</span><span class="tag">倫理</span><span class="tag">社會</span>
+      反AI激進主義從簽名請願演變至燃燒瓶、槍械威脅業界領袖。<strong>OpenAI CEO Sam Altman</strong> 遭到人身攻擊，反映社會對 AI 倫理的深度分歧與恐慌情緒高漲。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">業界震驚，多家 AI 公司宣布加強安保。部分評論者認為這是缺乏有效社會對話的必然後果。</div>
+  </div>
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">26% 消費者：AI 功能不過是行銷噱頭</div>
+      <span class="badge badge-buzz">BUZZ</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:72%"></div></div>
+      <span>72 / 100</span>
+    </div>
+    <a class="source-link" href="https://udn.com/news/story/6839/9353607" target="_blank">udn.com</a>
+    <div class="card-desc">
+      <span class="tag">消費者</span><span class="tag">行銷</span><span class="tag">手機</span>
+      <strong>26%</strong> 手機消費者認為 AI 淪為藉口，掩蓋硬體規格缺陷。2026年最令人厭倦的手機趨勢冠軍：AI 功能過度行銷，消費者盼實質硬體升級。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">台灣科技媒體廣泛轉載，引發「AI washing」討論，消費者主義社群共鳴強烈。</div>
+  </div>
+  <div class="card card-wide">
+    <div class="card-top">
+      <div class="card-name">中國大廠搶購華為昇騰晶片應對出口管制</div>
+      <span class="badge badge-policy">POLICY</span>
+    </div>
+    <div class="heat-bar">
+      <span>熱度</span>
+      <div class="heat-track"><div class="heat-fill" style="width:81%"></div></div>
+      <span>81 / 100</span>
+    </div>
+    <a class="source-link" href="https://technews.tw/2026/04/29/big-chinese-tech-want-huawei-ai-chips-deepseek-v4-launch/" target="_blank">technews.tw</a>
+    <div class="card-desc">
+      <span class="tag">晶片</span><span class="tag">出口管制</span><span class="tag">中國</span>
+      百度、字節、阿里等大廠大量採購<strong>華為昇騰 910C/910D</strong>，應對美國對 H100/H800 出口管制升級。DeepSeek-V4 即以昇騰算力為驗證場。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">36氪：「國產替代從口號到實際部署」，分析師預估昇騰晶片需求在2026年翻三倍。</div>
+  </div>
+</div>
+
+<div class="tomorrow-box">
+  <div class="tomorrow-label">🔮 明日（2026-05-05）關注</div>
+  <div class="tomorrow-text">關注 DeepSeek-V4 基準測試社群交叉驗證結果；OpenAI 版權訴訟首次聽證細節；史丹福透明度報告是否引發監管跟進立法動作。</div>
+</div>
+
+<div class="footer">AI 日報 · 每日 08:00 台灣時間更新 · 資料截至 2026-05-04 08:00 UTC+8</div>
+</body>
+</html>

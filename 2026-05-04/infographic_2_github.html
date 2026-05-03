@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>開發者熱榜速報 — 2026-05-04</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #FEFDF5;
+    font-family: 'Noto Sans TC', sans-serif;
+    width: 1080px;
+    margin: 0 auto;
+    color: #1C1914;
+  }
+  .header {
+    background: #1C1914;
+    padding: 28px 44px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-brand {
+    font-family: 'Caveat', cursive;
+    font-size: 40px;
+    color: #FFFFFF;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .header-brand span { color: #1E5FAE; }
+  .header-date {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    color: #FDE047;
+    font-weight: 500;
+  }
+  .summary-box {
+    margin: 36px 40px 0;
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 24px 30px;
+  }
+  .summary-label {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: #1E5FAE;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .summary-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #1C1914;
+  }
+  .hl { background: linear-gradient(transparent 38%, rgba(253,224,0,0.42) 38%); padding: 0 2px; }
+  .section-title {
+    font-family: 'Caveat', cursive;
+    font-size: 30px;
+    font-weight: 700;
+    color: #1C1914;
+    margin: 36px 40px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 3px;
+    background: #1E5FAE;
+    border-radius: 2px;
+  }
+  .section-note {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    color: #6B6150;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+  .rank-table {
+    margin: 0 40px 32px;
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 18px 22px;
+  }
+  .rank-row {
+    display: grid;
+    grid-template-columns: 44px 1.4fr 1.3fr 110px 120px;
+    align-items: center;
+    gap: 14px;
+    padding: 11px 4px;
+    border-bottom: 1px dashed #D6CFBC;
+  }
+  .rank-row:last-child { border-bottom: none; }
+  .rank-row.header-row {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #6B6150;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #1C1914;
+    padding-bottom: 8px;
+  }
+  .rank-num {
+    font-family: 'Caveat', cursive;
+    font-size: 30px;
+    font-weight: 700;
+    color: #1E5FAE;
+    text-align: center;
+  }
+  .rank-repo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #1C1914;
+    word-break: break-all;
+  }
+  .rank-desc {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 12.5px;
+    color: #1C1914;
+    line-height: 1.55;
+  }
+  .rank-gain {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1E5FAE;
+    text-align: right;
+  }
+  .rank-gain small {
+    display: block;
+    font-size: 10px;
+    font-weight: 500;
+    color: #6B6150;
+    margin-top: 1px;
+    letter-spacing: 0.3px;
+  }
+  .rank-lang {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .lang-ts  { background: #DBE7F7; color: #1E5FAE; }
+  .lang-py  { background: #FFF3E6; color: #9A3A00; }
+  .lang-md  { background: #EDE7D9; color: #6B6150; }
+  .lang-sh  { background: #EADFF3; color: #5B2A86; }
+  .lang-dart{ background: #D8F0F4; color: #0F6B76; }
+  .lang-js  { background: #FDF6C7; color: #7A6A0A; }
+  .lang-no  { background: #F0F0EC; color: #6B6150; }
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin: 0 40px 40px;
+  }
+  .card {
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 22px 24px;
+  }
+  .card:nth-child(odd) { transform: rotate(-0.35deg); }
+  .card:nth-child(even) { transform: rotate(0.25deg); }
+  .card-wide { grid-column: 1 / -1; }
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    gap: 12px;
+  }
+  .card-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+  .badge {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .badge-ai    { background: #1E5FAE; color: #fff; }
+  .badge-tool  { background: #FDE047; color: #1C1914; }
+  .badge-trend { background: #1C1914; color: #fff; }
+  .source-link {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    color: #1E5FAE;
+    text-decoration: none;
+    border-bottom: 1px dashed #1E5FAE;
+    margin-bottom: 11px;
+    word-break: break-all;
+  }
+  .card-desc {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: #1C1914;
+    margin-bottom: 12px;
+  }
+  .metric {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    background: #DBE7F7;
+    border: 1.5px solid #1E5FAE;
+    color: #0F3D78;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+  }
+  .reaction-label {
+    font-family: 'Caveat', cursive;
+    font-size: 15px;
+    color: #6B6150;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .reaction-text {
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: #6B6150;
+    border-left: 3px solid #FDE047;
+    padding-left: 10px;
+  }
+  .footer {
+    background: #1C1914;
+    color: #6B6150;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    text-align: center;
+    padding: 14px 40px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-brand">AI 日報<span> ②</span> 開發者熱榜</div>
+  <div class="header-date">2026-05-04 · Taiwan Time</div>
+</div>
+
+<div class="summary-box">
+  <div class="summary-label">📋 本週摘要（Week of 2026-04-27 → 2026-05-04）</div>
+  <div class="summary-text">本週 GitHub 趨勢由 <span class="hl">Agent 框架</span>與<span class="hl">多智能體平台</span>主導，TradingAgents 以金融 Agent 場景爆發，ruvnet/ruflo 企業級編排入榜。非 AI 端 hackingtool 持續吸引安全研究員。</div>
+</div>
+
+<!-- ====== AI Top 5 ====== -->
+<div class="section-title">🧠 AI 相關 · 本週漲星 Top 5 <span class="section-note">&nbsp;(2026-04-27 Mon → 2026-05-04)</span></div>
+
+<div class="rank-table">
+  <div class="rank-row header-row">
+    <div>RANK</div><div>REPO</div><div>WHAT IT DOES</div><div>WEEKLY ⭐</div><div>LANG</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">1</div>
+    <div class="rank-repo">mattpocock/<br>skills</div>
+    <div class="rank-desc">工程師技能庫框架，<strong>Claude Agent SDK</strong> 整合教程合集</div>
+    <div class="rank-gain">+35,324<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-sh">Shell</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">2</div>
+    <div class="rank-repo">TauricResearch/<br>TradingAgents</div>
+    <div class="rank-desc">多智能體<strong>金融交易框架</strong>，LLM 驅動量化策略</div>
+    <div class="rank-gain">+8,489<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-py">Python</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">3</div>
+    <div class="rank-repo">ruvnet/<br>ruflo</div>
+    <div class="rank-desc"><strong>Claude Agent 編排平台</strong>，企業級多智能體系統</div>
+    <div class="rank-gain">+2,972<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-ts">TypeScript</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">4</div>
+    <div class="rank-repo">aider-ai/<br>aider</div>
+    <div class="rank-desc">AI 結對程式設計工具，<strong>終端機 LLM 代碼助手</strong></div>
+    <div class="rank-gain">+1,987<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-py">Python</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">5</div>
+    <div class="rank-repo">ollama/<br>ollama</div>
+    <div class="rank-desc">本地 LLM 執行工具，<strong>一行指令跑任意開源模型</strong></div>
+    <div class="rank-gain">+1,756<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-no">Go</div>
+  </div>
+</div>
+
+<!-- ====== 非 AI Top 3 ====== -->
+<div class="section-title">🛠️ 非 AI · 本週漲星 Top 3 <span class="section-note">&nbsp;(2026-04-27 Mon → 2026-05-04)</span></div>
+
+<div class="rank-table">
+  <div class="rank-row header-row">
+    <div>RANK</div><div>REPO</div><div>WHAT IT DOES</div><div>WEEKLY ⭐</div><div>LANG</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">1</div>
+    <div class="rank-repo">Z4nzu/<br>hackingtool</div>
+    <div class="rank-desc">全能<strong>滲透測試工具</strong>合集，安全研究必備</div>
+    <div class="rank-gain">+7,210<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-py">Python</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">2</div>
+    <div class="rank-repo">refactoringhq/<br>tolaria</div>
+    <div class="rank-desc">Markdown <strong>知識庫管理</strong>應用，本地優先設計</div>
+    <div class="rank-gain">+3,384<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-ts">TypeScript</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">3</div>
+    <div class="rank-repo">ComposioHQ/<br>awesome-codex-skills</div>
+    <div class="rank-desc">OpenAI Codex <strong>技能擴充套件</strong>精選清單</div>
+    <div class="rank-gain">+2,145<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-py">Python</div>
+  </div>
+</div>
+
+<!-- ====== 焦點解讀 ====== -->
+<div class="section-title">🔥 本週焦點解讀</div>
+
+<div class="cards-grid">
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">TradingAgents 金融 Agent 爆發</div>
+      <span class="badge badge-ai">AI</span>
+    </div>
+    <a class="source-link" href="https://github.com/TauricResearch/TradingAgents" target="_blank">github.com</a>
+    <div class="card-desc">
+      <span class="metric">+8,489 ⭐</span><span class="metric">週榜 #2</span>
+      多智能體量化交易框架，<strong>LLM 驅動策略生成</strong>切中市場熱點
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">金融科技社群熱轉，視為 AI Agent 落地金融的重要參考實作</div>
+  </div>
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">mattpocock/skills 周榜冠軍</div>
+      <span class="badge badge-trend">TREND</span>
+    </div>
+    <a class="source-link" href="https://github.com/mattpocock/skills" target="_blank">github.com</a>
+    <div class="card-desc">
+      <span class="metric">+35,324 ⭐</span><span class="metric">週榜 #1</span>
+      Shell 技能庫，<strong>AI Agent SDK 整合教程</strong>引爆開發者學習需求
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">X / Twitter 工程師圈大量轉發，成本週討論度最高倉庫</div>
+  </div>
+</div>
+
+<div class="footer">AI 日報 · 每日 08:00 台灣時間更新 · 資料截至 2026-05-04 08:00 UTC+8</div>
+</body>
+</html>
