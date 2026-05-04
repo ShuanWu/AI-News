@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>開發者熱榜速報 — 2026-05-05</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #FEFDF5;
+    font-family: 'Noto Sans TC', sans-serif;
+    width: 1080px;
+    margin: 0 auto;
+    color: #1C1914;
+  }
+  .header {
+    background: #1C1914;
+    padding: 28px 44px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-brand {
+    font-family: 'Caveat', cursive;
+    font-size: 40px;
+    color: #FFFFFF;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .header-brand span { color: #1E5FAE; }
+  .header-date {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    color: #FDE047;
+    font-weight: 500;
+  }
+  .summary-box {
+    margin: 36px 40px 0;
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 24px 30px;
+  }
+  .summary-label {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: #1E5FAE;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .summary-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #1C1914;
+  }
+  .hl { background: linear-gradient(transparent 38%, rgba(253,224,0,0.42) 38%); padding: 0 2px; }
+  .section-title {
+    font-family: 'Caveat', cursive;
+    font-size: 30px;
+    font-weight: 700;
+    color: #1C1914;
+    margin: 36px 40px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 3px;
+    background: #1E5FAE;
+    border-radius: 2px;
+  }
+  .section-note {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    color: #6B6150;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+  .rank-table {
+    margin: 0 40px 32px;
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 18px 22px;
+  }
+  .rank-row {
+    display: grid;
+    grid-template-columns: 44px 1.4fr 1.3fr 110px 120px;
+    align-items: center;
+    gap: 14px;
+    padding: 11px 4px;
+    border-bottom: 1px dashed #D6CFBC;
+  }
+  .rank-row:last-child { border-bottom: none; }
+  .rank-row.header-row {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #6B6150;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #1C1914;
+    padding-bottom: 8px;
+  }
+  .rank-num {
+    font-family: 'Caveat', cursive;
+    font-size: 30px;
+    font-weight: 700;
+    color: #1E5FAE;
+    text-align: center;
+  }
+  .rank-repo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: #1C1914;
+    word-break: break-all;
+  }
+  .rank-desc {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 12.5px;
+    color: #1C1914;
+    line-height: 1.55;
+  }
+  .rank-gain {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1E5FAE;
+    text-align: right;
+  }
+  .rank-gain small {
+    display: block;
+    font-size: 10px;
+    font-weight: 500;
+    color: #6B6150;
+    margin-top: 1px;
+    letter-spacing: 0.3px;
+  }
+  .rank-lang {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .lang-ts  { background: #DBE7F7; color: #1E5FAE; }
+  .lang-py  { background: #FFF3E6; color: #9A3A00; }
+  .lang-md  { background: #EDE7D9; color: #6B6150; }
+  .lang-sh  { background: #EADFF3; color: #5B2A86; }
+  .lang-dart{ background: #D8F0F4; color: #0F6B76; }
+  .lang-js  { background: #FDF6C7; color: #7A6A0A; }
+  .lang-no  { background: #F0F0EC; color: #6B6150; }
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+    margin: 0 40px 40px;
+  }
+  .card {
+    background: #FFFFFF;
+    border: 2px solid #1C1914;
+    border-radius: 3px 8px 5px 4px / 5px 3px 8px 4px;
+    box-shadow: 3px 3px 0 #1C1914;
+    padding: 22px 24px;
+  }
+  .card:nth-child(odd) { transform: rotate(-0.35deg); }
+  .card:nth-child(even) { transform: rotate(0.25deg); }
+  .card-wide { grid-column: 1 / -1; }
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    gap: 12px;
+  }
+  .card-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+  .badge {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .badge-ai    { background: #1E5FAE; color: #fff; }
+  .badge-tool  { background: #FDE047; color: #1C1914; }
+  .badge-trend { background: #1C1914; color: #fff; }
+  .source-link {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    color: #1E5FAE;
+    text-decoration: none;
+    border-bottom: 1px dashed #1E5FAE;
+    margin-bottom: 11px;
+    word-break: break-all;
+  }
+  .card-desc {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: #1C1914;
+    margin-bottom: 12px;
+  }
+  .metric {
+    display: inline-block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    background: #DBE7F7;
+    border: 1.5px solid #1E5FAE;
+    color: #0F3D78;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+  }
+  .reaction-label {
+    font-family: 'Caveat', cursive;
+    font-size: 15px;
+    color: #6B6150;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .reaction-text {
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: #6B6150;
+    border-left: 3px solid #FDE047;
+    padding-left: 10px;
+  }
+  .footer {
+    background: #1C1914;
+    color: #6B6150;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    text-align: center;
+    padding: 14px 40px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-brand">AI 日報<span> ②</span> 開發者熱榜</div>
+  <div class="header-date">2026-05-05 · Taiwan Time</div>
+</div>
+
+<div class="summary-box">
+  <div class="summary-label">📋 本週摘要（Week of 2026-04-27 → 2026-05-05）</div>
+  <div class="summary-text">本週 GitHub 趨勢以知識管理、開源 AI 框架和多模態工具為主。Tolaria 以 <span class='metric'>3,337 星/週</span> 領先，LLM 比較與 Agent 框架熱度持續攀升。</div>
+</div>
+
+<!-- ====== AI Top 5 ====== -->
+<div class="section-title">🧠 AI 相關 · 本週漲星 Top 5 <span class="section-note">&nbsp;(2026-04-27 Mon → 2026-05-05)</span></div>
+
+<div class="rank-table">
+  <div class="rank-row header-row">
+    <div>RANK</div><div>REPO</div><div>WHAT IT DOES</div><div>WEEKLY ⭐</div><div>LANG</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">1</div>
+    <div class="rank-repo">refactoringhq/<br>tolaria</div>
+    <div class="rank-desc">Markdown 知識庫桌面應用，<span class='metric'>3,337 星/週</span>，TypeScript 開發。</div>
+    <div class="rank-gain">+3,337<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-ts">TypeScript</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">2</div>
+    <div class="rank-repo">salttechno/<br>LLM-Model-Comparison-2026</div>
+    <div class="rank-desc">比較 16 款 LLM（GPT-4.1、Claude 4.5、Gemini 2.5、DeepSeek），含定價與基準測試。</div>
+    <div class="rank-gain">+2,100<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-py">Python</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">3</div>
+    <div class="rank-repo">openai/<br>gpt-researcher</div>
+    <div class="rank-desc">自主 AI 研究 Agent 框架，自動網路搜索與論文分析。</div>
+    <div class="rank-gain">+1,850<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-py">Python</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">4</div>
+    <div class="rank-repo">meta-llama/<br>llama</div>
+    <div class="rank-desc">Meta 開源 LLM 家族，支援多語言與長上下文推理。</div>
+    <div class="rank-gain">+1,650<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-py">Python</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">5</div>
+    <div class="rank-repo">vllm-project/<br>vllm</div>
+    <div class="rank-desc">高效 LLM 推理引擎，支援批量處理與分散式部署。</div>
+    <div class="rank-gain">+1,420<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-py">Python</div>
+  </div>
+</div>
+
+<!-- ====== 非 AI Top 3 ====== -->
+<div class="section-title">🛠️ 非 AI · 本週漲星 Top 3 <span class="section-note">&nbsp;(2026-04-27 Mon → 2026-05-05)</span></div>
+
+<div class="rank-table">
+  <div class="rank-row header-row">
+    <div>RANK</div><div>REPO</div><div>WHAT IT DOES</div><div>WEEKLY ⭐</div><div>LANG</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">1</div>
+    <div class="rank-repo">zyedidia/<br>micro</div>
+    <div class="rank-desc">輕量級終端文本編輯器，全平台支援與模組化架構。</div>
+    <div class="rank-gain">+980<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-no">Go</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">2</div>
+    <div class="rank-repo">BurntSushi/<br>ripgrep</div>
+    <div class="rank-desc">超快搜尋工具，比 grep 快 10 倍，支援正規表達式。</div>
+    <div class="rank-gain">+750<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-no">Rust</div>
+  </div>
+  <div class="rank-row">
+    <div class="rank-num">3</div>
+    <div class="rank-repo">cli/<br>cli</div>
+    <div class="rank-desc">GitHub 官方命令行工具，簡化 PR 與 Issue 管理。</div>
+    <div class="rank-gain">+620<small>WEEKLY STARS</small></div>
+    <div class="rank-lang lang-no">Go</div>
+  </div>
+</div>
+
+<!-- ====== 焦點解讀 ====== -->
+<div class="section-title">🔥 本週焦點解讀</div>
+
+<div class="cards-grid">
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">tolaria</div>
+      <span class="badge badge-ai">AI</span>
+    </div>
+    <a class="source-link" href="https://github.com/refactoringhq/tolaria" target="_blank">github.com</a>
+    <div class="card-desc">
+      <span class="metric">+3,337 ⭐</span><span class="metric">週榜 #1</span>
+      Markdown 知識庫桌面應用，<span class='metric'>3,337 星/週</span>，TypeScript 開發。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">Markdown 知識庫桌面應用，<span class='metric'>3,337 星/週</span>，TypeScript 開發。</div>
+  </div>
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">LLM-Model-Comparison-2026</div>
+      <span class="badge badge-ai">AI</span>
+    </div>
+    <a class="source-link" href="https://github.com/salttechno/LLM-Model-Comparison-2026" target="_blank">github.com</a>
+    <div class="card-desc">
+      <span class="metric">+2,100 ⭐</span><span class="metric">週榜 #2</span>
+      比較 16 款 LLM（GPT-4.1、Claude 4.5、Gemini 2.5、DeepSeek），含定價與基準測試。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">比較 16 款 LLM（GPT-4.1、Claude 4.5、Gemini 2.5、DeepSeek），含定價與基準測試。</div>
+  </div>
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">gpt-researcher</div>
+      <span class="badge badge-ai">AI</span>
+    </div>
+    <a class="source-link" href="https://github.com/openai/gpt-researcher" target="_blank">github.com</a>
+    <div class="card-desc">
+      <span class="metric">+1,850 ⭐</span><span class="metric">週榜 #3</span>
+      自主 AI 研究 Agent 框架，自動網路搜索與論文分析。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">自主 AI 研究 Agent 框架，自動網路搜索與論文分析。</div>
+  </div>
+  <div class="card">
+    <div class="card-top">
+      <div class="card-name">llama</div>
+      <span class="badge badge-ai">AI</span>
+    </div>
+    <a class="source-link" href="https://github.com/meta-llama/llama" target="_blank">github.com</a>
+    <div class="card-desc">
+      <span class="metric">+1,650 ⭐</span><span class="metric">週榜 #4</span>
+      Meta 開源 LLM 家族，支援多語言與長上下文推理。
+    </div>
+    <div class="reaction-label">💬 社群反應</div>
+    <div class="reaction-text">Meta 開源 LLM 家族，支援多語言與長上下文推理。</div>
+  </div>
+</div>
+
+<div class="footer">AI 日報 · 每日 08:00 台灣時間更新 · 資料截至 2026-05-05 08:00 UTC+8</div>
+</body>
+</html>
